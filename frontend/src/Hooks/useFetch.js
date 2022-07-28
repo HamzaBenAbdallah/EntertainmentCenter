@@ -8,7 +8,7 @@ const ACTIONS = {
 };
 
 const initialState = {
-  data: [],
+  data: { results: [] },
   loading: false,
   error: null,
 };
@@ -45,7 +45,7 @@ export const useFetch = (url) => {
     const fetch = async () => {
       try {
         const response = await axios.get(url);
-        dispatch({ type: ACTIONS.FETCH_DATA, payload: response.data });
+        dispatch({ type: ACTIONS.FETCH_DATA, payload: response });
       } catch (error) {
         dispatch({ type: ACTIONS.ERROR, payload: error });
       }
