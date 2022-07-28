@@ -2,11 +2,11 @@ import dotenv from "dotenv";
 import axios from "axios";
 
 dotenv.config();
-const { API_KEY } = process.env;
+const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getGenre = async (req, res) => {
   const { id = 28 } = req.query;
-  const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
+  const url = `${MOVIE_BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
 
   try {
     const response = await axios(url);

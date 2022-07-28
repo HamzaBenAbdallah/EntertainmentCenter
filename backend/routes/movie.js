@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import axios from "axios";
 
 dotenv.config();
-const { API_KEY } = process.env;
+const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getCurrentlyPlayingMovies = async (req, res) => {
   const { page, region } = req.query;
-  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&page=${
+  const url = `${MOVIE_BASE_URL}/movie/now_playing?api_key=${API_KEY}&page=${
     page || 1
   }&region=${region || "US"}`;
 
@@ -35,7 +35,7 @@ export const getCurrentlyPlayingMovies = async (req, res) => {
 
 export const getTopRatedMovies = async (req, res) => {
   const { page, region } = req.query;
-  const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${
+  const url = `${MOVIE_BASE_URL}/movie/top_rated?api_key=${API_KEY}&page=${
     page || 1
   }&region=${region || "US"}`;
   try {
@@ -62,7 +62,7 @@ export const getTopRatedMovies = async (req, res) => {
 
 export const getTrendingMovies = async (req, res) => {
   const { page, region } = req.query;
-  const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${
+  const url = `${MOVIE_BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${
     page || 1
   }&region=${region || "US"}`;
 
