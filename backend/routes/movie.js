@@ -1,8 +1,7 @@
-"use strict";
-import dotenv from "dotenv";
 import axios from "axios";
-
+import dotenv from "dotenv";
 dotenv.config();
+
 const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getCurrentlyPlayingMovies = async (req, res) => {
@@ -13,7 +12,8 @@ export const getCurrentlyPlayingMovies = async (req, res) => {
 
   try {
     const response = await axios(url);
-    const data = response.data.results;
+    const data = response?.data.results;
+
     const relevantData = data.map((movie) => ({
       id: movie.id,
       title: movie.title,
@@ -26,10 +26,18 @@ export const getCurrentlyPlayingMovies = async (req, res) => {
     }));
     res.status(200).json(relevantData);
   } catch (err) {
-    res.status(404).json({
-      status: 404,
-      message: "Please enter a valid page number",
-    });
+    switch (err.response.status) {
+      case 422:
+        res
+          .status(422)
+          .json({ status: 422, message: "Please enter a valid page number" });
+        break;
+      default:
+        res.status(500).json({
+          status: 500,
+          message: err.message,
+        });
+    }
   }
 };
 
@@ -38,9 +46,11 @@ export const getTopRatedMovies = async (req, res) => {
   const url = `${MOVIE_BASE_URL}/movie/top_rated?api_key=${API_KEY}&page=${
     page || 1
   }&region=${region || "US"}`;
+
   try {
     const response = await axios(url);
-    const data = response.data.results;
+    const data = response?.data.results;
+
     const relevantData = data.map((movie) => ({
       id: movie.id,
       title: movie.title,
@@ -53,10 +63,18 @@ export const getTopRatedMovies = async (req, res) => {
     }));
     res.status(200).json(relevantData);
   } catch (err) {
-    res.status(404).json({
-      status: 404,
-      message: "Please enter a valid page number",
-    });
+    switch (err.response.status) {
+      case 422:
+        res
+          .status(422)
+          .json({ status: 422, message: "Please enter a valid page number" });
+        break;
+      default:
+        res.status(500).json({
+          status: 500,
+          message: err.message,
+        });
+    }
   }
 };
 
@@ -68,7 +86,8 @@ export const getTrendingMovies = async (req, res) => {
 
   try {
     const response = await axios(url);
-    const data = response.data.results;
+    const data = response?.data.results;
+
     const relevantData = data.map((movie) => ({
       id: movie.id,
       title: movie.title,
@@ -81,9 +100,17 @@ export const getTrendingMovies = async (req, res) => {
     }));
     res.status(200).json(relevantData);
   } catch (err) {
-    res.status(404).json({
-      status: 404,
-      message: "Please enter a valid page number",
-    });
+    switch (err.response.status) {
+      case 422:
+        res
+          .status(422)
+          .json({ status: 422, message: "Please enter a valid page number" });
+        break;
+      default:
+        res.status(500).json({
+          status: 500,
+          message: err.message,
+        });
+    }
   }
 };

@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
 import axios from "axios";
-
+import dotenv from "dotenv";
 dotenv.config();
+
 const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getGenre = async (req, res) => {
@@ -15,12 +15,22 @@ export const getGenre = async (req, res) => {
         return genre;
       }
     });
-    const genre = data.name;
-    res.status(200).json(genre);
+    const genre = data?.name;
+    if (genre) {
+      res.status(200).json({
+        status: 200,
+        genre: `${genre}`,
+      });
+    } else {
+      res.status(404).json({
+        status: 404,
+        message: "No results found, please enter a valid genre id",
+      });
+    }
   } catch (err) {
-    res.status(404).json({
-      status: 404,
-      message: "Please enter a valid genre id",
+    res.status(500).json({
+      status: 500,
+      message: err.message,
     });
   }
 };
