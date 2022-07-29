@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { API_KEY, MOVIE_BASE_URL } = process.env;
+const { API_KEY, MOVIE_BASE_URL, POSTER_BASE_URL } = process.env;
 
 export const baseGetMovie = async (req, res, urlParam) => {
   const { page, region, query } = req.query;
@@ -21,7 +21,7 @@ export const baseGetMovie = async (req, res, urlParam) => {
         vote_average: movie.vote_average,
         vote_count: movie.vote_count,
         release_date: movie.release_date,
-        poster_path: movie.poster_path,
+        poster_path: POSTER_BASE_URL + movie.poster_path,
         genre_id: movie.genre_ids,
       }));
       res.status(200).json(relevantData);
