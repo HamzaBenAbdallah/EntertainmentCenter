@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "server.js",
-    "dev:backend": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "author": "Hamza Ben Abdallah",
   "license": "ISC",
