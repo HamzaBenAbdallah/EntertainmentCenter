@@ -1,0 +1,70 @@
+:root {
+  --gap: 1.25rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+}
+
+/* .hover {
+  position: relative;
+}
+
+.hover::before {
+  outline: 3px solid red;
+  content: "";
+  background-color: #000;
+  display: block;
+  width: calc(200% + var(--gap));
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.hover:nth-child(5n-2)::before,
+.hover:nth-child(5n-3)::before,
+.hover:nth-child(5n-4)::before {
+  left: calc(100% + var(--gap));
+}
+
+.hover:nth-child(5n)::before,
+.hover:nth-child(5n - 1)::before {
+  right: calc(100% + var(--gap));
+} */
+
+.card {
+  position: relative;
+}
+
+.card-detail {
+  background-color: #000;
+  width: calc(200% + var(--gap));
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card:nth-child(5n - 2) .card-detail,
+.card:nth-child(5n - 3) .card-detail,
+.card:nth-child(5n - 4) .card-detail {
+  left: calc(100% + var(--gap));
+}
+
+.card:nth-child(5n) .card-detail,
+.card:nth-child(5n - 1) .card-detail {
+  right: calc(100% + var(--gap));
+}
+
+.hover {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

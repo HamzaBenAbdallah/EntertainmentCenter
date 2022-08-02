@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
   :root {
     --color-cadmium-red: #D80026;
-    --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
-    --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
+    --font-heading: Arial, Helvetica, sans-serif;
+    --font-body: Arial, Helvetica, sans-serif;
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
