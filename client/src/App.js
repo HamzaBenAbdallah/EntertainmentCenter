@@ -1,18 +1,15 @@
-import { QueryClientProvider, QueryClient } from "react-query";
 import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
 import Card from "Components/Card.js";
 
-const queryClient = new QueryClient();
-
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <GlobalStyles />
       <Main>
         <Card />
       </Main>
-    </QueryClientProvider>
+    </>
   );
 };
 

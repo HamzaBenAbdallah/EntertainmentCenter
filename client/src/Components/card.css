@@ -53,28 +53,29 @@ img {
 }
 
 .card-detail > div {
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header {
   background: #222b39;
-  height: 20%;
+  /* height: 27.5%; */
   width: 100%;
 }
 
 .content {
   background: #283343;
-  height: 60%;
+  /* height: 60%; */
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.35);
   border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-  display: flex;
-  align-items: center;
 }
 
 .footer {
   background: #222b39;
-  height: 20%;
+  height: 15%;
   width: 100%;
 }
 
@@ -104,12 +105,15 @@ img {
 }
 
 .overview {
-  width: 50ch;
+  width: 45ch;
+  line-height: 1.75em;
 }
 
 .title {
   font-size: 1.25em;
   font-weight: bold;
+  margin-bottom: 0.25em;
+  line-height: 1.25em;
 }
 
 .genre {
