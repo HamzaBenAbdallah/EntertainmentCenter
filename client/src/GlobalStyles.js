@@ -5,8 +5,6 @@ export default createGlobalStyle`
     --color-cadmium-red: #D80026;
     --font-heading: Arial, Helvetica, sans-serif;
     --font-body: Arial, Helvetica, sans-serif;
-    --card-gap: 1.5rem;
-    --num-columns: 6;
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/

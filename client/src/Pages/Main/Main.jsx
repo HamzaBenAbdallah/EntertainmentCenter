@@ -4,15 +4,15 @@ import Card from "Components/Card";
 import { MovieGrid } from "./Main.style";
 
 const Main = () => {
-  const { movies, isLoading } = useContext(MovieContext);
+  const { moviesList, isLoadingMovies } = useContext(MovieContext);
 
-  if (isLoading) {
+  if (isLoadingMovies) {
     return <div>Loading...</div>;
   }
 
   return (
     <MovieGrid>
-      {movies?.map((movie, index) => {
+      {moviesList?.map((movie, index) => {
         return <Card key={index} movie={movie} />;
       })}
     </MovieGrid>
