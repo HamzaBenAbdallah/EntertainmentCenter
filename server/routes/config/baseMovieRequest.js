@@ -24,7 +24,7 @@ export const baseGetMovie = async (req, res, urlParam) => {
         poster_path: POSTER_BASE_URL + movie.poster_path,
         genre_id: movie.genre_ids,
       }));
-      res.status(200).json(relevantData);
+      res.status(200).json({ status: 200, data: relevantData });
     } else {
       res.status(404).json({ status: 404, message: "No movies found" });
     }
