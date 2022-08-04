@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  width: 60%;
+  width: 55%;
   height: 60%;
   display: flex;
   border-radius: 10px;

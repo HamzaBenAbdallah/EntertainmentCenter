@@ -3,28 +3,18 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 dotenv.config();
 
-import {
-  getCurrentlyPlayingMovies,
-  getTopRatedMovies,
-  getTrendingMovies,
-} from "./routes/movies/movie.js";
-import { getGenre } from "./routes/movies/genre.js";
-import { getSearchResults } from "./routes/movies/search.js";
+import movieRouter from "./routes/movies/index.js";
 
-const { PORT } = process.env || 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 // Middleware
 app.use(morgan("tiny"));
 app.use(express.json());
-app.use(express.static("public"));
 
-app.get("/api/search-movies", getSearchResults);
-app.get("/api/currently-playing-movies", getCurrentlyPlayingMovies);
-app.get("/api/top-rated-movies", getTopRatedMovies);
-app.get("/api/trending-movies", getTrendingMovies);
-app.get("/api/genre", getGenre);
+// Routes Middleware
+app.use("/api", movieRouter);
 
 app.get("*", (req, res) => {
   res.status(404).json({
