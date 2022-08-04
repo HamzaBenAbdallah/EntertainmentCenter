@@ -6,4 +6,5 @@ export const MovieGrid = styled.div`
   grid-template-columns: repeat(${numColumns}, ${cardWidth}%);
   justify-content: center;
   gap: ${cardGap}rem;
+  padding: 5rem 10%;
 `;

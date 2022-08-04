@@ -14,7 +14,7 @@ const App = () => {
           <Route path="/" exact element={<Main />} />
           <Route path="/signup" exact element={<Signup />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/" exact element={<Navigate replace to="/login" />} />
+          {/* <Route path="/" exact element={<Navigate replace to="/login" />} /> */}
         </Routes>
       </AppContainer>
     </>
@@ -25,7 +25,6 @@ const AppContainer = styled.div`
   background-color: #19212f;
   min-height: 100vh;
   font-family: sans-serif;
-  padding: 0 10%;
 `;
 
 export default App;
