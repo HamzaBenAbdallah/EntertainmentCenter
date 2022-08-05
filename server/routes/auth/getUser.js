@@ -26,7 +26,7 @@ export const getUser = async (req, res) => {
       if (!user) {
         return res.status(404).json({
           status: 404,
-          error: "User doesn't exist",
+          message: "User doesn't exist",
         });
       }
 
@@ -36,7 +36,7 @@ export const getUser = async (req, res) => {
       if (!isValid) {
         return res.status(401).json({
           status: 401,
-          error: "Invalid password",
+          message: "Invalid password",
         });
       }
 
@@ -45,16 +45,16 @@ export const getUser = async (req, res) => {
       res
         .header("auth-token", token)
         .status(200)
-        .json({ status: 200, token: token });
+        .json({ status: 200, message: "User logged in" });
     } catch (err) {
       res.status(502).json({
         status: 502,
-        error: err.message,
+        message: err.message,
       });
     } finally {
       await client.close();
     }
   } catch (error) {
-    res.status(400).json({ status: 400, error: error.message });
+    res.status(400).json({ status: 400, message: error.message });
   }
 };
