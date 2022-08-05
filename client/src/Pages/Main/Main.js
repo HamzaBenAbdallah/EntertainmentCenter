@@ -4,10 +4,14 @@ import Card from "Components/Card";
 import { MovieGrid } from "./Main.style";
 
 const Main = () => {
-  const { moviesList, isLoadingMovies } = useContext(MovieContext);
+  const { moviesList, isLoadingMovies, errorMovies } = useContext(MovieContext);
 
   if (isLoadingMovies) {
     return <div>Loading...</div>;
+  }
+
+  if (errorMovies) {
+    return <div>Error...</div>;
   }
 
   return (

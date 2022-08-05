@@ -6,7 +6,7 @@ import { useLogin } from "Hooks/useLogin";
 export const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
-  const { moviesList, isLoadingMovies } = useFetchTrending();
+  const { moviesList, isLoadingMovies, errorMovies } = useFetchTrending();
   const { signupData, handleSignupChange, handleSignupSubmit } = useSignup();
   const { loginData, handleLoginChange, handleLoginSubmit } = useLogin();
 
@@ -15,6 +15,7 @@ export const MovieProvider = ({ children }) => {
       value={{
         moviesList,
         isLoadingMovies,
+        errorMovies,
         signupData,
         handleSignupChange,
         handleSignupSubmit,

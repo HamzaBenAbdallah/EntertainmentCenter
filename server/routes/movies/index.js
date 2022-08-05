@@ -2,15 +2,16 @@ import express from "express";
 import { baseGetMovie } from "./config/baseMovieRequest.js";
 import { getSearchResults } from "./search.js";
 import { getGenre } from "./genre.js";
+import { authenticateToken } from "../validation/token.js";
 
 const movieRouter = express.Router();
 
-movieRouter.get("/currently-playing-movies", (req, res) => {
+movieRouter.get("/currently-playing-movies", authenticateToken, (req, res) => {
   const urlParam = `movie/now_playing`;
   baseGetMovie(req, res, urlParam);
 });
 
-movieRouter.get("/top-rated-movies", (req, res) => {
+movieRouter.get("/top-rated-movies", authenticateToken, (req, res) => {
   const urlParam = `movie/top_rated`;
   baseGetMovie(req, res, urlParam);
 });
@@ -20,8 +21,8 @@ movieRouter.get("/trending-movies", (req, res) => {
   baseGetMovie(req, res, urlParam);
 });
 
-movieRouter.get("/search-movies", getSearchResults);
+movieRouter.get("/search-movies", authenticateToken, getSearchResults);
 
-movieRouter.get("/genre", getGenre);
+movieRouter.get("/genre", authenticateToken, getGenre);
 
 export default movieRouter;

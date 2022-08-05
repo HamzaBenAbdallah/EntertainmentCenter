@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { loginValidation } from "../validation/user.js";
+import { createToken } from "../validation/token.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -44,7 +44,7 @@ export const getUser = async (req, res) => {
       }
 
       // Create a token
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
+      const token = createToken(user._id);
       res
         .header("auth-token", token)
         .status(200)

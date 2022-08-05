@@ -4,7 +4,11 @@ dotenv.config();
 
 const { JWT_SECRET } = process.env;
 
-export const verifyToken = async (req, res, next) => {
+export const createToken = (id) => {
+  return jwt.sign({ id }, JWT_SECRET, { expiresIn: "1d" });
+};
+
+export const authenticateToken = async (req, res, next) => {
   const token = req.header("auth-token");
 
   if (!token) {
