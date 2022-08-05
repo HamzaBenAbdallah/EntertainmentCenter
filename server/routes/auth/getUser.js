@@ -1,10 +1,11 @@
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { loginValidation } from "../validation/user.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { MONGO_URI } = process.env;
+const { MONGO_URI, JWT_SECRET } = process.env;
 const client = new MongoClient(MONGO_URI);
 
 export const getUser = async (req, res) => {
@@ -39,7 +40,12 @@ export const getUser = async (req, res) => {
         });
       }
 
-      res.status(200).json({ status: 200, message: "User found" });
+      // Create a token
+      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+      res
+        .header("auth-token", token)
+        .status(200)
+        .json({ status: 200, token: token });
     } catch (err) {
       res.status(502).json({
         status: 502,
