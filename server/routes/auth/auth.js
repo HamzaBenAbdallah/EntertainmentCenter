@@ -8,7 +8,7 @@ dotenv.config();
 const { MONGO_URI, JWT_SECRET } = process.env;
 const client = new MongoClient(MONGO_URI);
 
-export const getUser = async (req, res) => {
+export const auth = async (req, res) => {
   // Validate the request body
   try {
     const value = await loginValidation(req.body);
@@ -50,8 +50,8 @@ export const getUser = async (req, res) => {
         .status(200)
         .json({ status: 200, token, message: "Logged in successfully" });
     } catch (err) {
-      res.status(502).json({
-        status: 502,
+      res.status(500).json({
+        status: 500,
         message: "Internal server error",
       });
     } finally {

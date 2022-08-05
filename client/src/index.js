@@ -9,11 +9,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <MovieProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <MovieProvider>
         <App />
-      </BrowserRouter>
-    </MovieProvider>
-  </QueryClientProvider>
+      </MovieProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );

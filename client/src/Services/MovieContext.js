@@ -7,7 +7,8 @@ export const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
   const { moviesList, isLoadingMovies, errorMovies } = useFetchTrending();
-  const { signupData, handleSignupChange, handleSignupSubmit } = useSignup();
+  const { signupData, signupError, handleSignupChange, handleSignupSubmit } =
+    useSignup();
   const { loginData, handleLoginChange, handleLoginSubmit } = useLogin();
 
   return (
@@ -17,6 +18,7 @@ export const MovieProvider = ({ children }) => {
         isLoadingMovies,
         errorMovies,
         signupData,
+        signupError,
         handleSignupChange,
         handleSignupSubmit,
         loginData,

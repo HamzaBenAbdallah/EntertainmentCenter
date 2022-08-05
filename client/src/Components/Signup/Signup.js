@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { MovieContext } from "Services/MovieContext";
 import {
@@ -13,10 +13,8 @@ import {
 } from "./Signup.style";
 
 const Signup = () => {
-  const { signupData, handleSignupChange, handleSignupSubmit } =
+  const { signupData, signupError, handleSignupChange, handleSignupSubmit } =
     useContext(MovieContext);
-
-  const navigate = useNavigate();
 
   return (
     <Container>
@@ -28,7 +26,7 @@ const Signup = () => {
           </Link>
         </Left>
         <Right>
-          <Form>
+          <Form onSubmit={handleSignupSubmit}>
             <h1>Create Account</h1>
             <Input
               type="text"
@@ -62,10 +60,8 @@ const Signup = () => {
               onChange={handleSignupChange}
               required
             />
-            {false && <Error>Some error here</Error>}
-            <Button type="submit" onSubmit={handleSignupSubmit}>
-              Sign Up
-            </Button>
+            {signupError && <Error>{signupError}</Error>}
+            <Button type="submit">Sign Up</Button>
           </Form>
         </Right>
       </FormContainer>

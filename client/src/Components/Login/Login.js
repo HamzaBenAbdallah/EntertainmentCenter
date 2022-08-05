@@ -47,7 +47,7 @@ const Login = () => {
         <Right>
           <h1>New here?</h1>
           <Link to="/signup">
-            <Button>Sign in</Button>
+            <Button>Sign up</Button>
           </Link>
         </Right>
       </FormContainer>

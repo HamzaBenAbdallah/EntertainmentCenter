@@ -51,8 +51,8 @@ export const createUser = async (req, res) => {
       res.status(400).json({ status: 400, message: error.details[0].message });
     }
   } catch (err) {
-    res.status(502).json({
-      status: 502,
+    res.status(500).json({
+      status: 500,
       message: "Internal server error",
     });
   } finally {
