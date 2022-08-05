@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcryptjs";
 import { v4 as uuid4 } from "uuid";
 import { signupValidation } from "../validation/user.js";
 import dotenv from "dotenv";
@@ -11,15 +12,24 @@ export const createUser = async (req, res) => {
   // Validate the request body
   try {
     const value = await signupValidation(req.body);
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(value.password, salt);
+
+    // Create a new user
     const user = {
       _id: uuid4(),
       ...value,
+      password: hashedPassword,
       date: Date.now(),
     };
+
     // Connect to the database
     try {
       await client.connect();
       const collection = client.db("app-data").collection("users");
+
       // Insert the user into the database if it doesn't exist
       const isExistingUser = await collection.findOne({ email: user.email });
       if (isExistingUser) {
