@@ -5,24 +5,29 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const { MONGO_URI } = process.env;
-
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
+const client = new MongoClient(MONGO_URI);
 
 export const createUser = async (req, res) => {
+  // Validate the request body
   try {
     const value = await signupValidation(req.body);
+    const user = {
+      _id: uuid4(),
+      ...value,
+      date: Date.now(),
+    };
+    // Connect to the database
     try {
-      const client = await MongoClient.connect(MONGO_URI, options);
-      const db = client.db("app-data");
-      const collection = db.collection("users");
-      const user = {
-        _id: uuid4(),
-        ...value,
-        date: Date.now(),
-      };
+      await client.connect();
+      const collection = client.db("app-data").collection("users");
+      // Insert the user into the database if it doesn't exist
+      const isExistingUser = await collection.findOne({ email: user.email });
+      if (isExistingUser) {
+        return res.status(409).json({
+          status: 409,
+          error: "User already exists",
+        });
+      }
       await collection.insertOne(user);
       res.status(201).json({
         status: 201,
@@ -31,15 +36,13 @@ export const createUser = async (req, res) => {
     } catch (err) {
       res.status(502).json({
         status: 502,
-        message: err.message,
+        error: err.message,
       });
     } finally {
-      client.close();
+      await client.close();
     }
   } catch (error) {
-    res.status(400).json({
-      status: 400,
-      error: error.message,
-    });
+    res.status(400).json({ status: 400, error: error.message });
   }
+  client.close();
 };

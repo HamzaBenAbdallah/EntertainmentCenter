@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export const signupValidation = async (data) => {
+export const signupValidation = (data) => {
   const userSchema = Joi.object({
     firstName: Joi.string().min(3).max(30).required(),
     lastName: Joi.string().min(2).max(30).required(),
@@ -8,10 +8,10 @@ export const signupValidation = async (data) => {
     password: Joi.string().min(8).required(),
   });
 
-  return await userSchema.validateAsync(data);
+  return userSchema.validateAsync(data);
 };
 
-export const loginValidation = async (data) => {
+export const loginValidation = (data) => {
   const userSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
