@@ -13,6 +13,7 @@ const app = express();
 // Middleware
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes Middleware
 app.use("/api", movieRouter);

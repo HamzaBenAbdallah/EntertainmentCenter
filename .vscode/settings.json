@@ -1,4 +1,10 @@
 {
   "git.ignoreLimitWarning": true,
-  "cSpell.words": ["Abdallah", "browserslist", "tanstack", "toastify"]
+  "cSpell.words": [
+    "Abdallah",
+    "alphanum",
+    "browserslist",
+    "tanstack",
+    "toastify"
+  ]
 }
