@@ -5,6 +5,6 @@ import { getUser } from "./getUser.js";
 const authRouter = express.Router();
 
 authRouter.post("/signup", createUser);
-authRouter.get("/:email", getUser);
+authRouter.get("/login", getUser);
 
 export default authRouter;

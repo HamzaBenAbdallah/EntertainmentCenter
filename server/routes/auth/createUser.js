@@ -31,16 +31,19 @@ export const createUser = async (req, res) => {
       const collection = client.db("app-data").collection("users");
 
       // Insert the user into the database if it doesn't exist
-      const isExistingUser = await collection.findOne({ email: user.email });
-      if (isExistingUser) {
+      const existingUser = await collection.findOne({ email: user.email });
+
+      if (existingUser) {
         return res.status(409).json({
           status: 409,
           error: "User already exists",
         });
       }
+
       await collection.insertOne(user);
       res.status(201).json({
         status: 201,
+        id: user._id,
         message: "User created successfully",
       });
     } catch (err) {
@@ -54,5 +57,4 @@ export const createUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ status: 400, error: error.message });
   }
-  client.close();
 };

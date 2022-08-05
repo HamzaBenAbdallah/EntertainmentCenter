@@ -14,7 +14,7 @@ export const signupValidation = (data) => {
 export const loginValidation = (data) => {
   const userSchema = Joi.object({
     email: Joi.string().email().required(),
-    password: Joi.string().min(8).required(),
+    password: Joi.string().required(),
   });
 
   return userSchema.validateAsync(data);
