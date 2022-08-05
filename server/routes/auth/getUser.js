@@ -24,32 +24,35 @@ export const getUser = async (req, res) => {
       });
 
       if (!user) {
-        return res.status(404).json({
-          status: 404,
-          message: "User doesn't exist",
+        return res.status(401).json({
+          status: 401,
+          message: "Invalid email or password",
         });
       }
 
       // Check if the password is correct
-      const isValid = await bcrypt.compare(req.body.password, user.password);
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
 
-      if (!isValid) {
+      if (!validPassword) {
         return res.status(401).json({
           status: 401,
-          message: "Invalid password",
+          message: "Invalid email or password",
         });
       }
 
       // Create a token
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
       res
         .header("auth-token", token)
         .status(200)
-        .json({ status: 200, message: "User logged in" });
+        .json({ status: 200, token, message: "Logged in successfully" });
     } catch (err) {
       res.status(502).json({
         status: 502,
-        message: err.message,
+        message: "Internal server error",
       });
     } finally {
       await client.close();
