@@ -22,7 +22,8 @@ export const useLogin = () => {
     try {
       const response = await axios.post(`/api/login`, loginData);
       localStorage.setItem("token", response.headers["auth-token"]);
-      navigate("/");
+      // navigate("/");
+      window.location = "/";
       setLoginData(initialState);
       setLoginError("");
     } catch (error) {
