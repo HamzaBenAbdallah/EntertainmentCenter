@@ -48,7 +48,7 @@ export const auth = async (req, res) => {
       res
         .header("auth-token", token)
         .status(200)
-        .json({ status: 200, token, message: "Logged in successfully" });
+        .json({ status: 200, message: "Logged in successfully" });
     } catch (err) {
       res.status(500).json({
         status: 500,

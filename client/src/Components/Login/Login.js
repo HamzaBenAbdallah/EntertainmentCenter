@@ -13,14 +13,19 @@ import {
 } from "./Login.style";
 
 const Login = () => {
-  const { loginData, handleLoginChange, handleLoginSubmit } =
-    useContext(MovieContext);
+  const {
+    loginData,
+    loginError,
+    handleLoginChange,
+    handleLoginSubmit,
+    handleLoginUnmount,
+  } = useContext(MovieContext);
 
   return (
     <Container>
       <FormContainer>
         <Left>
-          <Form>
+          <Form onSubmit={handleLoginSubmit}>
             <h1>Login to your account</h1>
             <Input
               type="email"
@@ -38,16 +43,14 @@ const Login = () => {
               onChange={handleLoginChange}
               required
             />
-            {false && <Error>Some error here</Error>}
-            <Button type="submit" onSubmit={handleLoginSubmit}>
-              Sign In
-            </Button>
+            {loginError && <Error>{loginError}</Error>}
+            <Button type="submit">Sign In</Button>
           </Form>
         </Left>
         <Right>
           <h1>New here?</h1>
           <Link to="/signup">
-            <Button>Sign up</Button>
+            <Button onClick={handleLoginUnmount}>Sign up</Button>
           </Link>
         </Right>
       </FormContainer>

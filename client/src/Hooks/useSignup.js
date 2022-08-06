@@ -37,5 +37,16 @@ export const useSignup = () => {
     }
   };
 
-  return { signupData, signupError, handleSignupChange, handleSignupSubmit };
+  const handleSignupUnmount = () => {
+    setSignupData(initialState);
+    setSignupError("");
+  };
+
+  return {
+    signupData,
+    signupError,
+    handleSignupChange,
+    handleSignupSubmit,
+    handleSignupUnmount,
+  };
 };

@@ -13,8 +13,13 @@ import {
 } from "./Signup.style";
 
 const Signup = () => {
-  const { signupData, signupError, handleSignupChange, handleSignupSubmit } =
-    useContext(MovieContext);
+  const {
+    signupData,
+    signupError,
+    handleSignupChange,
+    handleSignupSubmit,
+    handleSignupUnmount,
+  } = useContext(MovieContext);
 
   return (
     <Container>
@@ -22,7 +27,7 @@ const Signup = () => {
         <Left>
           <h1>Welcome Back</h1>
           <Link to="/login">
-            <Button>Sign in</Button>
+            <Button onClick={handleSignupUnmount}>Sign in</Button>
           </Link>
         </Left>
         <Right>
