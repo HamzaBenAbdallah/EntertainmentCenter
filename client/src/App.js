@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
 import Main from "Pages/Main";
@@ -7,12 +7,15 @@ import Signup from "Components/Signup";
 import Login from "Components/Login";
 
 const App = () => {
+  const user = localStorage.getItem("token");
+
   return (
     <>
       <GlobalStyles />
       <AppContainer>
         <Routes>
-          <Route path="/" exact element={<Main />} />
+          {user && <Route path="/" exact element={<Main />} />}
+          <Route path="/" exact element={<Navigate replace to="/login" />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/signup" exact element={<Signup />} />
           <Route path="/featured" exact element={<Featured />} />
