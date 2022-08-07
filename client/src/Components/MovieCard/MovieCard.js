@@ -13,10 +13,12 @@ import {
 } from "./MovieCard.style";
 
 const MovieCard = ({ movie }) => {
+  const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
+
   return (
-    <Link to={`/movies/${movie.id}`}>
-      <Container>
-        <Poster src={movie.poster_path} alt={movie.title} />
+    <Container>
+      <Link to={`/movies/${movie.id}`}>
+        <Poster src={BASE_IMAGE_URL + movie.poster_path} alt={movie.title} />
         <Detail>
           <Header>
             <Title>{movie.title}</Title>
@@ -27,8 +29,8 @@ const MovieCard = ({ movie }) => {
           </Content>
           <Footer>{movie.vote_average}</Footer>
         </Detail>
-      </Container>
-    </Link>
+      </Link>
+    </Container>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
+import Header from "Components/Header";
 import Main from "Pages/Main";
 import Featured from "Pages/Trending";
 import Signup from "Components/Signup";
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
+      <Header />
       <AppContainer>
         <Routes>
           <Route
@@ -40,7 +42,8 @@ const App = () => {
 };
 
 const AppContainer = styled.div`
-  background-color: #19212f;
+  background-color: #fff;
+  /* background-color: #19212f; */
   min-height: 100vh;
   font-family: sans-serif;
 `;
