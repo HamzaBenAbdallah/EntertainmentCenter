@@ -1,8 +1,9 @@
 import express from "express";
+import { authenticateToken } from "../validation/token.js";
 import { baseGetMovie } from "./config/baseMovieRequest.js";
 import { getSearchResults } from "./search.js";
 import { getGenre } from "./genre.js";
-import { authenticateToken } from "../validation/token.js";
+import { getDetails } from "./details.js";
 
 const movieRouter = express.Router();
 
@@ -24,5 +25,7 @@ movieRouter.get("/trending-movies", authenticateToken, (req, res) => {
 movieRouter.get("/search-movies", authenticateToken, getSearchResults);
 
 movieRouter.get("/genre", authenticateToken, getGenre);
+
+movieRouter.get("/movie-details", authenticateToken, getDetails);
 
 export default movieRouter;

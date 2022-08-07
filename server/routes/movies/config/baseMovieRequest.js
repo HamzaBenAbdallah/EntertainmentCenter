@@ -64,7 +64,7 @@ export const baseGetMovie = async (req, res, urlParam) => {
       default:
         res.status(500).json({
           status: 500,
-          message: err.message,
+          message: `Internal server error`,
         });
     }
   }
