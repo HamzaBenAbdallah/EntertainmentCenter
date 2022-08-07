@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
+const fetchTrendingMovies = async () => {
+  const response = await axios.get("/api/trending-movies", {
+    headers: { "auth-token": token },
+  });
+  return response.data;
+};
 export const useTrending = () => {
-  const token = localStorage.getItem("token");
   const {
     data: moviesList,
     isLoading: isLoadingMovies,
-    error: errorMovies,
-  } = useQuery(["movies"], () =>
-    axios
-      .get("/api/trending-movies", { headers: { "auth-token": token } })
-      .then((res) => res.data)
-  );
+    isError: isErrorMovies,
+  } = useQuery(["trending-movies"], fetchTrendingMovies);
 
-  return { moviesList, isLoadingMovies, errorMovies };
+  return { moviesList, isLoadingMovies, isErrorMovies };
 };

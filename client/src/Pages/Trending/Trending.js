@@ -3,13 +3,13 @@ import Card from "Components/Card";
 import { MovieGrid } from "./Trending.style";
 
 const Trending = () => {
-  const { moviesList, isLoadingMovies, errorMovies } = useTrending();
+  const { moviesList, isLoadingMovies, isErrorMovies } = useTrending();
 
   if (isLoadingMovies) {
     return <div>Loading...</div>;
   }
 
-  if (errorMovies) {
+  if (isErrorMovies) {
     return <div>Error...</div>;
   }
 
