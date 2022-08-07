@@ -5,14 +5,14 @@ dotenv.config();
 const { API_KEY, MOVIE_BASE_URL, POSTER_BASE_URL } = process.env;
 
 export const baseGetMovie = async (req, res, urlParam) => {
-  const { page, query } = req.query;
+  const { page = 1, query } = req.query;
 
-  const url1 = `${MOVIE_BASE_URL}${urlParam}?api_key=${API_KEY}&page=${
-    page || 1
-  }&query=${query || "a"}`;
+  const url1 = `${MOVIE_BASE_URL}${urlParam}?api_key=${API_KEY}&page=${page}&query=${
+    query || "a"
+  }`;
 
   const url2 = `${MOVIE_BASE_URL}${urlParam}?api_key=${API_KEY}&page=${
-    page + 1 || 2
+    page + 1
   }&query=${query || "a"}`;
 
   try {

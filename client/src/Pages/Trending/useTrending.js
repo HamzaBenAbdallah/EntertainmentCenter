@@ -4,7 +4,7 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 
 const fetchTrendingMovies = async () => {
-  const response = await axios.get("/api/trending-movies", {
+  const response = await axios.get(`/api/trending-movies`, {
     headers: { "auth-token": token },
   });
   return response.data;
