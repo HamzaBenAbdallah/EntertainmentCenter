@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
 import Main from "Pages/Main";
-import Featured from "Pages/Featured";
+import Featured from "Pages/Trending";
 import Signup from "Components/Signup";
 import Login from "Components/Login";
 
@@ -14,11 +14,22 @@ const App = () => {
       <GlobalStyles />
       <AppContainer>
         <Routes>
-          {user && <Route path="/" exact element={<Main />} />}
-          <Route path="/" exact element={<Navigate replace to="/login" />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/signup" exact element={<Signup />} />
-          <Route path="/featured" exact element={<Featured />} />
+          <Route
+            path="/"
+            exact
+            element={user ? <Main /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/login"
+            exact
+            element={user ? <Navigate replace to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            exact
+            element={user ? <Navigate replace to="/" /> : <Signup />}
+          />
+          <Route path="/trending" exact element={<Featured />} />
           <Route path="*" element={<>Not Found</>} />
         </Routes>
       </AppContainer>

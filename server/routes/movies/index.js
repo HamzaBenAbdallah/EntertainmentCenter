@@ -16,7 +16,7 @@ movieRouter.get("/top-rated-movies", authenticateToken, (req, res) => {
   baseGetMovie(req, res, urlParam);
 });
 
-movieRouter.get("/trending-movies", (req, res) => {
+movieRouter.get("/trending-movies", authenticateToken, (req, res) => {
   const urlParam = `trending/movie/week`;
   baseGetMovie(req, res, urlParam);
 });

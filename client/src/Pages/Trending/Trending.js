@@ -1,10 +1,9 @@
-import { MovieContext } from "Services/MovieContext";
-import { useContext } from "react";
+import { useTrending } from "./useTrending";
 import Card from "Components/Card";
-import { MovieGrid } from "./Featured.style";
+import { MovieGrid } from "./Trending.style";
 
-const Featured = () => {
-  const { moviesList, isLoadingMovies, errorMovies } = useContext(MovieContext);
+const Trending = () => {
+  const { moviesList, isLoadingMovies, errorMovies } = useTrending();
 
   if (isLoadingMovies) {
     return <div>Loading...</div>;
@@ -23,4 +22,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default Trending;

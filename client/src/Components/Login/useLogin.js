@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const initialState = {
@@ -11,8 +10,6 @@ export const useLogin = () => {
   const [loginData, setLoginData] = useState(initialState);
   const [loginError, setLoginError] = useState("");
 
-  const navigate = useNavigate();
-
   const handleLoginChange = ({ currentTarget: input }) => {
     setLoginData({ ...loginData, [input.name]: input.value });
   };
@@ -22,7 +19,6 @@ export const useLogin = () => {
     try {
       const response = await axios.post(`/api/login`, loginData);
       localStorage.setItem("token", response.headers["auth-token"]);
-      // navigate("/");
       window.location = "/";
       setLoginData(initialState);
       setLoginError("");

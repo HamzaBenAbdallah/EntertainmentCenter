@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { MovieContext } from "Services/MovieContext";
+import { useSignup } from "./useSignup";
 import {
   Container,
   FormContainer,
@@ -19,7 +18,7 @@ const Signup = () => {
     handleSignupChange,
     handleSignupSubmit,
     handleSignupUnmount,
-  } = useContext(MovieContext);
+  } = useSignup();
 
   return (
     <Container>
