@@ -12,23 +12,25 @@ import {
   Footer,
 } from "./MovieCard.style";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, details = true }) => {
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
   return (
     <Container>
       <Link to={`/movies/${movie.id}`}>
         <Poster src={BASE_IMAGE_URL + movie.poster_path} alt={movie.title} />
-        <Detail>
-          <Header>
-            <Title>{movie.title}</Title>
-            <Genre>Action</Genre>
-          </Header>
-          <Content>
-            <Overview>{movie.overview}</Overview>
-          </Content>
-          <Footer>{movie.vote_average}</Footer>
-        </Detail>
+        {details && (
+          <Detail>
+            <Header>
+              <Title>{movie.title}</Title>
+              <Genre>Action</Genre>
+            </Header>
+            <Content>
+              <Overview>{movie.overview}</Overview>
+            </Content>
+            <Footer>{movie.vote_average}</Footer>
+          </Detail>
+        )}
       </Link>
     </Container>
   );

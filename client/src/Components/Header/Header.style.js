@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Wrapper = styled.div`
-  /* background-color: #242b39; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-family: sans-serif;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #000;
+  background-color: #242b39;
+  color: white;
 `;
 
 export const Container = styled.div`
@@ -32,5 +33,5 @@ export const Icon = styled.div`
   height: 5rem;
   justify-content: center;
   align-items: center;
-  border-left: 2px solid #ccc;
+  border-left: 2px solid #000;
 `;
