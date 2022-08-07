@@ -1,5 +1,5 @@
 import { useTrending } from "./useTrending";
-import Card from "Components/Card";
+import MovieCard from "Components/MovieCard";
 import { MovieGrid } from "./Trending.style";
 
 const Trending = () => {
@@ -16,7 +16,7 @@ const Trending = () => {
   return (
     <MovieGrid>
       {moviesList?.map((movie, index) => {
-        return <Card key={index} movie={movie} />;
+        return <MovieCard key={index} movie={movie} />;
       })}
     </MovieGrid>
   );

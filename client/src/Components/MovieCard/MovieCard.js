@@ -10,9 +10,9 @@ import {
   Content,
   Overview,
   Footer,
-} from "./Card.style";
+} from "./MovieCard.style";
 
-const Card = ({ movie }) => {
+const MovieCard = ({ movie }) => {
   return (
     <Link to={`/movies/${movie.id}`}>
       <Container>
@@ -32,4 +32,4 @@ const Card = ({ movie }) => {
   );
 };
 
-export default Card;
+export default MovieCard;

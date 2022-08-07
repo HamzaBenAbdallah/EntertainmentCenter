@@ -5,7 +5,7 @@ import Main from "Pages/Main";
 import Featured from "Pages/Trending";
 import Signup from "Components/Signup";
 import Login from "Components/Login";
-import CardDetails from "Components/CardDetails";
+import CardDetails from "Components/MovieDetails";
 
 const App = () => {
   const user = localStorage.getItem("token");
@@ -31,7 +31,7 @@ const App = () => {
             element={user ? <Navigate replace to="/" /> : <Signup />}
           />
           <Route path="/trending" exact element={<Featured />} />
-          <Route path="/movies/:movie" exact element={<CardDetails />} />
+          <Route path="/movies/:id" exact element={<CardDetails />} />
           <Route path="*" element={<>Not Found</>} />
         </Routes>
       </AppContainer>
