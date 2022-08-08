@@ -18,12 +18,14 @@ import {
   MovieGrid,
   ActorGrid,
   Cast,
+  Buttons,
+  Button,
 } from "./MovieDetails.style";
 
 const CardDetails = () => {
-  const arr = [1, 2, 3, 4, 5];
-  const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const { id } = useParams();
+  const signedIn = localStorage.getItem("token");
+  const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const {
     movieDetails,
     isLoadingMovieDetails,
@@ -81,6 +83,12 @@ const CardDetails = () => {
               </ActorGrid>
             </Overview>
           </Info>
+          {signedIn && (
+            <Buttons>
+              <Button>Add to watch list</Button>
+              <Button>Already watched</Button>
+            </Buttons>
+          )}
           <Similar>
             <span>Similar</span>
             <MovieGrid>

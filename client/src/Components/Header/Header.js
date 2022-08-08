@@ -11,7 +11,7 @@ const Header = () => {
       </Container>
       <Container>
         <Icon>
-          <Link to="/trending">
+          <Link to="/profile">
             <MdOutlineAccountCircle size="2em" />
           </Link>
         </Icon>

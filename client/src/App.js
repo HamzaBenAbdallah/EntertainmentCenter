@@ -3,9 +3,10 @@ import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
 import Header from "Components/Header";
 import Main from "Pages/Main";
-import Featured from "Pages/Trending";
-import Signup from "Components/Signup";
 import Login from "Components/Login";
+import Signup from "Components/Signup";
+import Profile from "Pages/Profile";
+import Trending from "Pages/Trending";
 import CardDetails from "Components/MovieDetails";
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
           <Route
             path="/"
             exact
-            element={user ? <Main /> : <Navigate replace to="/login" />}
+            element={user ? <Trending /> : <Navigate replace to="/login" />}
           />
           <Route
             path="/login"
@@ -32,7 +33,8 @@ const App = () => {
             exact
             element={user ? <Navigate replace to="/" /> : <Signup />}
           />
-          <Route path="/trending" exact element={<Featured />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/trending" exact element={<Trending />} />
           <Route path="/movies/:id" exact element={<CardDetails />} />
           <Route path="*" element={<>Not Found</>} />
         </Routes>

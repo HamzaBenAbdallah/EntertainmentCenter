@@ -45,6 +45,9 @@ export const Tagline = styled.h2`
 `;
 
 export const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
   width: 100%;
   background-color: #21262e;
   color: white;
@@ -65,12 +68,6 @@ export const Poster = styled.img`
   border-radius: 0.4rem;
 `;
 
-export const Genre = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  font-size: 1rem;
-`;
-
 export const Overview = styled.div`
   display: flex;
   flex-direction: column;
@@ -85,20 +82,10 @@ export const Overview = styled.div`
   }
 `;
 
-export const Similar = styled.div`
-  margin-top: 4rem;
-
-  span {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-`;
-
-export const MovieGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.25rem;
-  padding: 3rem 0;
+export const Genre = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1rem;
 `;
 
 export const ActorGrid = styled.div`
@@ -114,4 +101,59 @@ export const Cast = styled.div`
   font-size: 2.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5rem;
+`;
+
+export const Button = styled.button`
+  all: unset;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #0575e6 0%,
+    #021b79 51%,
+    #0575e6 100%
+  );
+  background-size: 200% auto;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 0 5px #eee;
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: all 0.3s;
+
+  :hover {
+    transform: scale(1.1);
+    background-position: right center;
+  }
+
+  :last-child {
+    background-image: linear-gradient(
+      to right,
+      #093028 0%,
+      #237a57 51%,
+      #093028 100%
+    );
+  }
+`;
+
+export const Similar = styled.div`
+  span {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+`;
+
+export const MovieGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  padding: 3rem 0;
 `;

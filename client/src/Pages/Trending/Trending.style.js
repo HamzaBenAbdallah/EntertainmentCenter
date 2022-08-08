@@ -5,9 +5,14 @@ export const MovieGrid = styled.div`
   grid-template-columns: repeat(auto-fit, 9rem);
   justify-content: center;
   gap: 1rem 2rem;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
 
-  @media (min-width: 992px) {
+  @media (min-width: 43rem) {
+    grid-template-columns: repeat(auto-fit, 11rem);
+    padding: 5rem;
+  }
+
+  @media (min-width: 62rem) {
     grid-template-columns: repeat(auto-fit, 11rem);
     padding: 5rem;
   }
