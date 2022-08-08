@@ -13,20 +13,20 @@ export const Backdrop = styled.img`
   filter: brightness(0.6);
 `;
 
-export const Details = styled.div`
+export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
-  width: 60%;
+  width: 70%;
   transform: translateY(-10rem);
   margin-top: -15rem;
   z-index: 1;
   gap: 4rem;
 `;
 
-export const Text = styled.div`
+export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,14 +44,7 @@ export const Tagline = styled.h2`
   color: #cad0d9;
 `;
 
-export const Genre = styled.h3`
-  font-size: 2rem;
-  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-  display: flex;
-  gap: 1rem;
-`;
-
-export const Wrapper = styled.div`
+export const Details = styled.div`
   width: 100%;
   background-color: #21262e;
   color: #a8b4ba;
@@ -63,11 +56,17 @@ export const Wrapper = styled.div`
 
 export const Info = styled.div`
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 30% 70%;
 `;
 
 export const Poster = styled.img`
   width: 100%;
+  border-radius: 0.4rem;
+`;
+
+export const Genre = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 export const Overview = styled.div`
@@ -80,22 +79,14 @@ export const Overview = styled.div`
   gap: 1.5rem;
 `;
 
-export const ExtraDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 4rem 2rem;
-`;
-
 export const Similar = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin-top: 2rem;
 `;
 
 export const MovieGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
   padding: 5rem 0;
 `;

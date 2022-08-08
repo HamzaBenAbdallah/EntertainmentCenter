@@ -4,16 +4,15 @@ import { useMovieDetails } from "./useMovieDetails";
 import {
   Container,
   Backdrop,
-  Details,
-  Text,
+  DetailsContainer,
+  TitleContainer,
   Title,
   Tagline,
   Genre,
-  Wrapper,
+  Details,
   Info,
   Poster,
   Overview,
-  ExtraDetails,
   Similar,
   MovieGrid,
 } from "./MovieDetails.style";
@@ -44,28 +43,25 @@ const CardDetails = () => {
         src={BASE_IMAGE_URL + movieDetails.backdrop_path}
         alt={movieDetails.title}
       />
-      <Details>
-        <Text>
+      <DetailsContainer>
+        <TitleContainer>
           <Title>{movieDetails.title}</Title>
           <Tagline>{movieDetails.tagline}</Tagline>
-          {/* <Genre>
-            {movieDetails.genres?.map((genre) => (
-              <span>{genre.name}</span>
-            ))}
-          </Genre> */}
-        </Text>
-        <Wrapper>
+        </TitleContainer>
+        <Details>
           <Info>
             <Poster
               src={BASE_IMAGE_URL + movieDetails.poster_path}
               alt={movieDetails.title}
             />
             <Overview>
+              <Genre>
+                {movieDetails.genres?.map((genre) => (
+                  <span>{genre.name}</span>
+                ))}
+              </Genre>
               <p>{movieDetails.overview}</p>
               <span>Cast:</span>
-            </Overview>
-            <ExtraDetails>
-              <span>Detail</span>
               <span>Release date: {movieDetails.release_date} </span>
               <span>Budget: {movieDetails.budget}</span>
               <span>Revenue: {movieDetails.revenue}</span>
@@ -73,18 +69,18 @@ const CardDetails = () => {
               <span>
                 Country: {movieDetails.production_countries[0].iso_3166_1}
               </span>
-            </ExtraDetails>
+            </Overview>
           </Info>
           <Similar>
-            <span>Similar</span>
+            <div>Similar</div>
             <MovieGrid>
               {movieDetails.related.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} details={false} />
               ))}
             </MovieGrid>
           </Similar>
-        </Wrapper>
-      </Details>
+        </Details>
+      </DetailsContainer>
     </Container>
   );
 };
