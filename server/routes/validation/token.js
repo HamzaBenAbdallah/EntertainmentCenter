@@ -5,7 +5,7 @@ dotenv.config();
 const { JWT_SECRET } = process.env;
 
 export const createToken = (id) => {
-  return jwt.sign({ id }, JWT_SECRET, { expiresIn: "1d" });
+  return jwt.sign({ id }, JWT_SECRET);
 };
 
 export const authenticateToken = async (req, res, next) => {

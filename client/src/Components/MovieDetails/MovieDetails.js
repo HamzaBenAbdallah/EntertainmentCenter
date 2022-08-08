@@ -78,8 +78,8 @@ const CardDetails = () => {
           <Similar>
             <span>Similar</span>
             <MovieGrid>
-              {arr.map((item, index) => (
-                <MovieCard key={index} movie={movieDetails} details={false} />
+              {movieDetails.related.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} details={false} />
               ))}
             </MovieGrid>
           </Similar>

@@ -5,7 +5,7 @@ import { createToken } from "../validation/token.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { MONGO_URI, JWT_SECRET } = process.env;
+const { MONGO_URI } = process.env;
 const client = new MongoClient(MONGO_URI);
 
 export const auth = async (req, res) => {
