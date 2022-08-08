@@ -13,5 +13,5 @@ export const Container = styled.div`
 
 export const Poster = styled.img`
   display: block;
-  max-width: 100%;
+  width: 100%;
 `;
