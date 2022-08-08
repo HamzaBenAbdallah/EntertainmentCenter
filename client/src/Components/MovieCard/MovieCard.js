@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Container, Poster } from "./MovieCard.style";
 
-const MovieCard = ({ movie, details = true }) => {
+const MovieCard = ({ movie }) => {
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
   return (

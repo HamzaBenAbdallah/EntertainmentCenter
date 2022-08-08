@@ -56,16 +56,17 @@ const CardDetails = () => {
             />
             <Overview>
               <Genre>
-                {movieDetails.genres?.map((genre) => (
-                  <span>{genre.name}</span>
+                {movieDetails.genres?.map((genre, index) => (
+                  <span key={index}>{genre.name}</span>
                 ))}
               </Genre>
               <p>{movieDetails.overview}</p>
-              <span>Cast:</span>
               <span>Release date: {movieDetails.release_date} </span>
+              <span>Run time: {movieDetails.runtime}min</span>
+              <span>Director: {movieDetails.director}</span>
               <span>Budget: {movieDetails.budget}</span>
               <span>Revenue: {movieDetails.revenue}</span>
-              <span>Run time: {movieDetails.runtime}</span>
+              <span>Cast:</span>
               <span>
                 Country: {movieDetails.production_countries[0].iso_3166_1}
               </span>
@@ -75,7 +76,7 @@ const CardDetails = () => {
             <div>Similar</div>
             <MovieGrid>
               {movieDetails.related.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} details={false} />
+                <MovieCard key={movie.id} movie={movie} />
               ))}
             </MovieGrid>
           </Similar>
