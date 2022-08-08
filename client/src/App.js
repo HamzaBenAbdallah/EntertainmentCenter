@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
+import ScrollToTop from "Utils/ScrollToTop";
 import Header from "Components/Header";
 import Main from "Pages/Main";
 import Login from "Components/Login";
@@ -17,27 +18,29 @@ const App = () => {
       <GlobalStyles />
       <Header />
       <AppContainer>
-        <Routes>
-          <Route
-            path="/"
-            exact
-            element={user ? <Trending /> : <Navigate replace to="/login" />}
-          />
-          <Route
-            path="/login"
-            exact
-            element={user ? <Navigate replace to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            exact
-            element={user ? <Navigate replace to="/" /> : <Signup />}
-          />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/trending" exact element={<Trending />} />
-          <Route path="/movies/:id" exact element={<CardDetails />} />
-          <Route path="*" element={<>Not Found</>} />
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route
+              path="/"
+              exact
+              element={user ? <Trending /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/login"
+              exact
+              element={user ? <Navigate replace to="/" /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              exact
+              element={user ? <Navigate replace to="/" /> : <Signup />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/trending" exact element={<Trending />} />
+            <Route path="/movies/:id" exact element={<CardDetails />} />
+            <Route path="*" element={<>Not Found</>} />
+          </Routes>
+        </ScrollToTop>
       </AppContainer>
     </>
   );
