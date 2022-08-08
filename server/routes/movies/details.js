@@ -21,8 +21,8 @@ export const getDetails = async (req, res) => {
     console.log(director);
     const returnData = {
       ...data,
-      related: similarData.results.slice(0, 4),
-      cast: castData.cast.slice(0, 5),
+      related: similarData.results.slice(0, 5),
+      cast: castData.cast.slice(0, 4),
       director: director ? director.name : "",
     };
 

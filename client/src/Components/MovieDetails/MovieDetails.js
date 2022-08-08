@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import MovieCard from "Components/MovieCard";
+import Actor from "Components/Actor";
 import { useMovieDetails } from "./useMovieDetails";
 import {
   Container,
@@ -15,6 +16,8 @@ import {
   Overview,
   Similar,
   MovieGrid,
+  ActorGrid,
+  Cast,
 } from "./MovieDetails.style";
 
 const CardDetails = () => {
@@ -55,25 +58,31 @@ const CardDetails = () => {
               alt={movieDetails.title}
             />
             <Overview>
-              <Genre>
-                {movieDetails.genres?.map((genre, index) => (
-                  <span key={index}>{genre.name}</span>
-                ))}
-              </Genre>
               <p>{movieDetails.overview}</p>
+              <Genre>
+                <span>
+                  Genre:{" "}
+                  {movieDetails.genres?.map((genre, index) => {
+                    return (
+                      genre.name +
+                      (index !== movieDetails.genres.length - 1 ? ", " : "")
+                    );
+                  })}
+                </span>
+              </Genre>
               <span>Release date: {movieDetails.release_date} </span>
-              <span>Run time: {movieDetails.runtime}min</span>
+              <span>Run time: {movieDetails.runtime} mn</span>
               <span>Director: {movieDetails.director}</span>
-              <span>Budget: {movieDetails.budget}</span>
-              <span>Revenue: {movieDetails.revenue}</span>
-              <span>Cast:</span>
-              <span>
-                Country: {movieDetails.production_countries[0].iso_3166_1}
-              </span>
+              <Cast>Top Cast</Cast>
+              <ActorGrid>
+                {movieDetails.cast?.map((actor) => {
+                  return <Actor key={actor.id} actor={actor} />;
+                })}
+              </ActorGrid>
             </Overview>
           </Info>
           <Similar>
-            <div>Similar</div>
+            <span>Similar</span>
             <MovieGrid>
               {movieDetails.related.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />

@@ -10,7 +10,7 @@ export const Backdrop = styled.img`
   width: 100%;
   height: 80vh;
   object-fit: fill;
-  filter: brightness(0.6);
+  filter: brightness(0.7);
 `;
 
 export const DetailsContainer = styled.div`
@@ -47,7 +47,7 @@ export const Tagline = styled.h2`
 export const Details = styled.div`
   width: 100%;
   background-color: #21262e;
-  color: #a8b4ba;
+  color: white;
   border-radius: 5px;
   min-height: 60rem;
   box-shadow: 0px 0px 6px 2px #000000;
@@ -56,17 +56,19 @@ export const Details = styled.div`
 
 export const Info = styled.div`
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 35% 65%;
 `;
 
 export const Poster = styled.img`
   width: 100%;
+  height: 100%;
   border-radius: 0.4rem;
 `;
 
 export const Genre = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  font-size: 1rem;
 `;
 
 export const Overview = styled.div`
@@ -75,18 +77,41 @@ export const Overview = styled.div`
   text-align: justify;
   font-size: 1.35em;
   line-height: 1.3em;
-  padding: 4rem 2rem;
-  gap: 1.5rem;
+  padding: 0.5rem 2rem;
+  gap: 1rem;
+
+  span {
+    font-size: 1rem;
+  }
 `;
 
 export const Similar = styled.div`
-  margin-top: 2rem;
+  margin-top: 4rem;
+
+  span {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
 `;
 
 export const MovieGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  justify-content: center;
   gap: 1.25rem;
-  padding: 5rem 0;
+  padding: 3rem 0;
+`;
+
+export const ActorGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 4rem;
+  margin: 0 auto;
+`;
+
+export const Cast = styled.div`
+  align-self: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
 `;
