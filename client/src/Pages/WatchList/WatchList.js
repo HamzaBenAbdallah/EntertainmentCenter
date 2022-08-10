@@ -1,7 +1,7 @@
-import {} from "./WatchList.style";
+import {} from "./Watchlist.style";
 
-const WatchList = () => {
+const Watchlist = () => {
   return <div>WatchList</div>;
 };
 
-export default WatchList;
+export default Watchlist;

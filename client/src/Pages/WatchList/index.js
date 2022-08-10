@@ -1,3 +1,3 @@
-import WatchList from "./WatchList";
+import Watchlist from "./Watchlist";
 
-export default WatchList;
+export default Watchlist;

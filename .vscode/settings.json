@@ -5,6 +5,7 @@
     "alphanum",
     "browserslist",
     "tanstack",
-    "toastify"
+    "toastify",
+    "Watchlist"
   ]
 }
