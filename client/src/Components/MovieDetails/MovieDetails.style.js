@@ -129,7 +129,7 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
   transition: all 0.3s;
 
-  :hover {
+  :hover:enabled {
     transform: scale(1.1);
     background-position: right center;
   }
@@ -141,6 +141,17 @@ export const Button = styled.button`
       #237a57 51%,
       #093028 100%
     );
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-image: linear-gradient(
+      to right,
+      #232526 0%,
+      #414345 51%,
+      #232526 100%
+    );
+    opacity: 0.3;
   }
 `;
 

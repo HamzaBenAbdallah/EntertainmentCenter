@@ -93,10 +93,19 @@ const CardDetails = () => {
           </Info>
           {signedIn && (
             <Buttons>
-              <Button onClick={handleAddMovieToWatchlist}>
-                Add to watch list
+              <Button
+                onClick={handleAddMovieToWatchlist}
+                disabled={movieDetails.watchlist}
+              >
+                {movieDetails.watchlist ? "In Watchlist" : "Add to Watchlist"}
               </Button>
-              <Button onClick={handleAddMovieToWatched}>Already watched</Button>
+              <Button
+                onClick={handleAddMovieToWatched}
+                disabled={movieDetails.watched}
+              >
+                {" "}
+                {movieDetails.watched ? "Watched" : "Add to Watched"}
+              </Button>
             </Buttons>
           )}
           <Similar>

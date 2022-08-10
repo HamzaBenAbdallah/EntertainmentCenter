@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 const token = localStorage.getItem("token");
@@ -23,17 +23,24 @@ const addMovieToWatched = async (movieDetails) => {
 };
 
 export const useMovieDetails = (id) => {
+  const queryClient = useQueryClient();
   const {
     data: movieDetails,
     isLoading: isLoadingMovieDetails,
     isError: isErrorMovieDetails,
   } = useQuery(["movie-details", id], () => fetchMovieDetails(id));
 
-  const { mutate: mutateWatchlist } = useMutation(() =>
-    addMovieToWatchlist(movieDetails)
+  const { mutate: mutateWatchlist } = useMutation(
+    () => addMovieToWatchlist(movieDetails),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["movie-details"]),
+    }
   );
-  const { mutate: mutateWatched } = useMutation(() =>
-    addMovieToWatched(movieDetails)
+  const { mutate: mutateWatched } = useMutation(
+    () => addMovieToWatched(movieDetails),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["movie-details"]),
+    }
   );
 
   return {
