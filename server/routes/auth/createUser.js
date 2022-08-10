@@ -39,7 +39,6 @@ export const createUser = async (req, res) => {
         password: hashedPassword,
         date: Date.now(),
       };
-      console.log(`new user created ${user}`);
 
       await collection.insertOne(user);
       res.status(201).json({

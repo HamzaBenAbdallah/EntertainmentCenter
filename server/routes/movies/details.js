@@ -18,7 +18,6 @@ export const getDetails = async (req, res) => {
     const cast = await axios(castUrl);
     const { data: castData } = cast;
     const director = castData.crew.find((member) => member.job === "Director");
-    console.log(director);
     const returnData = {
       ...data,
       related: similarData.results.slice(0, 5),

@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb";
-import { v4 as uuid4 } from "uuid";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -52,11 +51,7 @@ export const addMovieToWatched = async (req, res) => {
       });
     } else {
       // add the movie to the watched
-      const newMovie = {
-        id: uuid4(),
-        ...req.body,
-      };
-      await collection.insertOne(newMovie);
+      await collection.insertOne(req.body);
       return res.status(201).json({
         message: "Movie added to watched",
       });

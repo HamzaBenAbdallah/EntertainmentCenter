@@ -30,15 +30,23 @@ const CardDetails = () => {
     movieDetails,
     isLoadingMovieDetails,
     isErrorMovieDetails,
-    errorMovieDetails,
+    mutateWatchlist,
+    mutateWatched,
   } = useMovieDetails(id);
+
+  const handleAddMovieToWatchlist = () => {
+    mutateWatchlist(movieDetails);
+  };
+
+  const handleAddMovieToWatched = () => {
+    mutateWatched(movieDetails);
+  };
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;
   }
 
   if (isErrorMovieDetails) {
-    console.log(errorMovieDetails);
     return <div>Error</div>;
   }
 
@@ -85,8 +93,10 @@ const CardDetails = () => {
           </Info>
           {signedIn && (
             <Buttons>
-              <Button>Add to watch list</Button>
-              <Button>Already watched</Button>
+              <Button onClick={handleAddMovieToWatchlist}>
+                Add to watch list
+              </Button>
+              <Button onClick={handleAddMovieToWatched}>Already watched</Button>
             </Buttons>
           )}
           <Similar>
