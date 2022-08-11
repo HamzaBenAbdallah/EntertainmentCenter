@@ -26,6 +26,7 @@ import {
 
 const CardDetails = () => {
   const [isWatchlist, setIsWatchlist] = useState(false);
+  const [isWatched, setIsWatched] = useState(false);
   const { id } = useParams();
   const { user } = getCurrentUser();
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
@@ -34,6 +35,7 @@ const CardDetails = () => {
     isLoadingMovieDetails,
     isErrorMovieDetails,
     watchlistIds,
+    watchedIds,
     mutateWatchlist,
     mutateWatched,
   } = useMovieDetails(id);
@@ -52,7 +54,16 @@ const CardDetails = () => {
         setIsWatchlist(true);
       }
     });
-  }, [watchlistIds, isWatchlist, movieDetails]);
+  }, [movieDetails, watchlistIds, isWatchlist]);
+
+  useEffect(() => {
+    watchedIds?.map((movieId) => {
+      if (movieId === movieDetails?.id) {
+        setIsWatched(true);
+      }
+      console.log(watchedIds);
+    });
+  }, [movieDetails, watchedIds, isWatched]);
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;
@@ -111,12 +122,9 @@ const CardDetails = () => {
               >
                 {isWatchlist ? "In Watchlist" : "Add to Watchlist"}
               </Button>
-              <Button
-                onClick={handleAddMovieToWatched}
-                disabled={movieDetails.watched}
-              >
+              <Button onClick={handleAddMovieToWatched} disabled={isWatched}>
                 {" "}
-                {movieDetails.watched ? "Watched" : "Add to Watched"}
+                {isWatched ? "Watched" : "Add to Watched"}
               </Button>
             </Buttons>
           )}

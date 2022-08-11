@@ -24,6 +24,19 @@ const fetchWatchlistIds = async () => {
   }
 };
 
+const fetchWatchedIds = async () => {
+  if (user) {
+    const response = await axios.post(
+      `/api/watched-ids`,
+      { user },
+      {
+        headers: { "auth-token": token },
+      }
+    );
+    return response.data;
+  }
+};
+
 const addMovieToWatchlist = async (movieDetails) => {
   return await axios.post(
     `/api/watchlist`,
@@ -35,9 +48,13 @@ const addMovieToWatchlist = async (movieDetails) => {
 };
 
 const addMovieToWatched = async (movieDetails) => {
-  return await axios.post(`/api/watched`, movieDetails, {
-    headers: { "auth-token": token },
-  });
+  return await axios.post(
+    `/api/watched`,
+    { movieDetails, user },
+    {
+      headers: { "auth-token": token },
+    }
+  );
 };
 
 export const useMovieDetails = (id) => {
@@ -52,6 +69,10 @@ export const useMovieDetails = (id) => {
     fetchWatchlistIds()
   );
 
+  const { data: watchedIds } = useQuery(["watched-ids"], () =>
+    fetchWatchedIds()
+  );
+
   const { mutate: mutateWatchlist } = useMutation(
     () => addMovieToWatchlist(movieDetails),
     {
@@ -61,7 +82,7 @@ export const useMovieDetails = (id) => {
   const { mutate: mutateWatched } = useMutation(
     () => addMovieToWatched(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["movie-details"]),
+      onSuccess: () => queryClient.invalidateQueries(["watched-ids"]),
     }
   );
 
@@ -70,6 +91,7 @@ export const useMovieDetails = (id) => {
     isLoadingMovieDetails,
     isErrorMovieDetails,
     watchlistIds,
+    watchedIds,
     mutateWatchlist,
     mutateWatched,
   };

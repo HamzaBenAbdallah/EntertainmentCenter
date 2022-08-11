@@ -44,7 +44,7 @@ export const addMovieToWatchlist = async (req, res) => {
 
     // check if the movie is already in the watchlist
     const movieInWatchlist = movies.find((movie) => {
-      return movie.id === req.body.movieDetails.id;
+      return movie.id === movieDetails.id;
     });
 
     if (movieInWatchlist) {
@@ -54,8 +54,8 @@ export const addMovieToWatchlist = async (req, res) => {
     } else {
       // add the movie to the watchlist
       await watchlist.insertOne({
-        userId: req.body.user,
-        ...req.body.movieDetails,
+        userId: user,
+        ...movieDetails,
       });
 
       // add the movie id to the watchlist ids collection

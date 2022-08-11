@@ -32,17 +32,19 @@ export const getWatched = async (req, res) => {
 };
 
 export const addMovieToWatched = async (req, res) => {
+  const { user, movieDetails } = req.body;
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watched");
+    const watched = client.db("app-data").collection("watched");
+    const watchedIds = client.db("app-data").collection("watched-ids");
 
     // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    const movies = await watched.find({}).toArray();
 
     // check if the movie is already in the watched
     const movieInWatched = movies.find((movie) => {
-      return movie.id === req.body.id;
+      return movie.id === movieDetails.id;
     });
 
     if (movieInWatched) {
@@ -51,11 +53,28 @@ export const addMovieToWatched = async (req, res) => {
       });
     } else {
       // add the movie to the watched
-      await collection.insertOne(req.body);
-      return res.status(201).json({
-        message: "Movie added to watched",
+      await watched.insertOne({
+        userId: user,
+        ...movieDetails,
       });
+
+      // add the movie id to the watched ids collection
+      const movieIds = await watchedIds.find({}).toArray();
+      await Promise.all(
+        movieIds.map(async (movie) => {
+          if (movie.userId === user) {
+            await watchedIds.updateOne(
+              { userId: req.body.user },
+              { $push: { movieIds: movieDetails.id } }
+            );
+          }
+        })
+      );
     }
+
+    return res.status(201).json({
+      message: "Movie added to watched",
+    });
   } catch (err) {
     res.status(500).json({
       status: 500,
