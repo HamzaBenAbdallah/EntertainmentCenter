@@ -8,10 +8,10 @@ dotenv.config();
 const { MONGO_URI } = process.env;
 const client = new MongoClient(MONGO_URI);
 
-export const auth = async (req, res) => {
+export const Login = async (req, res) => {
   // Validate the request body
   try {
-    const value = await loginValidation(req.body);
+    await loginValidation(req.body);
 
     // Connect to the database
     try {
@@ -48,7 +48,11 @@ export const auth = async (req, res) => {
       res
         .header("auth-token", token)
         .status(200)
-        .json({ status: 200, message: "Logged in successfully" });
+        .json({
+          status: 200,
+          message: "Logged in successfully",
+          user: user._id,
+        });
     } catch (err) {
       res.status(500).json({
         status: 500,

@@ -19,6 +19,7 @@ export const useLogin = () => {
     try {
       const response = await axios.post(`/api/login`, loginData);
       localStorage.setItem("token", response.headers["auth-token"]);
+      localStorage.setItem("user", response.data.user);
       window.location = "/";
       setLoginData(initialState);
       setLoginError("");

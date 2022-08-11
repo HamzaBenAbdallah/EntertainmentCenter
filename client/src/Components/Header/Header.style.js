@@ -15,16 +15,22 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  gap: 2rem;
 `;
 
-export const Title = styled.h1`
-  padding: 0 6rem 0 2rem;
+export const Title = styled.div`
+  margin-left: 4rem;
   font-size: 2.5em;
+`;
+export const Page = styled.div`
+  font-size: 1.25em;
 `;
 
 export const Link = styled(NavLink)`
   color: inherit;
   text-decoration: inherit;
+  display: contents;
+  outline: 3px solid red;
 `;
 
 export const Icon = styled.div`

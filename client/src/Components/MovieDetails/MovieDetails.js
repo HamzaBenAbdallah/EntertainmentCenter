@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { getCurrentUser } from "Services/getCurrentUser";
 import MovieCard from "Components/MovieCard";
 import Actor from "Components/Actor";
 import { useMovieDetails } from "./useMovieDetails";
@@ -24,7 +25,7 @@ import {
 
 const CardDetails = () => {
   const { id } = useParams();
-  const signedIn = localStorage.getItem("token");
+  const user = getCurrentUser();
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const {
     movieDetails,
@@ -91,7 +92,7 @@ const CardDetails = () => {
               </ActorGrid>
             </Overview>
           </Info>
-          {signedIn && (
+          {user && (
             <Buttons>
               <Button
                 onClick={handleAddMovieToWatchlist}
