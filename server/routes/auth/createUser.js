@@ -13,6 +13,8 @@ export const createUser = async (req, res) => {
     // Connect to the database
     await client.connect();
     const collection = client.db("app-data").collection("users");
+    const watchlistIds = client.db("app-data").collection("watchlist-ids");
+    const watchedIds = client.db("app-data").collection("watched-ids");
 
     // Check if user exists
     const existingUser = await collection.findOne({ email: req.body.email });
@@ -41,6 +43,9 @@ export const createUser = async (req, res) => {
       };
 
       await collection.insertOne(user);
+      await watchlistIds.insertOne({ userId: user._id, movieIds: [] });
+      await watchedIds.insertOne({ userId: user._id, movieIds: [] });
+
       res.status(201).json({
         status: 201,
         id: user._id,

@@ -1,7 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { getCurrentUser } from "Services/getCurrentUser";
 
-const token = localStorage.getItem("token");
+const { user, token } = getCurrentUser();
 
 const fetchMovieDetails = async (id) => {
   const response = await axios.get(`/api/movie-details?id=${id}`, {
@@ -10,10 +11,27 @@ const fetchMovieDetails = async (id) => {
   return response.data;
 };
 
+const fetchWatchlistIds = async () => {
+  if (user) {
+    const response = await axios.post(
+      `/api/watchlist-ids`,
+      { user },
+      {
+        headers: { "auth-token": token },
+      }
+    );
+    return response.data;
+  }
+};
+
 const addMovieToWatchlist = async (movieDetails) => {
-  return await axios.post(`/api/watchlist`, movieDetails, {
-    headers: { "auth-token": token },
-  });
+  return await axios.post(
+    `/api/watchlist`,
+    { movieDetails, user },
+    {
+      headers: { "auth-token": token },
+    }
+  );
 };
 
 const addMovieToWatched = async (movieDetails) => {
@@ -30,10 +48,14 @@ export const useMovieDetails = (id) => {
     isError: isErrorMovieDetails,
   } = useQuery(["movie-details", id], () => fetchMovieDetails(id));
 
+  const { data: watchlistIds } = useQuery(["watchlist-ids"], () =>
+    fetchWatchlistIds()
+  );
+
   const { mutate: mutateWatchlist } = useMutation(
     () => addMovieToWatchlist(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["movie-details"]),
+      onSuccess: () => queryClient.invalidateQueries(["watchlist-ids"]),
     }
   );
   const { mutate: mutateWatched } = useMutation(
@@ -47,6 +69,7 @@ export const useMovieDetails = (id) => {
     movieDetails,
     isLoadingMovieDetails,
     isErrorMovieDetails,
+    watchlistIds,
     mutateWatchlist,
     mutateWatched,
   };

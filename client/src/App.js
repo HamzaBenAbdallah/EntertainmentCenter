@@ -12,7 +12,7 @@ import Trending from "Pages/Trending";
 import CardDetails from "Components/MovieDetails";
 
 const App = () => {
-  const user = getCurrentUser();
+  const { user } = getCurrentUser();
 
   return (
     <>

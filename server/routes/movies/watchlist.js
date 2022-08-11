@@ -32,17 +32,19 @@ export const getWatchlist = async (req, res) => {
 };
 
 export const addMovieToWatchlist = async (req, res) => {
+  const { user, movieDetails } = req.body;
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watchlist");
+    const watchlist = client.db("app-data").collection("watchlist");
+    const watchlistIds = client.db("app-data").collection("watchlist-ids");
 
     // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    const movies = await watchlist.find({}).toArray();
 
     // check if the movie is already in the watchlist
     const movieInWatchlist = movies.find((movie) => {
-      return movie.id === req.body.id;
+      return movie.id === req.body.movieDetails.id;
     });
 
     if (movieInWatchlist) {
@@ -51,15 +53,32 @@ export const addMovieToWatchlist = async (req, res) => {
       });
     } else {
       // add the movie to the watchlist
-      await collection.insertOne(req.body);
-      return res.status(201).json({
-        message: "Movie added to watchlist",
+      await watchlist.insertOne({
+        userId: req.body.user,
+        ...req.body.movieDetails,
       });
+
+      // add the movie id to the watchlist ids collection
+      const MovieIds = await watchlistIds.find({}).toArray();
+      await Promise.all(
+        MovieIds.map(async (movie) => {
+          if (movie.userId === user) {
+            await watchlistIds.updateOne(
+              { userId: req.body.user },
+              { $push: { movieIds: movieDetails.id } }
+            );
+          }
+        })
+      );
     }
+
+    return res.status(201).json({
+      message: "Movie added to watchlist",
+    });
   } catch (err) {
     res.status(500).json({
       status: 500,
-      message: "Internal server error",
+      message: "Internal server error x",
     });
   } finally {
     await client.close();

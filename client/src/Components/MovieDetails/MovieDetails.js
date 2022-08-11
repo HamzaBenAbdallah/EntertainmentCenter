@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCurrentUser } from "Services/getCurrentUser";
 import MovieCard from "Components/MovieCard";
@@ -24,13 +25,15 @@ import {
 } from "./MovieDetails.style";
 
 const CardDetails = () => {
+  const [isWatchlist, setIsWatchlist] = useState(false);
   const { id } = useParams();
-  const user = getCurrentUser();
+  const { user } = getCurrentUser();
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const {
     movieDetails,
     isLoadingMovieDetails,
     isErrorMovieDetails,
+    watchlistIds,
     mutateWatchlist,
     mutateWatched,
   } = useMovieDetails(id);
@@ -42,6 +45,14 @@ const CardDetails = () => {
   const handleAddMovieToWatched = () => {
     mutateWatched(movieDetails);
   };
+
+  useEffect(() => {
+    watchlistIds?.map((movieId) => {
+      if (movieId === movieDetails?.id) {
+        setIsWatchlist(true);
+      }
+    });
+  }, [watchlistIds, isWatchlist, movieDetails]);
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;
@@ -96,9 +107,9 @@ const CardDetails = () => {
             <Buttons>
               <Button
                 onClick={handleAddMovieToWatchlist}
-                disabled={movieDetails.watchlist}
+                disabled={isWatchlist}
               >
-                {movieDetails.watchlist ? "In Watchlist" : "Add to Watchlist"}
+                {isWatchlist ? "In Watchlist" : "Add to Watchlist"}
               </Button>
               <Button
                 onClick={handleAddMovieToWatched}
