@@ -6,21 +6,16 @@ const { MONGO_URI } = process.env;
 const client = new MongoClient(MONGO_URI);
 
 export const getWatched = async (req, res) => {
+  const { user } = req.body;
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watched");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
-    if (movies.length > 0) {
-      return res.status(200).json(movies);
-    } else {
-      return res.status(404).json({
-        message: "No movies found",
-      });
-    }
+    return res.status(200).json(userData.watched);
   } catch (err) {
     res.status(500).json({
       status: 500,
@@ -36,15 +31,14 @@ export const addMovieToWatched = async (req, res) => {
   try {
     // Connect to the database
     await client.connect();
-    const watched = client.db("app-data").collection("watched");
-    const watchedIds = client.db("app-data").collection("watched-ids");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await watched.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
     // check if the movie is already in the watched
-    const movieInWatched = movies.find((movie) => {
-      return movie.id === movieDetails.id;
+    const movieInWatched = userData.watched.find((id) => {
+      return id === movieDetails.id;
     });
 
     if (movieInWatched) {
@@ -52,23 +46,10 @@ export const addMovieToWatched = async (req, res) => {
         message: "Movie already in watched",
       });
     } else {
-      // add the movie to the watched
-      await watched.insertOne({
-        userId: user,
-        ...movieDetails,
-      });
-
-      // add the movie id to the watched ids collection
-      const movieIds = await watchedIds.find({}).toArray();
-      await Promise.all(
-        movieIds.map(async (movie) => {
-          if (movie.userId === user) {
-            await watchedIds.updateOne(
-              { userId: req.body.user },
-              { $push: { movieIds: movieDetails.id } }
-            );
-          }
-        })
+      // Add the movie id to the user's watched
+      await users.updateOne(
+        { _id: user },
+        { $push: { watched: movieDetails.id } }
       );
     }
 

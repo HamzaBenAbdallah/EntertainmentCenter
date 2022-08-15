@@ -34,8 +34,8 @@ const CardDetails = () => {
     movieDetails,
     isLoadingMovieDetails,
     isErrorMovieDetails,
-    watchlistIds,
-    watchedIds,
+    watchlist,
+    watched,
     mutateWatchlist,
     mutateWatched,
   } = useMovieDetails(id);
@@ -49,21 +49,20 @@ const CardDetails = () => {
   };
 
   useEffect(() => {
-    watchlistIds?.map((movieId) => {
+    // Gray out the button if the movie is already in the watchlist
+    watchlist?.map((movieId) => {
       if (movieId === movieDetails?.id) {
-        setIsWatchlist(true);
+        return setIsWatchlist(true);
       }
     });
-  }, [movieDetails, watchlistIds, isWatchlist]);
 
-  useEffect(() => {
-    watchedIds?.map((movieId) => {
+    // Gray out the button if the movie is already in the watched list
+    watched?.map((movieId) => {
       if (movieId === movieDetails?.id) {
-        setIsWatched(true);
+        return setIsWatched(true);
       }
-      console.log(watchedIds);
     });
-  }, [movieDetails, watchedIds, isWatched]);
+  }, [movieDetails, watchlist, isWatchlist, watched, isWatched]);
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;

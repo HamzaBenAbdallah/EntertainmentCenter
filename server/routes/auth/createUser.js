@@ -39,7 +39,6 @@ export const createUser = async (req, res) => {
         _id: uuid4(),
         ...value,
         password: hashedPassword,
-        date: Date.now(),
       };
 
       await collection.insertOne(user);

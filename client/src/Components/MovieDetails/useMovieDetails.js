@@ -11,23 +11,10 @@ const fetchMovieDetails = async (id) => {
   return response.data;
 };
 
-const fetchWatchlistIds = async () => {
+const fetchWatchlist = async () => {
   if (user) {
     const response = await axios.post(
-      `/api/watchlist-ids`,
-      { user },
-      {
-        headers: { "auth-token": token },
-      }
-    );
-    return response.data;
-  }
-};
-
-const fetchWatchedIds = async () => {
-  if (user) {
-    const response = await axios.post(
-      `/api/watched-ids`,
+      `/api/get-watchlist`,
       { user },
       {
         headers: { "auth-token": token },
@@ -39,7 +26,7 @@ const fetchWatchedIds = async () => {
 
 const addMovieToWatchlist = async (movieDetails) => {
   return await axios.post(
-    `/api/watchlist`,
+    `/api/add-to-watchlist`,
     { movieDetails, user },
     {
       headers: { "auth-token": token },
@@ -47,9 +34,22 @@ const addMovieToWatchlist = async (movieDetails) => {
   );
 };
 
+const fetchWatched = async () => {
+  if (user) {
+    const response = await axios.post(
+      `/api/get-watched`,
+      { user },
+      {
+        headers: { "auth-token": token },
+      }
+    );
+    return response.data;
+  }
+};
+
 const addMovieToWatched = async (movieDetails) => {
   return await axios.post(
-    `/api/watched`,
+    `/api/add-to-watched`,
     { movieDetails, user },
     {
       headers: { "auth-token": token },
@@ -59,30 +59,27 @@ const addMovieToWatched = async (movieDetails) => {
 
 export const useMovieDetails = (id) => {
   const queryClient = useQueryClient();
+
   const {
     data: movieDetails,
     isLoading: isLoadingMovieDetails,
     isError: isErrorMovieDetails,
   } = useQuery(["movie-details", id], () => fetchMovieDetails(id));
 
-  const { data: watchlistIds } = useQuery(["watchlist-ids"], () =>
-    fetchWatchlistIds()
-  );
+  const { data: watchlist } = useQuery(["watchlist"], () => fetchWatchlist());
 
-  const { data: watchedIds } = useQuery(["watched-ids"], () =>
-    fetchWatchedIds()
-  );
+  const { data: watched } = useQuery(["watched"], () => fetchWatched());
 
   const { mutate: mutateWatchlist } = useMutation(
     () => addMovieToWatchlist(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["watchlist-ids"]),
+      onSuccess: () => queryClient.invalidateQueries(["watchlist"]),
     }
   );
   const { mutate: mutateWatched } = useMutation(
     () => addMovieToWatched(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["watched-ids"]),
+      onSuccess: () => queryClient.invalidateQueries(["watched"]),
     }
   );
 
@@ -90,8 +87,8 @@ export const useMovieDetails = (id) => {
     movieDetails,
     isLoadingMovieDetails,
     isErrorMovieDetails,
-    watchlistIds,
-    watchedIds,
+    watchlist,
+    watched,
     mutateWatchlist,
     mutateWatched,
   };

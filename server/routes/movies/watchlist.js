@@ -6,21 +6,16 @@ const { MONGO_URI } = process.env;
 const client = new MongoClient(MONGO_URI);
 
 export const getWatchlist = async (req, res) => {
+  const { user } = req.body;
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watchlist");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
-    if (movies.length > 0) {
-      return res.status(200).json(movies);
-    } else {
-      return res.status(404).json({
-        message: "No movies found",
-      });
-    }
+    return res.status(200).json(userData.watchlist);
   } catch (err) {
     res.status(500).json({
       status: 500,
@@ -36,15 +31,14 @@ export const addMovieToWatchlist = async (req, res) => {
   try {
     // Connect to the database
     await client.connect();
-    const watchlist = client.db("app-data").collection("watchlist");
-    const watchlistIds = client.db("app-data").collection("watchlist-ids");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await watchlist.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
     // check if the movie is already in the watchlist
-    const movieInWatchlist = movies.find((movie) => {
-      return movie.id === movieDetails.id;
+    const movieInWatchlist = userData.watchlist.find((id) => {
+      return id === movieDetails.id;
     });
 
     if (movieInWatchlist) {
@@ -52,26 +46,12 @@ export const addMovieToWatchlist = async (req, res) => {
         message: "Movie already in watchlist",
       });
     } else {
-      // add the movie to the watchlist
-      await watchlist.insertOne({
-        userId: user,
-        ...movieDetails,
-      });
-
-      // add the movie id to the watchlist ids collection
-      const MovieIds = await watchlistIds.find({}).toArray();
-      await Promise.all(
-        MovieIds.map(async (movie) => {
-          if (movie.userId === user) {
-            await watchlistIds.updateOne(
-              { userId: req.body.user },
-              { $push: { movieIds: movieDetails.id } }
-            );
-          }
-        })
+      // Add the movie id to the user's watchlist
+      await users.updateOne(
+        { _id: user },
+        { $push: { watchlist: movieDetails.id } }
       );
     }
-
     return res.status(201).json({
       message: "Movie added to watchlist",
     });

@@ -14,8 +14,6 @@ import {
   addMovieToWatched,
   deleteMovieFromWatched,
 } from "./watched.js";
-import { getWatchlistIds } from "./watchlistIds.js";
-import { getWatchedIds } from "./watchedIds.js";
 
 const movieRouter = express.Router();
 
@@ -39,15 +37,13 @@ movieRouter.get("/search-movies", getSearchResults);
 movieRouter.get("/genre", getGenre);
 
 /** Watchlist */
-movieRouter.get("/watchlist", authenticateToken, getWatchlist);
-movieRouter.post("/watchlist", authenticateToken, addMovieToWatchlist);
+movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);
+movieRouter.post("/add-to-watchlist", authenticateToken, addMovieToWatchlist);
 movieRouter.delete("/watchlist", authenticateToken, deleteMovieFromWatchlist);
-movieRouter.post("/watchlist-ids", authenticateToken, getWatchlistIds);
 
 /** Watched */
-movieRouter.get("/watched", authenticateToken, getWatched);
-movieRouter.post("/watched", authenticateToken, addMovieToWatched);
+movieRouter.post("/get-watched", authenticateToken, getWatched);
+movieRouter.post("/add-to-watched", authenticateToken, addMovieToWatched);
 movieRouter.delete("/watched", authenticateToken, deleteMovieFromWatched);
-movieRouter.post("/watched-ids", authenticateToken, getWatchedIds);
 
 export default movieRouter;

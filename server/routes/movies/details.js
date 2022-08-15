@@ -15,19 +15,11 @@ export const getDetails = async (req, res) => {
   try {
     // Connect to the database
     await client.connect();
-    const watchlistDb = client.db("app-data").collection("watchlist");
-    const watchedDb = client.db("app-data").collection("watched");
 
     try {
       const response = await axios(url);
       const { data } = response;
       const details = { ...data, watchlist: false, watched: false };
-
-      // check if the movie is already in the watchlist
-      const watchlist = await watchlistDb.findOne({ id: data.id });
-
-      // check if the movie is already in the watched list
-      const watched = await watchedDb.findOne({ id: data.id });
 
       const similar = await axios(similarUrl);
       const { data: similarData } = similar;
@@ -41,8 +33,6 @@ export const getDetails = async (req, res) => {
         related: similarData.results.slice(0, 5),
         cast: castData.cast.slice(0, 4),
         director: director ? director.name : "",
-        watchlist: watchlist ? true : false,
-        watched: watched ? true : false,
       };
 
       if (data) {
