@@ -6,6 +6,7 @@ import { getGenre } from "./genre.js";
 import { getDetails } from "./details.js";
 import {
   getWatchlist,
+  getWatchlistData,
   addMovieToWatchlist,
   deleteMovieFromWatchlist,
 } from "./watchlist.js";
@@ -38,6 +39,7 @@ movieRouter.get("/genre", getGenre);
 
 /** Watchlist */
 movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);
+movieRouter.post("/get-watchlist-data", authenticateToken, getWatchlistData);
 movieRouter.post("/add-to-watchlist", authenticateToken, addMovieToWatchlist);
 movieRouter.delete("/watchlist", authenticateToken, deleteMovieFromWatchlist);
 
