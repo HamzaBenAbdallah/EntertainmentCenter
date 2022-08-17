@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 const fetchTrendingMovies = async () => {
-  const response = await axios.get(`/api/trending-movies`, {
-    headers: { "auth-token": token },
-  });
+  const response = await axios.get(`/api/trending-movies`);
   return response.data;
 };
 export const useTrending = () => {

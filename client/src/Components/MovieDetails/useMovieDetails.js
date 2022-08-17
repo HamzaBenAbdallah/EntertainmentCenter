@@ -5,56 +5,30 @@ import { getCurrentUser } from "Services/getCurrentUser";
 const { user, token } = getCurrentUser();
 
 const fetchMovieDetails = async (id) => {
-  const response = await axios.get(`/api/movie-details?id=${id}`, {
-    headers: { "auth-token": token },
-  });
+  const response = await axios.get(`/api/movie-details?id=${id}`);
   return response.data;
 };
 
 const fetchWatchlist = async () => {
   if (user) {
-    const response = await axios.post(
-      `/api/get-watchlist`,
-      { user },
-      {
-        headers: { "auth-token": token },
-      }
-    );
+    const response = await axios.post(`/api/get-watchlist`, { user });
     return response.data;
   }
 };
 
 const addMovieToWatchlist = async (movieDetails) => {
-  return await axios.post(
-    `/api/add-to-watchlist`,
-    { movieDetails, user },
-    {
-      headers: { "auth-token": token },
-    }
-  );
+  return await axios.post(`/api/add-to-watchlist`, { movieDetails, user });
 };
 
 const fetchWatched = async () => {
   if (user) {
-    const response = await axios.post(
-      `/api/get-watched`,
-      { user },
-      {
-        headers: { "auth-token": token },
-      }
-    );
+    const response = await axios.post(`/api/get-watched`, { user });
     return response.data;
   }
 };
 
 const addMovieToWatched = async (movieDetails) => {
-  return await axios.post(
-    `/api/add-to-watched`,
-    { movieDetails, user },
-    {
-      headers: { "auth-token": token },
-    }
-  );
+  return await axios.post(`/api/add-to-watched`, { movieDetails, user });
 };
 
 export const useMovieDetails = (id) => {
