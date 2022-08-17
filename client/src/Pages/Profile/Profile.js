@@ -1,7 +1,16 @@
-import {} from "./Profile.style";
+import { Link, Outlet } from "react-router-dom";
+import { Title } from "./Profile.style";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <>
+      <Title>
+        <Link to="watchlist">Watchlist</Link>
+        <Link to="watched">Watched</Link>
+      </Title>
+      <Outlet />
+    </>
+  );
 };
 
 export default Profile;

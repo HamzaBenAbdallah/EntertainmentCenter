@@ -3,13 +3,17 @@ import styled from "styled-components";
 import GlobalStyles from "GlobalStyles";
 import ScrollToTop from "Utils/ScrollToTop";
 import { getCurrentUser } from "Services/getCurrentUser";
+/** Components */
 import Header from "Components/Header";
-import Main from "Pages/Main";
 import Login from "Components/Login";
 import Signup from "Components/Signup";
-import Profile from "Pages/Profile";
-import Trending from "Pages/Trending";
+import Main from "Pages/Main";
 import CardDetails from "Components/MovieDetails";
+/** Pages */
+import Trending from "Pages/Trending";
+import Profile from "Pages/Profile";
+import Watchlist from "Pages/Watchlist";
+import Watched from "Pages/Watched";
 
 const App = () => {
   const { user } = getCurrentUser();
@@ -23,21 +27,24 @@ const App = () => {
           <Routes>
             <Route path="/" exact element={<Main />} />
             <Route
-              path="/login"
+              path="login"
               exact
               element={user ? <Navigate replace to="/" /> : <Login />}
             />
             <Route
-              path="/signup"
+              path="signup"
               exact
               element={user ? <Navigate replace to="/" /> : <Signup />}
             />
             <Route
-              path="/profile"
-              element={user ? <Profile /> : <Navigate replace to="/login" />}
-            />
-            <Route path="/trending" exact element={<Trending />} />
-            <Route path="/movies/:id" exact element={<CardDetails />} />
+              path="profile"
+              element={user ? <Profile /> : <Navigate replace to="login" />}
+            >
+              <Route path="watchlist" element={<Watchlist />} />
+              <Route path="watched" element={<Watched />} />
+            </Route>
+            <Route path="trending" exact element={<Trending />} />
+            <Route path="movies/:id" exact element={<CardDetails />} />
             <Route path="*" element={<>Not Found</>} />
           </Routes>
         </ScrollToTop>

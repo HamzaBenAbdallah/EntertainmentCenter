@@ -12,17 +12,17 @@ const Header = () => {
         <Link to="/">
           <Title>Movies</Title>
         </Link>
-        <Link to="/trending">
+        <Link to="trending">
           <Page>Trending</Page>
         </Link>
       </Container>
       <Container>
         {!user ? (
           <>
-            <Link to="/login">
+            <Link to="login">
               <Page>Login</Page>
             </Link>
-            <Link to="/signup">
+            <Link to="signup">
               <Page>Signup</Page>
             </Link>{" "}
           </>
@@ -32,7 +32,7 @@ const Header = () => {
           </Link>
         )}
         <Icon>
-          <Link to="/profile">
+          <Link to="profile">
             <MdOutlineAccountCircle size="2em" />
           </Link>
         </Icon>
