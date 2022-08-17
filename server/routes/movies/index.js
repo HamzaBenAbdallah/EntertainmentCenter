@@ -12,6 +12,7 @@ import {
 } from "./watchlist.js";
 import {
   getWatched,
+  getWatchedData,
   addMovieToWatched,
   deleteMovieFromWatched,
 } from "./watched.js";
@@ -45,6 +46,7 @@ movieRouter.delete("/watchlist", authenticateToken, deleteMovieFromWatchlist);
 
 /** Watched */
 movieRouter.post("/get-watched", authenticateToken, getWatched);
+movieRouter.post("/get-watched-data", authenticateToken, getWatchedData);
 movieRouter.post("/add-to-watched", authenticateToken, addMovieToWatched);
 movieRouter.delete("/watched", authenticateToken, deleteMovieFromWatched);
 

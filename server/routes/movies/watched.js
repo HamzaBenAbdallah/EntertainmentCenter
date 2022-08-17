@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { getMovieById } from "./config/getMovieById.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -16,6 +17,36 @@ export const getWatched = async (req, res) => {
     const userData = await users.findOne({ _id: user });
 
     return res.status(200).json(userData.watched);
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: "Internal server error",
+    });
+  } finally {
+    await client.close();
+  }
+};
+
+export const getWatchedData = async (req, res) => {
+  const { user } = req.body;
+  try {
+    // Connect to the database
+    await client.connect();
+    const users = client.db("app-data").collection("users");
+
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
+
+    // find movie data inside collection
+    const movies = [];
+    await Promise.all(
+      userData.watched.map(async (movieId) => {
+        const data = await getMovieById(movieId);
+        return movies.push(data);
+      })
+    );
+
+    return res.status(200).json(movies);
   } catch (err) {
     res.status(500).json({
       status: 500,

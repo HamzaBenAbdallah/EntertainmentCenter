@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const { MONGO_URI } = process.env;
-
 const client = new MongoClient(MONGO_URI);
 
 export const getWatchlist = async (req, res) => {
