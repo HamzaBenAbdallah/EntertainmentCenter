@@ -1,7 +1,25 @@
-import {} from "./Watched.style";
+import { useWatched } from "./useWatched";
+import MovieCard from "Components/MovieCard";
+import { MovieGrid } from "./Watched.style";
 
 const Watched = () => {
-  return <div>Watched</div>;
+  const { watched, isLoadingWatched, isErrorWatched } = useWatched();
+
+  if (isLoadingWatched) {
+    return <div>Loading...</div>;
+  }
+
+  if (isErrorWatched) {
+    return <div>Error...</div>;
+  }
+
+  return (
+    <MovieGrid>
+      {watched.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </MovieGrid>
+  );
 };
 
 export default Watched;
