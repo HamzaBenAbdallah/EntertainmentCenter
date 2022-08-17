@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { getCurrentUser } from "Services/getCurrentUser";
 
-const { user, token } = getCurrentUser();
+const { user } = getCurrentUser();
 
 const fetchMovieDetails = async (id) => {
   const response = await axios.get(`/api/movie-details?id=${id}`);

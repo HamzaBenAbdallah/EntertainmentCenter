@@ -8,7 +8,7 @@ import Header from "Components/Header";
 import Login from "Components/Login";
 import Signup from "Components/Signup";
 import Main from "Pages/Main";
-import CardDetails from "Components/MovieDetails";
+import CardDetails from "Pages/MovieDetails";
 /** Pages */
 import Trending from "Pages/Trending";
 import Profile from "Pages/Profile";
