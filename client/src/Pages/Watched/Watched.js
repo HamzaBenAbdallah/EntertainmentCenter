@@ -1,5 +1,5 @@
 import { useWatched } from "./useWatched";
-import MovieCard from "Components/MovieCard";
+import ListCard from "Components/ListCard";
 import { MovieGrid } from "./Watched.style";
 
 const Watched = () => {
@@ -16,7 +16,7 @@ const Watched = () => {
   return (
     <MovieGrid>
       {watched.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
+        <ListCard key={movie.id} movie={movie} />
       ))}
     </MovieGrid>
   );

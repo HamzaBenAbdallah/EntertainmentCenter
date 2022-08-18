@@ -1,5 +1,5 @@
 import { useWatchlist } from "./useWatchlist";
-import MovieCard from "Components/MovieCard";
+import ListCard from "Components/ListCard";
 import { MovieGrid } from "./Watchlist.style";
 
 const Watchlist = () => {
@@ -16,7 +16,7 @@ const Watchlist = () => {
   return (
     <MovieGrid>
       {watchlist.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
+        <ListCard key={movie.id} movie={movie} />
       ))}
     </MovieGrid>
   );
