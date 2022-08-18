@@ -1,6 +1,6 @@
 import { useWatchlist } from "./useWatchlist";
 import ListCard from "Components/ListCard";
-import { MovieGrid } from "./Watchlist.style";
+import { MovieGrid } from "./WatchList.style";
 
 const Watchlist = () => {
   const { watchlist, isLoadingWatchlist, isErrorWatchlist } = useWatchlist();

@@ -6,12 +6,12 @@ import ScrollToTop from "Utils/ScrollToTop";
 import ProtectedRoute from "Utils/ProtectedRoute";
 /** Components */
 import Header from "Components/Header";
-import Login from "Components/Login";
-import Signup from "Components/Signup";
-import Main from "Pages/Main";
-import CardDetails from "Pages/MovieDetails";
 /** Pages */
+import Login from "Pages/Login";
+import Signup from "Pages/Signup";
+import Main from "Pages/Main";
 import Trending from "Pages/Trending";
+import CardDetails from "Pages/MovieDetails";
 import Profile from "Pages/Profile";
 import Watchlist from "Pages/Watchlist";
 import Watched from "Pages/Watched";
