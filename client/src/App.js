@@ -57,7 +57,7 @@ const App = () => {
 };
 
 const AppContainer = styled.div`
-  background-color: #181b21;
+  background-color: #032541;
   min-height: 100vh;
   font-family: sans-serif;
 `;

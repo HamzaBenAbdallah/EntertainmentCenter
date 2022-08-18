@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   Container,
+  StyledLink,
   Poster,
   Wrapper,
   Details,
@@ -15,15 +16,17 @@ const ListCard = ({ movie }) => {
 
   return (
     <Container>
-      <Link to={`/movies/${movie.id}`}>
+      <StyledLink to={`/movies/${movie.id}`}>
         <Poster src={BASE_IMAGE_URL + movie.poster_path} alt={movie.title} />
-      </Link>
+      </StyledLink>
       <Wrapper>
         <Details>
           <Info>
             <p>{movie.vote_average.toFixed(1)}</p>
             <Title>
-              <h3>{movie.title}</h3>
+              <StyledLink to={`/movies/${movie.id}`}>
+                <h3>{movie.title}</h3>
+              </StyledLink>
               <p>{movie.release_date}</p>
             </Title>
           </Info>

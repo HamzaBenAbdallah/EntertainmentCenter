@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -9,6 +10,11 @@ export const Container = styled.div`
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const Poster = styled.img`
@@ -43,6 +49,10 @@ export const Title = styled.div`
   gap: 0.35rem;
   h3 {
     font-size: 1.25rem;
+
+    &:hover {
+      color: #032541;
+    }
   }
   p {
     color: #999;

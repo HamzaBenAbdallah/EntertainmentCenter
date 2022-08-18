@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   font-family: sans-serif;
   border-bottom: 2px solid #000;
-  background-color: #242b39;
+  background-color: #032541;
   color: white;
 `;
 
