@@ -59,7 +59,6 @@ const App = () => {
 const AppContainer = styled.div`
   background-color: #032541;
   min-height: 100vh;
-  font-family: sans-serif;
 `;
 
 export default App;

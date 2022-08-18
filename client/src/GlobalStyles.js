@@ -2,9 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --color-cadmium-red: #D80026;
-    --font-heading: Arial, Helvetica, sans-serif;
-    --font-body: Arial, Helvetica, sans-serif;
+    --font: 'Source Sans Pro', sans-serif;
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -31,6 +29,7 @@ export default createGlobalStyle`
       box-sizing: border-box;
       font-size: 100%;
       vertical-align: baseline;
+      font-family: 'Source Sans Pro', sans-serif;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,

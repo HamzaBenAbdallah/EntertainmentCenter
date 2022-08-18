@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: sans-serif;
   border-bottom: 2px solid #000;
   background-color: #032541;
   color: white;
