@@ -38,15 +38,13 @@ export const getWatchlistData = async (req, res) => {
     const userData = await users.findOne({ _id: user });
 
     // find movie data inside collection
-    const movies = [];
-    await Promise.all(
-      userData.watchlist.map(async (movieId) => {
-        const data = await getMovieById(movieId);
-        return movies.push(data);
-      })
-    );
-
-    return res.status(200).json(movies);
+    let promises = [];
+    userData.watchlist.forEach((movieId) => {
+      promises.push(getMovieById(movieId));
+    });
+    Promise.all(promises).then((data) => {
+      return res.status(200).json(data);
+    });
   } catch (err) {
     res.status(500).json({
       status: 500,
