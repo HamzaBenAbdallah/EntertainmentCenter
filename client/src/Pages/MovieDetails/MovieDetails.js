@@ -50,16 +50,16 @@ const CardDetails = () => {
 
   useEffect(() => {
     // Gray out the button if the movie is already in the watchlist
-    watchlist?.map((movieId) => {
+    watchlist?.forEach((movieId) => {
       if (movieId === movieDetails?.id) {
-        return setIsWatchlist(true);
+        setIsWatchlist(true);
       }
     });
 
     // Gray out the button if the movie is already in the watched list
-    watched?.map((movieId) => {
+    watched?.forEach((movieId) => {
       if (movieId === movieDetails?.id) {
-        return setIsWatched(true);
+        setIsWatched(true);
       }
     });
   }, [movieDetails, watchlist, isWatchlist, watched, isWatched]);
