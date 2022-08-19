@@ -57,7 +57,7 @@ const App = () => {
 };
 
 const AppContainer = styled.div`
-  background-color: #032541;
+  background-color: var(--background-color);
   min-height: 100vh;
 `;
 
