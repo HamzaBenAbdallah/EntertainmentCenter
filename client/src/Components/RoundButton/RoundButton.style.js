@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 export const Container = styled.button`
   all: unset;
@@ -15,5 +17,17 @@ export const Container = styled.button`
   &:disabled {
     cursor: not-allowed;
     opacity: 0.3;
+  }
+`;
+
+export const Tooltip = styled(Tippy)`
+  color: var(--primary-color);
+
+  &[data-placement^="bottom"] {
+    background: var(--secondary-color);
+
+    .tippy-arrow {
+      color: var(--secondary-color);
+    }
   }
 `;

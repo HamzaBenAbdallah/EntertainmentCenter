@@ -109,18 +109,20 @@ const CardDetails = () => {
               {user && (
                 <>
                   <RoundButton
-                    onClick={handleAddMovieToWatchlist}
+                    click={handleAddMovieToWatchlist}
                     disabled={isWatchlist}
+                    text="Add to watchlist"
                   >
                     <FaBookmark size="1.25rem" color="#032541" />
                   </RoundButton>
                   <RoundButton
-                    onClick={handleAddMovieToWatched}
+                    click={handleAddMovieToWatched}
                     disabled={isWatched}
+                    text="Add to watched"
                   >
                     <FaCheck size="1.25rem" color="#032541" />
                   </RoundButton>
-                  <RoundButton>
+                  <RoundButton text="Rate">
                     <FaStar size="1.25rem" color="#032541" />
                   </RoundButton>
                 </>
