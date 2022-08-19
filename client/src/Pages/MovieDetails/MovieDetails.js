@@ -4,6 +4,7 @@ import { getCurrentUser } from "Services/getCurrentUser";
 import MovieCard from "Components/MovieCard";
 import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
+import RoundButton from "Components/RoundButton";
 import { useMovieDetails } from "./useMovieDetails";
 import {
   Container,
@@ -15,7 +16,6 @@ import {
   Title,
   Details,
   User,
-  RoundButton,
   Tagline,
   SecondaryTitle,
   Crew,

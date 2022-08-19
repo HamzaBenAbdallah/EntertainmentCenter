@@ -74,29 +74,6 @@ export const User = styled.div`
   height: 5rem;
 `;
 
-export const RoundButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  height: 3.5rem;
-  width: 3.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 5px #000;
-  transition: all 0.25s ease-in-out;
-  background-color: var(--secondary-color);
-
-  &:hover:enabled {
-    transform: scale(1.15);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-  }
-`;
-
 export const Tagline = styled.p`
   color: var(--secondary-color);
   font-weight: 400;
