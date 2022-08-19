@@ -2,18 +2,8 @@ import styled from "styled-components";
 
 export const MovieGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 9rem);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   justify-content: center;
-  gap: 1rem 2rem;
-  padding: 3rem 1rem;
-
-  @media (min-width: 43rem) {
-    grid-template-columns: repeat(auto-fit, 11rem);
-    padding: 5rem;
-  }
-
-  @media (min-width: 62rem) {
-    grid-template-columns: repeat(auto-fit, 11rem);
-    padding: 5rem;
-  }
+  gap: 2rem;
+  padding: 5rem 7.5rem;
 `;
