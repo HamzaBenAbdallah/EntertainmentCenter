@@ -20,11 +20,13 @@ export const getDetails = async (req, res) => {
     const { data: castData } = cast;
 
     const director = castData.crew.find((member) => member.job === "Director");
+    const crew = castData.crew.filter((member) => member.job !== "Director");
     const returnData = {
       ...response.data,
       related: similarData.results.slice(0, 5),
       cast: castData.cast.slice(0, 4),
       director: director ? director.name : "",
+      crew: crew.slice(0, 5),
     };
 
     if (response.data) {
