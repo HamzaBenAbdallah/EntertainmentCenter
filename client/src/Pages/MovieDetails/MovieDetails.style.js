@@ -6,60 +6,33 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Backdrop = styled.img`
+export const Backdrop = styled.div`
   width: 100%;
   height: 80vh;
-  object-fit: fill;
-  filter: brightness(0.7);
+  filter: brightness(0.5);
+  background-image: url(${(props) => props.background});
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 `;
 
 export const DetailsContainer = styled.div`
   display: flex;
+  background-color: var(--background-color);
+  color: white;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
-  align-items: center;
   width: 70%;
-  transform: translateY(-10rem);
-  margin-top: -15rem;
-  z-index: 1;
+  transform: translateY(-20rem);
   gap: 4rem;
-`;
-
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  color: white;
-`;
-
-export const Title = styled.h1`
-  font-size: 4rem;
-  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-`;
-
-export const Tagline = styled.h2`
-  font-size: 2rem;
-  color: #cad0d9;
-`;
-
-export const Details = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  width: 100%;
-  background-color: #21262e;
-  color: white;
   border-radius: 5px;
-  min-height: 60rem;
-  box-shadow: 0px 0px 6px 2px #000000;
+  box-shadow: 0px 0px 3px 1px #000000;
   padding: 2rem;
 `;
 
 export const Info = styled.div`
   display: grid;
-  grid-template-columns: 35% 65%;
+  grid-template-columns: 30% 70%;
 `;
 
 export const Poster = styled.img`
@@ -71,21 +44,65 @@ export const Poster = styled.img`
 export const Overview = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-align: justify;
-  font-size: 1.35em;
+  font-size: 1.15em;
   line-height: 1.3em;
   padding: 0.5rem 2rem;
   gap: 1rem;
+`;
 
-  span {
-    font-size: 1rem;
+export const Title = styled.h2`
+  font-size: 3rem;
+  font-weight: 900;
+  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+`;
+
+export const Details = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+`;
+
+export const User = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  height: 5rem;
+`;
+
+export const RoundButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px #000;
+  transition: all 0.25s ease-in-out;
+  background-color: white;
+
+  &:hover:enabled {
+    transform: scale(1.15);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
   }
 `;
 
-export const Genre = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  font-size: 1rem;
+export const Tagline = styled.p`
+  color: #cad0d9;
+  font-weight: 400;
+  font-style: italic;
+`;
+
+export const SecondaryTitle = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
 `;
 
 export const ActorGrid = styled.div`
@@ -145,20 +162,13 @@ export const Button = styled.button`
 
   &:disabled {
     cursor: not-allowed;
+    opacity: 0.3;
     background-image: linear-gradient(
       to right,
       #232526 0%,
       #414345 51%,
       #232526 100%
     );
-    opacity: 0.3;
-  }
-`;
-
-export const Similar = styled.div`
-  span {
-    font-size: 2.5rem;
-    font-weight: bold;
   }
 `;
 
@@ -167,4 +177,11 @@ export const MovieGrid = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 1.25rem;
   padding: 3rem 0;
+`;
+
+export const Similar = styled.div`
+  span {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
 `;
