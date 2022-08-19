@@ -19,7 +19,7 @@ export const StyledLink = styled(Link)`
 
 export const Poster = styled.img`
   display: block;
-  height: 12.5rem;
+  min-height: 12.5rem;
   width: 10rem;
   cursor: pointer;
 `;

@@ -1,3 +1,4 @@
+import CircularProgress from "Components/CircularProgress";
 import {
   Container,
   StyledLink,
@@ -21,7 +22,8 @@ const ListCard = ({ movie }) => {
       <Wrapper>
         <Details>
           <Info>
-            <p>{movie.vote_average.toFixed(1)}</p>
+            {/* <p>{movie.vote_average.toFixed(1)}</p> */}
+            <CircularProgress value={Math.round(movie.vote_average * 10)} />
             <Title>
               <StyledLink to={`/movies/${movie.id}`}>
                 <h3>{movie.title}</h3>
