@@ -129,22 +129,22 @@ export const Job = styled.div`
 
 export const ActorGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 4rem;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
 `;
 
 export const Cast = styled.div`
   align-self: center;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 2.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
 `;
 
 export const MovieGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1.25rem;
   padding: 3rem 0;
 `;
@@ -152,6 +152,6 @@ export const MovieGrid = styled.div`
 export const Similar = styled.div`
   span {
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: 900;
   }
 `;

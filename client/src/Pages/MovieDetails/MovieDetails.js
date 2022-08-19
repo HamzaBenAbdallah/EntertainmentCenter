@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCurrentUser } from "Services/getCurrentUser";
 import MovieCard from "Components/MovieCard";
-import Actor from "Components/Actor";
+import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
 import { useMovieDetails } from "./useMovieDetails";
 import {
@@ -143,15 +143,14 @@ const CardDetails = () => {
                 );
               })}
             </Crew>
-            {/* <Cast>Top Cast</Cast>
-            <ActorGrid>
-              {movieDetails.cast?.map((actor) => {
-                return <Actor key={actor.id} actor={actor} />;
-              })}
-            </ActorGrid> */}
           </Overview>
         </Info>
-
+        <Cast>Top Cast</Cast>
+        <ActorGrid>
+          {movieDetails.cast?.map((actor) => {
+            return <Actor key={actor.id} actor={actor} />;
+          })}
+        </ActorGrid>
         <Similar>
           <span>Similar</span>
           <MovieGrid>

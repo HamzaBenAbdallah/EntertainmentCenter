@@ -24,7 +24,7 @@ export const getDetails = async (req, res) => {
     const returnData = {
       ...response.data,
       related: similarData.results.slice(0, 5),
-      cast: castData.cast.slice(0, 4),
+      cast: castData.cast.slice(0, 12),
       director: director ? director.name : "",
       crew: crew.slice(0, 5),
     };
