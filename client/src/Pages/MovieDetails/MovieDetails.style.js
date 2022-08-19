@@ -18,7 +18,7 @@ export const Backdrop = styled.div`
 
 export const DetailsContainer = styled.div`
   display: flex;
-  background-color: var(--background-color);
+  background-color: var(--primary-color);
   color: white;
   flex-direction: column;
   text-align: center;
@@ -47,9 +47,12 @@ export const Overview = styled.div`
   justify-content: center;
   text-align: justify;
   font-size: 1.15em;
-  line-height: 1.3em;
   padding: 0.5rem 2rem;
   gap: 1rem;
+
+  p {
+    line-height: 1.25em;
+  }
 `;
 
 export const Title = styled.h2`
@@ -82,7 +85,7 @@ export const RoundButton = styled.button`
   justify-content: center;
   box-shadow: 0 0 5px #000;
   transition: all 0.25s ease-in-out;
-  background-color: white;
+  background-color: var(--secondary-color);
 
   &:hover:enabled {
     transform: scale(1.15);
@@ -95,7 +98,7 @@ export const RoundButton = styled.button`
 `;
 
 export const Tagline = styled.p`
-  color: #cad0d9;
+  color: var(--secondary-color);
   font-weight: 400;
   font-style: italic;
 `;
@@ -103,6 +106,25 @@ export const Tagline = styled.p`
 export const SecondaryTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
+`;
+
+export const Crew = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  gap: 1rem;
+  margin-top: 2rem;
+`;
+
+export const Name = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+`;
+
+export const Job = styled.div`
+  font-size: 0.9rem;
+  color: var(--secondary-color);
 `;
 
 export const ActorGrid = styled.div`
@@ -118,58 +140,6 @@ export const Cast = styled.div`
   font-size: 2.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-`;
-
-export const Buttons = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 5rem;
-`;
-
-export const Button = styled.button`
-  all: unset;
-  cursor: pointer;
-  background-image: linear-gradient(
-    to right,
-    #0575e6 0%,
-    #021b79 51%,
-    #0575e6 100%
-  );
-  background-size: 200% auto;
-  padding: 1rem 1.5rem;
-  border-radius: 2rem;
-  box-shadow: 0 0 5px #eee;
-  color: #ffffff;
-  font-size: 1.25em;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  transition: all 0.3s;
-
-  :hover:enabled {
-    transform: scale(1.1);
-    background-position: right center;
-  }
-
-  :last-child {
-    background-image: linear-gradient(
-      to right,
-      #093028 0%,
-      #237a57 51%,
-      #093028 100%
-    );
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-    background-image: linear-gradient(
-      to right,
-      #232526 0%,
-      #414345 51%,
-      #232526 100%
-    );
-  }
 `;
 
 export const MovieGrid = styled.div`

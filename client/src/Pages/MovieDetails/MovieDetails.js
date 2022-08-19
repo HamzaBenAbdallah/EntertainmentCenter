@@ -18,8 +18,9 @@ import {
   RoundButton,
   Tagline,
   SecondaryTitle,
-  Buttons,
-  Button,
+  Crew,
+  Name,
+  Job,
   Cast,
   ActorGrid,
   MovieGrid,
@@ -128,8 +129,20 @@ const CardDetails = () => {
             <Tagline>{movieDetails.tagline}</Tagline>
             <SecondaryTitle>Overview</SecondaryTitle>
             <p>{movieDetails.overview}</p>
-
-            <span>Director: {movieDetails.director}</span>
+            <Crew>
+              <div>
+                <Name>{movieDetails.director}</Name>
+                <Job>Director</Job>
+              </div>
+              {movieDetails.crew.map((crew) => {
+                return (
+                  <div key={crew.id}>
+                    <Name> {crew.name}</Name>
+                    <Job>{crew.job}</Job>
+                  </div>
+                );
+              })}
+            </Crew>
             {/* <Cast>Top Cast</Cast>
             <ActorGrid>
               {movieDetails.cast?.map((actor) => {

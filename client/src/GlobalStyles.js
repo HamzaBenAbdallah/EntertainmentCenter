@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
   :root {
     --font: 'Source Sans Pro', sans-serif;
-    --background-color: #032541;
+    --primary-color: #032541;
+    --secondary-color: #cbb9a8;
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
