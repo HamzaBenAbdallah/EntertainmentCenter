@@ -15,7 +15,6 @@ export const Container = styled.div`
 
   circle {
     fill: none;
-    stroke: green;
     stroke-width: 8;
     stroke-linecap: round;
     stroke-dasharray: 176;
