@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Poster = styled.img`
   display: block;
   width: 100%;
-  object-fit: cover;
+  height: 15rem;
 `;
 
 export const Details = styled.div`
@@ -23,6 +23,7 @@ export const Details = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
+  min-height: 6rem;
 `;
 
 export const Name = styled.div`
