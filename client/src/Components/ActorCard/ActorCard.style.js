@@ -1,34 +1,34 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  cursor: pointer;
   display: flex;
+  flex-direction: column;
   position: relative;
-  transition: all 0.3s ease;
   align-items: center;
   gap: 1rem;
+  background-color: white;
+  color: black;
+  border-radius: 0.4rem;
+  overflow: hidden;
 `;
 
 export const Poster = styled.img`
   display: block;
-  width: 7rem;
-  height: 7rem;
-  border-radius: 50%;
-  object-fit: fill;
+  width: 100%;
+  object-fit: cover;
 `;
 
 export const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 1rem;
 `;
 
 export const Name = styled.div`
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
 `;
 
 export const Character = styled.div`
   font-size: 0.8rem;
-  color: #c1d5ed;
 `;
