@@ -10,14 +10,18 @@ import {
   Overview,
   Controls,
 } from "./ListCard.style";
+import NotFound from "Pictures/Image-not-found.jpg";
 
 const ListCard = ({ movie }) => {
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
+  const image = movie?.poster_path
+    ? `${BASE_IMAGE_URL}${movie.poster_path}`
+    : NotFound;
 
   return (
     <Container>
       <StyledLink to={`/movies/${movie.id}`}>
-        <Poster src={BASE_IMAGE_URL + movie.poster_path} alt={movie.title} />
+        <Poster src={image} alt={movie.title} />
       </StyledLink>
       <Wrapper>
         <Details>

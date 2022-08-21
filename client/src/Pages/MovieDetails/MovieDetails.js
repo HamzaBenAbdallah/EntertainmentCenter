@@ -26,6 +26,7 @@ import {
   MovieGrid,
   Similar,
 } from "./MovieDetails.style";
+import NotFound from "Pictures/Image-not-found.jpg";
 import { FaBookmark, FaCheck, FaStar } from "react-icons/fa";
 
 const CardDetails = () => {
@@ -33,7 +34,6 @@ const CardDetails = () => {
   const [isWatched, setIsWatched] = useState(false);
   const { id } = useParams();
   const { user } = getCurrentUser();
-  const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const {
     movieDetails,
     isLoadingMovieDetails,
@@ -43,6 +43,11 @@ const CardDetails = () => {
     mutateWatchlist,
     mutateWatched,
   } = useMovieDetails(id);
+
+  const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
+  const image = movieDetails?.poster_path
+    ? `${BASE_IMAGE_URL}${movieDetails.poster_path}`
+    : NotFound;
 
   const handleAddMovieToWatchlist = () => {
     mutateWatchlist(movieDetails);
@@ -81,10 +86,7 @@ const CardDetails = () => {
       <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
       <DetailsContainer>
         <Info>
-          <Poster
-            src={BASE_IMAGE_URL + movieDetails.poster_path}
-            alt={movieDetails.title}
-          />
+          <Poster src={image} alt={movieDetails.title} />
           <Overview>
             <Title>{movieDetails.title}</Title>
             <Details>
