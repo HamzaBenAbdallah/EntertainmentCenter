@@ -1,33 +1,23 @@
 import { useState } from "react";
-import axios from "axios";
-
-const fetchSearchResults = async (searchTerm) => {
-  if (!searchTerm) {
-    return [];
-  }
-  const response = await axios.get(`/api/search-movies?query=${searchTerm}`);
-  return response;
-};
+import { useNavigate } from "react-router-dom";
 
 export const useSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const results = await fetchSearchResults(searchTerm);
-    setSearchResults(results.data);
     setSearchTerm("");
+    searchTerm && navigate(`/search/${searchTerm}`);
   };
 
   return {
     handleChange,
     handleSubmit,
     searchTerm,
-    searchResults,
   };
 };

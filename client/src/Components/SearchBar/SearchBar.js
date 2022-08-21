@@ -2,10 +2,7 @@ import { useSearchBar } from "./useSearchBar";
 import { SearchBarContainer } from "./SearchBar.style";
 
 const SearchBar = () => {
-  const { handleSubmit, handleChange, searchTerm, searchResults } =
-    useSearchBar();
-
-  console.log(searchResults);
+  const { handleSubmit, handleChange, searchTerm } = useSearchBar();
 
   return (
     <form onSubmit={handleSubmit}>
