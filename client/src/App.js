@@ -15,6 +15,7 @@ import CardDetails from "Pages/MovieDetails";
 import Profile from "Pages/Profile";
 import Watchlist from "Pages/Watchlist";
 import Watched from "Pages/Watched";
+import SearchResults from "Pages/SearchResults";
 
 const App = () => {
   const { user } = getCurrentUser();
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="watched" element={<Watched />} />
             </Route>
             <Route path="trending" element={<Trending />} />
+            <Route path="search/:searchTerm" element={<SearchResults />} />
             <Route path="movies/:id" element={<CardDetails />} />
             <Route path="*" element={<>Not Found</>} />
           </Routes>

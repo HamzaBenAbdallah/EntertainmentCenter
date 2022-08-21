@@ -11,8 +11,8 @@ export const useSearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm("");
     searchTerm && navigate(`/search/${searchTerm}`);
+    setSearchTerm("");
   };
 
   return {
