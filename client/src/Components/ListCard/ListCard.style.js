@@ -19,8 +19,8 @@ export const StyledLink = styled(Link)`
 
 export const Poster = styled.img`
   display: block;
-  min-height: 12.5rem;
-  width: 10rem;
+  width: 15rem;
+  height: 16.5rem;
   cursor: pointer;
 `;
 
@@ -68,4 +68,7 @@ export const Overview = styled.div`
   overflow: hidden;
 `;
 
-export const Controls = styled.div``;
+export const Controls = styled.div`
+  display: flex;
+  gap: 2rem;
+`;

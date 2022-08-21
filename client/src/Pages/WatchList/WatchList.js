@@ -16,7 +16,7 @@ const Watchlist = () => {
   return (
     <MovieGrid>
       {watchlist.map((movie) => (
-        <ListCard key={movie.id} movie={movie} />
+        <ListCard key={movie.id} movie={movie} watchlist />
       ))}
     </MovieGrid>
   );

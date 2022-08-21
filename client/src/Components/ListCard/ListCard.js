@@ -1,4 +1,5 @@
 import CircularProgress from "Components/CircularProgress";
+import SquareButton from "Components/SquareButton";
 import NotFound from "Pictures/Image-not-found.jpg";
 import {
   Container,
@@ -12,7 +13,7 @@ import {
   Controls,
 } from "./ListCard.style";
 
-const ListCard = ({ movie }) => {
+const ListCard = ({ movie, watchlist, watched }) => {
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const image = movie?.poster_path
     ? `${BASE_IMAGE_URL}${movie.poster_path}`
@@ -26,7 +27,6 @@ const ListCard = ({ movie }) => {
       <Wrapper>
         <Details>
           <Info>
-            {/* <p>{movie.vote_average.toFixed(1)}</p> */}
             <CircularProgress value={Math.round(movie?.vote_average * 10)} />
             <Title>
               <StyledLink to={`/movies/${movie?.id}`}>
@@ -37,7 +37,12 @@ const ListCard = ({ movie }) => {
           </Info>
           <Overview>{movie?.overview}</Overview>
         </Details>
-        <Controls>Remove</Controls>
+        <Controls>
+          <SquareButton type="rating" />
+          {watchlist && <SquareButton type="watched" />}
+          {watched && <SquareButton type="watchlist" />}
+          <SquareButton type="remove" />
+        </Controls>
       </Wrapper>
     </Container>
   );

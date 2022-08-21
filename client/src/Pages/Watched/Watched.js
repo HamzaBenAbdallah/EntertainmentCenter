@@ -16,7 +16,7 @@ const Watched = () => {
   return (
     <MovieGrid>
       {watched.map((movie) => (
-        <ListCard key={movie.id} movie={movie} />
+        <ListCard key={movie.id} movie={movie} watched />
       ))}
     </MovieGrid>
   );
