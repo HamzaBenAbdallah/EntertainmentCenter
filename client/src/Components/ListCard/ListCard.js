@@ -1,3 +1,5 @@
+import { useAddToWatchlist } from "Hooks/useAddToWatchlist";
+import { useAddToWatched } from "Hooks/useAddToWatched";
 import CircularProgress from "Components/CircularProgress";
 import SquareButton from "Components/SquareButton";
 import NotFound from "Pictures/Image-not-found.jpg";
@@ -13,7 +15,25 @@ import {
   Controls,
 } from "./ListCard.style";
 
-const ListCard = ({ movie, watchlist, watched, remove }) => {
+const ListCard = ({
+  movie,
+  watchlist,
+  isWatchlist,
+  watched,
+  isWatched,
+  remove,
+}) => {
+  const { mutateWatchlist } = useAddToWatchlist(movie);
+  const { mutateWatched } = useAddToWatched(movie);
+
+  const handleAddMovieToWatchlist = () => {
+    mutateWatchlist(movie);
+  };
+
+  const handleAddMovieToWatched = () => {
+    mutateWatched(movie);
+  };
+
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const image = movie?.poster_path
     ? `${BASE_IMAGE_URL}${movie.poster_path}`
@@ -39,8 +59,20 @@ const ListCard = ({ movie, watchlist, watched, remove }) => {
         </Details>
         <Controls>
           <SquareButton type="rating" />
-          {watchlist && <SquareButton type="watched" />}
-          {watched && <SquareButton type="watchlist" />}
+          {watchlist && (
+            <SquareButton
+              type="watched"
+              disabled={isWatched}
+              click={handleAddMovieToWatched}
+            />
+          )}
+          {watched && (
+            <SquareButton
+              type="watchlist"
+              disabled={isWatchlist}
+              click={handleAddMovieToWatchlist}
+            />
+          )}
           {remove && <SquareButton type="remove" />}
         </Controls>
       </Wrapper>

@@ -1,9 +1,11 @@
 import { useWatched } from "./useWatched";
+import { useFetchWatchlist } from "Hooks/useFetchWatchlist";
 import ListCard from "Components/ListCard";
 import { MovieGrid } from "./Watched.style";
 
 const Watched = () => {
   const { watched, isLoadingWatched, isErrorWatched } = useWatched();
+  const { watchlistList } = useFetchWatchlist();
 
   if (isLoadingWatched) {
     return <div>Loading...</div>;
@@ -15,9 +17,13 @@ const Watched = () => {
 
   return (
     <MovieGrid>
-      {watched.map((movie) => (
-        <ListCard key={movie.id} movie={movie} watched remove />
-      ))}
+      {watched.map((movie) =>
+        watchlistList?.includes(movie.id) ? (
+          <ListCard key={movie.id} movie={movie} watched remove isWatchlist />
+        ) : (
+          <ListCard key={movie.id} movie={movie} watched remove />
+        )
+      )}
     </MovieGrid>
   );
 };

@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCurrentUser } from "Services/getCurrentUser";
+import { useMovieDetails } from "./useMovieDetails";
+import { useFetchWatchlist } from "Hooks/useFetchWatchlist";
+import { useFetchWatched } from "Hooks/useFetchWatched";
+import { useAddToWatchlist } from "Hooks/useAddToWatchlist";
+import { useAddToWatched } from "Hooks/useAddToWatched";
 import MovieCard from "Components/MovieCard";
 import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
 import RoundButton from "Components/RoundButton";
-import { useMovieDetails } from "./useMovieDetails";
 import NotFound from "Pictures/Image-not-found.jpg";
 import { FaBookmark, FaCheck, FaStar } from "react-icons/fa";
 import {
@@ -34,15 +38,12 @@ const CardDetails = () => {
   const [isWatched, setIsWatched] = useState(false);
   const { id } = useParams();
   const { user } = getCurrentUser();
-  const {
-    movieDetails,
-    isLoadingMovieDetails,
-    isErrorMovieDetails,
-    watchlist,
-    watched,
-    mutateWatchlist,
-    mutateWatched,
-  } = useMovieDetails(id);
+  const { movieDetails, isLoadingMovieDetails, isErrorMovieDetails } =
+    useMovieDetails(id);
+  const { watchlistList } = useFetchWatchlist();
+  const { watchedList } = useFetchWatched();
+  const { mutateWatchlist } = useAddToWatchlist(movieDetails);
+  const { mutateWatched } = useAddToWatched(movieDetails);
 
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const image = movieDetails?.poster_path
@@ -59,19 +60,19 @@ const CardDetails = () => {
 
   useEffect(() => {
     // Gray out the button if the movie is already in the watchlist
-    watchlist?.forEach((movieId) => {
+    watchlistList?.forEach((movieId) => {
       if (movieId === movieDetails?.id) {
         setIsWatchlist(true);
       }
     });
 
     // Gray out the button if the movie is already in the watched list
-    watched?.forEach((movieId) => {
+    watchedList?.forEach((movieId) => {
       if (movieId === movieDetails?.id) {
         setIsWatched(true);
       }
     });
-  }, [movieDetails, watchlist, isWatchlist, watched, isWatched]);
+  }, [movieDetails, watchlistList, isWatchlist, watchedList, isWatched]);
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;

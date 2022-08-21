@@ -15,7 +15,7 @@ export const Container = styled.button`
     opacity: 0.3;
   }
 
-  :hover {
+  :hover:enabled {
     color: black;
   }
 `;
