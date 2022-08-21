@@ -139,9 +139,9 @@ const CardDetails = () => {
                 <Name>{movieDetails.director}</Name>
                 <Job>Director</Job>
               </div>
-              {movieDetails.crew.map((crew) => {
+              {movieDetails.crew.map((crew, index) => {
                 return (
-                  <div key={crew.id}>
+                  <div key={index}>
                     <Name> {crew.name}</Name>
                     <Job>{crew.job}</Job>
                   </div>
