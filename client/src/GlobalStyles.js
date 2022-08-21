@@ -24,7 +24,7 @@ export default createGlobalStyle`
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+  time, mark, audio, video, input {
       margin: 0;
       padding: 0;
       border: 0;

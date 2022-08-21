@@ -5,6 +5,7 @@ const fetchTrendingMovies = async () => {
   const response = await axios.get(`/api/trending-movies`);
   return response.data;
 };
+
 export const useTrending = () => {
   const {
     data: moviesList,

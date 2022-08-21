@@ -1,7 +1,8 @@
-import { Wrapper, Container, Title, Page, Link, Icon } from "./Header.style";
-import { MdOutlineAccountCircle } from "react-icons/md";
-import { getCurrentUser } from "Services/getCurrentUser";
 import { useLogout } from "./useLogout";
+import { getCurrentUser } from "Services/getCurrentUser";
+import SearchBar from "Components/SearchBar";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { Wrapper, Container, Title, Page, Link, Icon } from "./Header.style";
 
 const Header = () => {
   const { user } = getCurrentUser();
@@ -17,6 +18,7 @@ const Header = () => {
         </Link>
       </Container>
       <Container>
+        <SearchBar />
         {!user ? (
           <>
             <Link to="login">
@@ -24,7 +26,7 @@ const Header = () => {
             </Link>
             <Link to="signup">
               <Page>Signup</Page>
-            </Link>{" "}
+            </Link>
           </>
         ) : (
           <Link to="" onClick={handleLogout}>
