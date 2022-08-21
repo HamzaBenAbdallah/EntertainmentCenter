@@ -10,8 +10,8 @@ const MovieCard = ({ movie }) => {
 
   return (
     <Container>
-      <Link to={`/movies/${movie.id}`}>
-        <Poster src={image} alt={movie.title} />
+      <Link to={`/movies/${movie?.id}`}>
+        <Poster src={image} alt={movie?.title} />
       </Link>
     </Container>
   );

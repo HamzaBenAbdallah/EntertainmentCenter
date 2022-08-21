@@ -50,6 +50,7 @@ export const useMovieDetails = (id) => {
       onSuccess: () => queryClient.invalidateQueries(["watchlist"]),
     }
   );
+
   const { mutate: mutateWatched } = useMutation(
     () => addMovieToWatched(movieDetails),
     {

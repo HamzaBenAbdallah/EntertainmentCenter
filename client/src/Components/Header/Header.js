@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <Wrapper>
       <Container>
-        <Link to="/">
+        <Link to="">
           <Title>Movies</Title>
         </Link>
         <Link to="trending">

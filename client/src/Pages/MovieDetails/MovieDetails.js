@@ -6,6 +6,8 @@ import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
 import RoundButton from "Components/RoundButton";
 import { useMovieDetails } from "./useMovieDetails";
+import NotFound from "Pictures/Image-not-found.jpg";
+import { FaBookmark, FaCheck, FaStar } from "react-icons/fa";
 import {
   Container,
   Backdrop,
@@ -26,8 +28,6 @@ import {
   MovieGrid,
   Similar,
 } from "./MovieDetails.style";
-import NotFound from "Pictures/Image-not-found.jpg";
-import { FaBookmark, FaCheck, FaStar } from "react-icons/fa";
 
 const CardDetails = () => {
   const [isWatchlist, setIsWatchlist] = useState(false);
