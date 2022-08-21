@@ -13,7 +13,7 @@ import {
   Controls,
 } from "./ListCard.style";
 
-const ListCard = ({ movie, watchlist, watched }) => {
+const ListCard = ({ movie, watchlist, watched, remove }) => {
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const image = movie?.poster_path
     ? `${BASE_IMAGE_URL}${movie.poster_path}`
@@ -41,7 +41,7 @@ const ListCard = ({ movie, watchlist, watched }) => {
           <SquareButton type="rating" />
           {watchlist && <SquareButton type="watched" />}
           {watched && <SquareButton type="watchlist" />}
-          <SquareButton type="remove" />
+          {remove && <SquareButton type="remove" />}
         </Controls>
       </Wrapper>
     </Container>

@@ -25,7 +25,7 @@ const SearchResults = () => {
       <Title>Search Results for "{searchTerm}"</Title>
       <MovieList>
         {searchResults.map((movie) => (
-          <ListCard key={movie.id} movie={movie} />
+          <ListCard key={movie.id} movie={movie} watchlist watched />
         ))}
       </MovieList>
     </Wrapper>
