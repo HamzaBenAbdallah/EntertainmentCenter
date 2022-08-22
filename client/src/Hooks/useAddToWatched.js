@@ -5,7 +5,10 @@ import { getCurrentUser } from "Services/getCurrentUser";
 const { user } = getCurrentUser();
 
 const addMovieToWatched = async (movieDetails) => {
-  return await axios.post(`/api/add-to-watched`, { movieDetails, user });
+  return await axios.post(`/api/add-to-watched`, {
+    movieId: movieDetails.id,
+    user,
+  });
 };
 
 export const useAddToWatched = (movieDetails) => {
