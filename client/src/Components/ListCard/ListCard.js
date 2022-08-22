@@ -1,5 +1,7 @@
 import { useAddToWatchlist } from "Hooks/useAddToWatchlist";
 import { useAddToWatched } from "Hooks/useAddToWatched";
+import { useRemoveFromWatchlist } from "Hooks/useRemoveFromWatchlist";
+import { useRemoveFromWatched } from "Hooks/useRemoveFromWatched";
 import CircularProgress from "Components/CircularProgress";
 import SquareButton from "Components/SquareButton";
 import NotFound from "Pictures/Image-not-found.jpg";
@@ -18,20 +20,31 @@ import {
 const ListCard = ({
   movie,
   watchlist,
-  isWatchlist,
+  isInWatchlist,
   watched,
-  isWatched,
+  isInWatched,
   remove,
 }) => {
-  const { mutateWatchlist } = useAddToWatchlist(movie);
-  const { mutateWatched } = useAddToWatched(movie);
+  const { mutateAddToWatchlist } = useAddToWatchlist(movie);
+  const { mutateAddToWatched } = useAddToWatched(movie);
+  const { mutateRemoveFromWatchlist } = useRemoveFromWatchlist(movie);
+  const { mutateRemoveFromWatched } = useRemoveFromWatched(movie);
 
   const handleAddMovieToWatchlist = () => {
-    mutateWatchlist(movie);
+    mutateAddToWatchlist(movie);
   };
 
   const handleAddMovieToWatched = () => {
-    mutateWatched(movie);
+    mutateAddToWatched(movie);
+  };
+
+  const handleRemoveMovie = () => {
+    if (watchlist) {
+      mutateRemoveFromWatchlist(movie);
+    }
+    if (watched) {
+      mutateRemoveFromWatched(movie);
+    }
   };
 
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
@@ -62,18 +75,18 @@ const ListCard = ({
           {watchlist && (
             <SquareButton
               type="watched"
-              disabled={isWatched}
+              disabled={isInWatched}
               click={handleAddMovieToWatched}
             />
           )}
           {watched && (
             <SquareButton
               type="watchlist"
-              disabled={isWatchlist}
+              disabled={isInWatchlist}
               click={handleAddMovieToWatchlist}
             />
           )}
-          {remove && <SquareButton type="remove" />}
+          {remove && <SquareButton type="remove" click={handleRemoveMovie} />}
         </Controls>
       </Wrapper>
     </Container>
