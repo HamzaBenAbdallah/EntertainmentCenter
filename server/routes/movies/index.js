@@ -42,12 +42,20 @@ movieRouter.get("/genre", getGenre);
 movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);
 movieRouter.post("/get-watchlist-data", authenticateToken, getWatchlistData);
 movieRouter.post("/add-to-watchlist", authenticateToken, addMovieToWatchlist);
-movieRouter.delete("/watchlist", authenticateToken, deleteMovieFromWatchlist);
+movieRouter.patch(
+  "/remove-from-watchlist",
+  authenticateToken,
+  deleteMovieFromWatchlist
+);
 
 /** Watched */
 movieRouter.post("/get-watched", authenticateToken, getWatched);
 movieRouter.post("/get-watched-data", authenticateToken, getWatchedData);
 movieRouter.post("/add-to-watched", authenticateToken, addMovieToWatched);
-movieRouter.delete("/watched", authenticateToken, deleteMovieFromWatched);
+movieRouter.patch(
+  "/remove-from-watched",
+  authenticateToken,
+  deleteMovieFromWatched
+);
 
 export default movieRouter;

@@ -56,7 +56,9 @@ export const getWatchlistData = async (req, res) => {
 };
 
 export const addMovieToWatchlist = async (req, res) => {
-  const { user, movieDetails } = req.body;
+  const { user, movieId } = req.body;
+  const movie = parseInt(movieId);
+
   try {
     // Connect to the database
     await client.connect();
@@ -67,7 +69,7 @@ export const addMovieToWatchlist = async (req, res) => {
 
     // check if the movie is already in the watchlist
     const movieInWatchlist = userData.watchlist.find((id) => {
-      return id === movieDetails.id;
+      return id === movie;
     });
 
     if (movieInWatchlist) {
@@ -76,10 +78,7 @@ export const addMovieToWatchlist = async (req, res) => {
       });
     } else {
       // Add the movie id to the user's watchlist
-      await users.updateOne(
-        { _id: user },
-        { $push: { watchlist: movieDetails.id } }
-      );
+      await users.updateOne({ _id: user }, { $push: { watchlist: movie } });
     }
     return res.status(201).json({
       message: "Movie added to watchlist",
@@ -95,23 +94,26 @@ export const addMovieToWatchlist = async (req, res) => {
 };
 
 export const deleteMovieFromWatchlist = async (req, res) => {
+  const { user, movieId } = req.body;
+  const movie = parseInt(movieId);
+
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watchlist");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
     // check if the movie is already in the watchlist
-    const movieInWatchlist = movies.find((movie) => {
-      return movie.id === req.params.id;
+    const movieInWatchlist = userData.watchlist.find((id) => {
+      return id === movie;
     });
 
     if (movieInWatchlist) {
-      await collection.deleteOne({ id: req.params.id });
+      await users.updateOne({ _id: user }, { $pull: { watchlist: movie } });
       return res.status(200).json({
-        message: "Movie deleted from watchlist",
+        message: "Movie removed from watchlist",
       });
     } else {
       return res.status(404).json({

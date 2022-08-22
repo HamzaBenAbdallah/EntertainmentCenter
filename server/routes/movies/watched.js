@@ -56,7 +56,9 @@ export const getWatchedData = async (req, res) => {
 };
 
 export const addMovieToWatched = async (req, res) => {
-  const { user, movieDetails } = req.body;
+  const { user, movieId } = req.body;
+  const movie = parseInt(movieId);
+
   try {
     // Connect to the database
     await client.connect();
@@ -67,7 +69,7 @@ export const addMovieToWatched = async (req, res) => {
 
     // check if the movie is already in the watched
     const movieInWatched = userData.watched.find((id) => {
-      return id === movieDetails.id;
+      return id === movie;
     });
 
     if (movieInWatched) {
@@ -76,10 +78,7 @@ export const addMovieToWatched = async (req, res) => {
       });
     } else {
       // Add the movie id to the user's watched
-      await users.updateOne(
-        { _id: user },
-        { $push: { watched: movieDetails.id } }
-      );
+      await users.updateOne({ _id: user }, { $push: { watched: movie } });
     }
 
     return res.status(201).json({
@@ -96,28 +95,30 @@ export const addMovieToWatched = async (req, res) => {
 };
 
 export const deleteMovieFromWatched = async (req, res) => {
+  const { user, movieId } = req.body;
+  const movie = parseInt(movieId);
+
   try {
     // Connect to the database
     await client.connect();
-    const collection = client.db("app-data").collection("watched");
+    const users = client.db("app-data").collection("users");
 
-    // get all movies from the database
-    const movies = await collection.find({}).toArray();
+    // find user data inside collection
+    const userData = await users.findOne({ _id: user });
 
     // check if the movie is already in the watched
-    const movieInWatched = movies.find((movie) => {
-      return movie.id === req.body.id;
+    const movieInWatched = userData.watched.find((id) => {
+      return id === movie;
     });
 
-    if (!movieInWatched) {
-      return res.status(409).json({
-        message: "Movie not in watched",
+    if (movieInWatched) {
+      await users.updateOne({ _id: user }, { $pull: { watched: movie } });
+      return res.status(200).json({
+        message: "Movie removed from watched",
       });
     } else {
-      // delete the movie from the watched
-      await collection.deleteOne({ id: req.body.id });
-      return res.status(200).json({
-        message: "Movie deleted from watched",
+      return res.status(404).json({
+        message: "Movie not found",
       });
     }
   } catch (err) {
