@@ -1,9 +1,9 @@
-import { useTrending } from "./useTrending";
+import { useDiscover } from "./useDiscover";
 import MovieCard from "Components/MovieCard";
-import { MovieGrid } from "./Trending.style";
+import { MovieGrid } from "./Discover.style";
 
-const Trending = () => {
-  const { moviesList, isLoadingMovies, isErrorMovies } = useTrending();
+const Discover = () => {
+  const { moviesList, isLoadingMovies, isErrorMovies } = useDiscover();
 
   if (isLoadingMovies) {
     return <div>Loading...</div>;
@@ -22,4 +22,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default Discover;

@@ -10,7 +10,7 @@ import Header from "Components/Header";
 import Login from "Pages/Login";
 import Signup from "Pages/Signup";
 import Main from "Pages/Main";
-import Trending from "Pages/Trending";
+import Discover from "Pages/Discover";
 import CardDetails from "Pages/MovieDetails";
 import Profile from "Pages/Profile";
 import Watchlist from "Pages/Watchlist";
@@ -47,7 +47,7 @@ const App = () => {
               <Route path="watchlist" element={<Watchlist />} />
               <Route path="watched" element={<Watched />} />
             </Route>
-            <Route path="trending" element={<Trending />} />
+            <Route path="Discover" element={<Discover />} />
             <Route path="search/:searchTerm" element={<SearchResults />} />
             <Route path="movies/:id" element={<CardDetails />} />
             <Route path="*" element={<>Not Found</>} />

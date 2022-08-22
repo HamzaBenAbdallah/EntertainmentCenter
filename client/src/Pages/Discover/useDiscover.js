@@ -6,7 +6,7 @@ const fetchTrendingMovies = async () => {
   return response.data;
 };
 
-export const useTrending = () => {
+export const useDiscover = () => {
   const {
     data: moviesList,
     isLoading: isLoadingMovies,

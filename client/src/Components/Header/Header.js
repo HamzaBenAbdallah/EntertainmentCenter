@@ -13,8 +13,8 @@ const Header = () => {
         <Link to="">
           <Title>Movies</Title>
         </Link>
-        <Link to="trending">
-          <Page>Trending</Page>
+        <Link to="Discover">
+          <Page>Discover</Page>
         </Link>
       </Container>
       <Container>
