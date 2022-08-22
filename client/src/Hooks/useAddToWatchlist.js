@@ -14,7 +14,7 @@ const addMovieToWatchlist = async (movieDetails) => {
 export const useAddToWatchlist = (movieDetails) => {
   const queryClient = useQueryClient();
 
-  const { mutate: mutateWatchlist } = useMutation(
+  const { mutate: mutateAddToWatchlist } = useMutation(
     () => addMovieToWatchlist(movieDetails),
     {
       onSuccess: () => queryClient.invalidateQueries(["watchlistList"]),
@@ -22,6 +22,6 @@ export const useAddToWatchlist = (movieDetails) => {
   );
 
   return {
-    mutateWatchlist,
+    mutateAddToWatchlist,
   };
 };

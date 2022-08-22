@@ -19,7 +19,7 @@ const Watched = () => {
     <MovieGrid>
       {watched.map((movie) =>
         watchlistList?.includes(movie.id) ? (
-          <ListCard key={movie.id} movie={movie} watched remove isWatchlist />
+          <ListCard key={movie.id} movie={movie} watched remove isInWatchlist />
         ) : (
           <ListCard key={movie.id} movie={movie} watched remove />
         )

@@ -42,8 +42,8 @@ const CardDetails = () => {
     useMovieDetails(id);
   const { watchlistList } = useFetchWatchlist();
   const { watchedList } = useFetchWatched();
-  const { mutateWatchlist } = useAddToWatchlist(movieDetails);
-  const { mutateWatched } = useAddToWatched(movieDetails);
+  const { mutateAddToWatchlist } = useAddToWatchlist(movieDetails);
+  const { mutateAddToWatched } = useAddToWatched(movieDetails);
 
   const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
   const image = movieDetails?.poster_path
@@ -51,11 +51,11 @@ const CardDetails = () => {
     : NotFound;
 
   const handleAddMovieToWatchlist = () => {
-    mutateWatchlist(movieDetails);
+    mutateAddToWatchlist(movieDetails);
   };
 
   const handleAddMovieToWatched = () => {
-    mutateWatched(movieDetails);
+    mutateAddToWatched(movieDetails);
   };
 
   useEffect(() => {
