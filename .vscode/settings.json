@@ -7,6 +7,7 @@
     "tanstack",
     "tippyjs",
     "toastify",
-    "Watchlist"
+    "Watchlist",
+    "whitesmoke"
   ]
 }

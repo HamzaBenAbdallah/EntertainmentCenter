@@ -6,9 +6,9 @@ export const Container = styled.div`
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
 
-  /* &:hover {
+  &:hover {
     transform: scale(1.075);
-  } */
+  }
 `;
 
 export const Poster = styled.img`
