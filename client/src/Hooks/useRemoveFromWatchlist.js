@@ -17,7 +17,11 @@ export const useRemoveFromWatchlist = (movieDetails) => {
   const { mutate: mutateRemoveFromWatchlist } = useMutation(
     () => RemoveMovieFromWatchlist(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["get-watchlist-data"]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["get-watchlist-data"]);
+        queryClient.invalidateQueries(["watchlistList"]);
+        queryClient.invalidateQueries(["watchedList"]);
+      },
     }
   );
 

@@ -34,8 +34,8 @@ import {
 } from "./MovieDetails.style";
 
 const CardDetails = () => {
-  const [isWatchlist, setIsWatchlist] = useState(false);
-  const [isWatched, setIsWatched] = useState(false);
+  // const [isWatchlist, setIsWatchlist] = useState(false);
+  // const [isWatched, setIsWatched] = useState(false);
   const { id } = useParams();
   const { user } = getCurrentUser();
   const { movieDetails, isLoadingMovieDetails, isErrorMovieDetails } =
@@ -50,6 +50,10 @@ const CardDetails = () => {
     ? `${BASE_IMAGE_URL}${movieDetails.poster_path}`
     : NotFound;
 
+  // This is derived data no need to put it in the state
+  const isWatchlist = watchlistList?.includes(movieDetails?.id);
+  const isWatched = watchedList?.includes(movieDetails?.id);
+
   const handleAddMovieToWatchlist = () => {
     mutateAddToWatchlist(movieDetails);
   };
@@ -57,22 +61,6 @@ const CardDetails = () => {
   const handleAddMovieToWatched = () => {
     mutateAddToWatched(movieDetails);
   };
-
-  useEffect(() => {
-    // Gray out the button if the movie is already in the watchlist
-    watchlistList?.forEach((movieId) => {
-      if (movieId === movieDetails?.id) {
-        setIsWatchlist(true);
-      }
-    });
-
-    // Gray out the button if the movie is already in the watched list
-    watchedList?.forEach((movieId) => {
-      if (movieId === movieDetails?.id) {
-        setIsWatched(true);
-      }
-    });
-  }, [movieDetails, watchlistList, isWatchlist, watchedList, isWatched]);
 
   if (isLoadingMovieDetails) {
     return <div>Loading...</div>;

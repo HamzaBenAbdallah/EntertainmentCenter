@@ -62,6 +62,7 @@ export const addMovieToWatchlist = async (req, res) => {
   try {
     // Connect to the database
     await client.connect();
+    console.log("Connected to the database");
     const users = client.db("app-data").collection("users");
 
     // find user data inside collection
@@ -84,11 +85,13 @@ export const addMovieToWatchlist = async (req, res) => {
       message: "Movie added to watchlist",
     });
   } catch (err) {
+    console.error("error in `addMovieToWatchlist`:", err);
     res.status(500).json({
       status: 500,
-      message: "Internal server error x",
+      message: "Internal server error",
     });
   } finally {
+    console.log("closing connection");
     await client.close();
   }
 };

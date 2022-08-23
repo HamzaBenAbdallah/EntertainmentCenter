@@ -17,7 +17,11 @@ export const useRemoveFromWatched = (movieDetails) => {
   const { mutate: mutateRemoveFromWatched } = useMutation(
     () => RemoveMovieFromWatched(movieDetails),
     {
-      onSuccess: () => queryClient.invalidateQueries(["get-watched-data"]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["get-watched-data"]);
+        queryClient.invalidateQueries(["watchlistList"]);
+        queryClient.invalidateQueries(["watchedList"]);
+      },
     }
   );
 
