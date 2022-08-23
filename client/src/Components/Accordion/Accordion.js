@@ -6,11 +6,12 @@ const Accordion = ({ title, children }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <Container onClick={() => setIsActive(!isActive)}>
-      <Title>
+    <Container>
+      <Title onClick={() => setIsActive(!isActive)}>
         {title}
         {isActive ? <FaChevronDown /> : <FaChevronRight />}
       </Title>
+
       {isActive && <Content>{children}</Content>}
     </Container>
   );
