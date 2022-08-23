@@ -9,12 +9,14 @@ const fetchGenres = async () => {
 };
 
 const fetchDiscover = async (params) => {
+  console.log(params);
   const { data } = await axios.post("/api/get-discover", { params });
   return data;
 };
 
 export const useDiscover = () => {
   const [genreFilter, setGenreFilter] = useState([]);
+  const [sortFilter, setSortFilter] = useState("popularity.desc");
 
   const handleClickGenre = (genre) => {
     flushSync(() => {
@@ -28,8 +30,17 @@ export const useDiscover = () => {
     refetchDiscover();
   };
 
+  const handleChangeSort = (e) => {
+    flushSync(() => {
+      setSortFilter(e.target.value);
+    });
+
+    refetchDiscover();
+  };
+
   let params = {
     with_genres: genreFilter.join(","),
+    sort_by: sortFilter,
   };
 
   const {
@@ -46,12 +57,13 @@ export const useDiscover = () => {
   } = useQuery(["discover"], () => fetchDiscover(params));
 
   return {
-    handleClickGenre,
     genres,
     isLoadingGenres,
     isErrorGenres,
     discover,
     isLoadingDiscover,
     isErrorDiscover,
+    handleClickGenre,
+    handleChangeSort,
   };
 };

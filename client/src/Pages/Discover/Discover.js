@@ -7,19 +7,21 @@ import {
   Filters,
   Content,
   Label,
+  Sort,
   Genre,
   Movies,
 } from "./Discover.style";
 
 const Discover = () => {
   const {
-    handleClickGenre,
     genres,
     isLoadingGenres,
     isErrorGenres,
     discover,
     isLoadingDiscover,
     isErrorDiscover,
+    handleClickGenre,
+    handleChangeSort,
   } = useDiscover();
 
   if (isLoadingDiscover) {
@@ -35,14 +37,18 @@ const Discover = () => {
       <Filters>
         <Accordion title="Sort">
           <Content>
-            <select>
-              <option value="popularity.desc">Popularity Descending</option>
-              <option value="popularity.asc">Popularity Ascending</option>
-              <option value="vote_average.desc">Rating Descending</option>
-              <option value="vote_average.asc">Rating Ascending</option>
-              <option value="release_date.desc">Release Date Descending</option>
-              <option value="release_date.asc">Release Date Ascending</option>
-            </select>
+            <Sort>
+              <select onChange={handleChangeSort}>
+                <option value="popularity.desc">Popularity Descending</option>
+                <option value="popularity.asc">Popularity Ascending</option>
+                <option value="vote_average.desc">Rating Descending</option>
+                <option value="vote_average.asc">Rating Ascending</option>
+                <option value="release_date.desc">
+                  Release Date Descending
+                </option>
+                <option value="release_date.asc">Release Date Ascending</option>
+              </select>
+            </Sort>
           </Content>
         </Accordion>
         <Accordion title="Filters">

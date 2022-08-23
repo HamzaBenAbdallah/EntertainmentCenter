@@ -19,7 +19,6 @@ export const Filters = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 100%;
   border-top: 1px solid whitesmoke;
   padding: 1rem 0;
   display: flex;
@@ -29,6 +28,25 @@ export const Content = styled.div`
 `;
 
 export const Label = styled.div``;
+
+export const Sort = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  select {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.6);
+
+    &:focus {
+      outline: none;
+    }
+  }
+`;
 
 export const Genre = styled.div`
   display: flex;
