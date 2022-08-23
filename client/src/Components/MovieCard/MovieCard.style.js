@@ -5,6 +5,7 @@ export const Container = styled.div`
   position: relative;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
   transition: all 0.3s ease;
+  height: max-content;
 
   &:hover {
     transform: scale(1.075);

@@ -39,6 +39,7 @@ export const Genre = styled.div`
 export const Movies = styled.div`
   width: 70%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fit, 11.5rem);
+  justify-content: center;
   gap: 2rem;
 `;

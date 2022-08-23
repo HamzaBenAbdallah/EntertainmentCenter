@@ -60,9 +60,11 @@ const Discover = () => {
         <Accordion title="Providers"></Accordion>
       </Filters>
       <Movies>
-        {discover.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+        {discover.length > 0 ? (
+          discover.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+        ) : (
+          <div>No movies found</div>
+        )}
       </Movies>
     </DiscoverContainer>
   );
