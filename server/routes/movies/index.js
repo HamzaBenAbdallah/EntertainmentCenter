@@ -38,7 +38,7 @@ movieRouter.get("/trending-movies", (req, res) => {
 movieRouter.get("/movie-details", getDetails);
 movieRouter.get("/search-movies", getSearchResults);
 movieRouter.get("/get-genre", getGenre);
-movieRouter.get("/get-discover", getDiscover);
+movieRouter.post("/get-discover", getDiscover);
 
 /** Watchlist */
 movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);

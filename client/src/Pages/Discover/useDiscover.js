@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { flushSync } from "react-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -8,7 +9,7 @@ const fetchGenres = async () => {
 };
 
 const fetchDiscover = async (params) => {
-  const { data } = await axios.get("/api/get-discover", { params });
+  const { data } = await axios.post("/api/get-discover", { params });
   return data;
 };
 
@@ -16,11 +17,19 @@ export const useDiscover = () => {
   const [genreFilter, setGenreFilter] = useState([]);
 
   const handleClickGenre = (genre) => {
-    if (genreFilter.includes(genre)) {
-      setGenreFilter(genreFilter.filter((g) => g !== genre));
-    } else {
-      setGenreFilter([...genreFilter, genre]);
-    }
+    flushSync(() => {
+      if (genreFilter.includes(genre)) {
+        setGenreFilter(genreFilter.filter((g) => g !== genre));
+      } else {
+        setGenreFilter([...genreFilter, genre]);
+      }
+    });
+
+    refetchDiscover();
+  };
+
+  let params = {
+    with_genres: genreFilter.join(","),
   };
 
   const {
@@ -33,7 +42,8 @@ export const useDiscover = () => {
     data: discover,
     isLoading: isLoadingDiscover,
     isError: isErrorDiscover,
-  } = useQuery(["discover"], fetchDiscover);
+    refetch: refetchDiscover,
+  } = useQuery(["discover"], () => fetchDiscover(params));
 
   return {
     handleClickGenre,
