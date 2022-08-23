@@ -4,6 +4,7 @@ import { baseGetMovie } from "./config/baseMovieRequest.js";
 import { getSearchResults } from "./search.js";
 import { getGenre } from "./genre.js";
 import { getDetails } from "./details.js";
+import { getDiscover } from "./discover.js";
 import {
   getWatchlist,
   getWatchlistData,
@@ -36,7 +37,8 @@ movieRouter.get("/trending-movies", (req, res) => {
 
 movieRouter.get("/movie-details", getDetails);
 movieRouter.get("/search-movies", getSearchResults);
-movieRouter.get("/genre", getGenre);
+movieRouter.get("/get-genre", getGenre);
+movieRouter.get("/get-discover", getDiscover);
 
 /** Watchlist */
 movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);
