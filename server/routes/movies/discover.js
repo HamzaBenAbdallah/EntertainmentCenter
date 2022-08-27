@@ -11,8 +11,10 @@ export const getDiscover = async (req, res) => {
     sort_by,
     certification_country,
     certification,
-    primary_release_date_gte,
-    primary_release_date_lte,
+    fromDate,
+    toDate,
+    minRating,
+    maxRating,
   } = params;
 
   try {
@@ -25,8 +27,10 @@ export const getDiscover = async (req, res) => {
         sort_by,
         certification_country,
         certification,
-        "primary_release_date.gte": primary_release_date_gte,
-        "primary_release_date.lte": primary_release_date_lte,
+        "primary_release_date.gte": fromDate,
+        "primary_release_date.lte": toDate,
+        "vote_average.gte": minRating,
+        "vote_average.lte": maxRating,
       },
     });
     res.status(200).json(data.results);
