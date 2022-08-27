@@ -16,6 +16,7 @@ import Profile from "Pages/Profile";
 import Watchlist from "Pages/Watchlist";
 import Watched from "Pages/Watched";
 import SearchResults from "Pages/SearchResults";
+import Error from "Pages/Error";
 
 const App = () => {
   const { user } = getCurrentUser();
@@ -50,7 +51,7 @@ const App = () => {
             <Route path="Discover" element={<Discover />} />
             <Route path="search/:searchTerm" element={<SearchResults />} />
             <Route path="movies/:id" element={<CardDetails />} />
-            <Route path="*" element={<>Not Found</>} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </ScrollToTop>
       </AppContainer>
