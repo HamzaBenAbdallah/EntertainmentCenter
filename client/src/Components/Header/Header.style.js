@@ -48,12 +48,3 @@ export const Link = styled(NavLink)`
   text-decoration: inherit;
   display: contents;
 `;
-
-export const Icon = styled.div`
-  display: flex;
-  width: 5rem;
-  height: 5rem;
-  justify-content: center;
-  align-items: center;
-  border-left: 2px solid #000;
-`;

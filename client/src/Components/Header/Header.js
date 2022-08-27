@@ -1,7 +1,7 @@
 import { useLogout } from "./useLogout";
 import { getCurrentUser } from "Services/getCurrentUser";
 import SearchBar from "Components/SearchBar";
-import { MdOutlineAccountCircle } from "react-icons/md";
+import { Icon } from "@iconify/react";
 import {
   Head,
   Wrapper,
@@ -10,7 +10,6 @@ import {
   Button,
   Page,
   Link,
-  Icon,
 } from "./Header.style";
 
 const Header = () => {
@@ -40,14 +39,12 @@ const Header = () => {
             </>
           ) : (
             <>
+              <Link to="profile">
+                <Icon icon="healthicons:ui-user-profile" width="3rem" />
+              </Link>
               <Link to="" onClick={handleLogout}>
                 <Button>Logout</Button>
               </Link>
-              <Icon>
-                <Link to="profile">
-                  <MdOutlineAccountCircle size="2em" />
-                </Link>
-              </Icon>
             </>
           )}
         </Container>

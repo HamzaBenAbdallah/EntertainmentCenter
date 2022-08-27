@@ -1,12 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
-import { Title } from "./Profile.style";
+import { Title, LinkTo } from "./Profile.style";
 
 const Profile = () => {
   return (
     <>
       <Title>
-        <Link to="watchlist">Watchlist</Link>
-        <Link to="watched">Watched</Link>
+        <LinkTo to="watchlist">Watchlist</LinkTo>
+        <LinkTo to="watched">Watched</LinkTo>
       </Title>
       <Outlet />
     </>
