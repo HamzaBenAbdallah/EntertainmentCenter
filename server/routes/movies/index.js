@@ -2,7 +2,8 @@ import express from "express";
 import { authenticateToken } from "../validation/token.js";
 import { baseGetMovie } from "./config/baseMovieRequest.js";
 import { getSearchResults } from "./search.js";
-import { getGenre } from "./genre.js";
+import { getGenre } from "./filters/genre.js";
+import { getCertification } from "./filters/certification.js";
 import { getDetails } from "./details.js";
 import { getDiscover } from "./discover.js";
 import {
@@ -37,8 +38,11 @@ movieRouter.get("/trending-movies", (req, res) => {
 
 movieRouter.get("/movie-details", getDetails);
 movieRouter.get("/search-movies", getSearchResults);
-movieRouter.get("/get-genre", getGenre);
 movieRouter.post("/get-discover", getDiscover);
+
+/** Filters */
+movieRouter.get("/get-genre", getGenre);
+movieRouter.get("/get-certification", getCertification);
 
 /** Watchlist */
 movieRouter.post("/get-watchlist", authenticateToken, getWatchlist);
