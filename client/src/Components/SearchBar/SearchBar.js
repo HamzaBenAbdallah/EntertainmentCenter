@@ -1,18 +1,30 @@
+import { Icon } from "@iconify/react";
 import { useSearchBar } from "./useSearchBar";
-import { SearchBarContainer } from "./SearchBar.style";
+import { Wrapper, Input, Remove } from "./SearchBar.style";
 
 const SearchBar = () => {
-  const { handleSubmit, handleChange, searchTerm } = useSearchBar();
+  const { searchTerm, handleSubmit, handleChange, handleClick } =
+    useSearchBar();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <SearchBarContainer
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={handleChange}
+    <Wrapper>
+      <Icon
+        icon="healthicons:magnifying-glass-outline"
+        color="#abb7c4"
+        width="30"
       />
-    </form>
+      <form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          placeholder="Search for a movie"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+      </form>
+      <Remove className={searchTerm ? "show" : ""} onClick={handleClick}>
+        <Icon icon="feather:x-circle" color="#abb7c4" width="30" />
+      </Remove>
+    </Wrapper>
   );
 };
 

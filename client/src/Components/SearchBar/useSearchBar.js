@@ -15,9 +15,14 @@ export const useSearchBar = () => {
     setSearchTerm("");
   };
 
+  const handleClick = () => {
+    setSearchTerm("");
+  };
+
   return {
+    searchTerm,
     handleChange,
     handleSubmit,
-    searchTerm,
+    handleClick,
   };
 };
