@@ -1,6 +1,6 @@
 import { useDiscover } from "./useDiscover";
 import Accordion from "Components/Accordion";
-import GenreButton from "Components/GenreButton";
+import FilterButton from "Components/FilterButton";
 import MovieCard from "Components/MovieCard";
 import {
   DiscoverContainer,
@@ -8,20 +8,20 @@ import {
   Content,
   Label,
   Sort,
-  Genre,
+  FilterSection,
   Movies,
 } from "./Discover.style";
 
 const Discover = () => {
   const {
-    genres,
-    isLoadingGenres,
-    isErrorGenres,
     discover,
     isLoadingDiscover,
     isErrorDiscover,
-    handleClickGenre,
+    genres,
+    certification,
     handleChangeSort,
+    handleClickGenre,
+    handleClickCertification,
   } = useDiscover();
 
   if (isLoadingDiscover) {
@@ -54,13 +54,24 @@ const Discover = () => {
         <Accordion title="Filters">
           <Content>
             <Label>Genre: </Label>
-            <Genre>
+            <FilterSection>
               {genres?.map((genre) => (
                 <div key={genre.id} onClick={() => handleClickGenre(genre.id)}>
-                  <GenreButton>{genre.name}</GenreButton>
+                  <FilterButton>{genre.name}</FilterButton>
                 </div>
               ))}
-            </Genre>
+            </FilterSection>
+            <Label>Certification: </Label>
+            <FilterSection>
+              {certification?.map((cert) => (
+                <div
+                  key={cert.order}
+                  onClick={() => handleClickCertification(cert.id)}
+                >
+                  <FilterButton>{cert.certification}</FilterButton>
+                </div>
+              ))}
+            </FilterSection>
           </Content>
         </Accordion>
         <Accordion title="Providers"></Accordion>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useGenreButton = () => {
+export const useFilterButton = () => {
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     setIsActive(!isActive);

@@ -48,7 +48,7 @@ export const Sort = styled.div`
   }
 `;
 
-export const Genre = styled.div`
+export const FilterSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;

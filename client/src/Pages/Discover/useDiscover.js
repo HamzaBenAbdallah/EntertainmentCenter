@@ -8,14 +8,28 @@ const fetchGenres = async () => {
   return data;
 };
 
+const fetchCertification = async () => {
+  const { data } = await axios.get("/api/get-certification");
+  return data;
+};
+
 const fetchDiscover = async (params) => {
   const { data } = await axios.post("/api/get-discover", { params });
   return data;
 };
 
 export const useDiscover = () => {
-  const [genreFilter, setGenreFilter] = useState([]);
   const [sortFilter, setSortFilter] = useState("popularity.desc");
+  const [genreFilter, setGenreFilter] = useState([]);
+  const [certificationFilter, setCertificationFilter] = useState([]);
+
+  const handleChangeSort = (e) => {
+    flushSync(() => {
+      setSortFilter(e.target.value);
+    });
+
+    refetchDiscover();
+  };
 
   const handleClickGenre = (genre) => {
     flushSync(() => {
@@ -29,24 +43,23 @@ export const useDiscover = () => {
     refetchDiscover();
   };
 
-  const handleChangeSort = (e) => {
+  const handleClickCertification = (certification) => {
     flushSync(() => {
-      setSortFilter(e.target.value);
+      if (certificationFilter.includes(certification)) {
+        setCertificationFilter(
+          certificationFilter.filter((c) => c !== certification)
+        );
+      } else {
+        setCertificationFilter([...certificationFilter, certification]);
+      }
     });
-
-    refetchDiscover();
   };
 
   let params = {
     with_genres: genreFilter.join(","),
     sort_by: sortFilter,
+    certification: certificationFilter.join(","),
   };
-
-  const {
-    data: genres,
-    isLoading: isLoadingGenres,
-    isError: isErrorGenres,
-  } = useQuery(["genres"], fetchGenres);
 
   const {
     data: discover,
@@ -55,14 +68,30 @@ export const useDiscover = () => {
     refetch: refetchDiscover,
   } = useQuery(["discover"], () => fetchDiscover(params));
 
+  const {
+    data: genres,
+    isLoading: isLoadingGenres,
+    isError: isErrorGenres,
+  } = useQuery(["genres"], fetchGenres);
+
+  const {
+    data: certification,
+    isLoading: isLoadingCertification,
+    isError: isErrorCertification,
+  } = useQuery(["certification"], fetchCertification);
+
   return {
-    genres,
-    isLoadingGenres,
-    isErrorGenres,
     discover,
     isLoadingDiscover,
     isErrorDiscover,
-    handleClickGenre,
+    genres,
+    isLoadingGenres,
+    isErrorGenres,
+    certification,
+    isLoadingCertification,
+    isErrorCertification,
     handleChangeSort,
+    handleClickGenre,
+    handleClickCertification,
   };
 };
