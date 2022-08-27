@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCurrentUser } from "Services/getCurrentUser";
 import { useMovieDetails } from "./useMovieDetails";
@@ -34,8 +33,6 @@ import {
 } from "./MovieDetails.style";
 
 const CardDetails = () => {
-  // const [isWatchlist, setIsWatchlist] = useState(false);
-  // const [isWatched, setIsWatched] = useState(false);
   const { id } = useParams();
   const { user } = getCurrentUser();
   const { movieDetails, isLoadingMovieDetails, isErrorMovieDetails } =

@@ -20,7 +20,7 @@ const fetchDiscover = async (params) => {
 
 export const useDiscover = () => {
   const [sortFilter, setSortFilter] = useState("popularity.desc");
-  const [fromDate, setFromDate] = useState(null);
+  const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState(new Date());
   const [genreFilter, setGenreFilter] = useState([]);
   const [certificationFilter, setCertificationFilter] = useState([]);
@@ -34,11 +34,18 @@ export const useDiscover = () => {
   };
 
   const handleSelectFromDate = (date) => {
-    setFromDate(date);
+    flushSync(() => {
+      setFromDate(date);
+    });
+
+    refetchDiscover();
   };
 
   const handleSelectToDate = (date) => {
-    setToDate(date);
+    flushSync(() => {
+      setToDate(date);
+    });
+    refetchDiscover();
   };
 
   const handleClickGenre = (genre) => {
