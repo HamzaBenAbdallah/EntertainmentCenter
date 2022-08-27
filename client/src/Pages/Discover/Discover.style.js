@@ -19,7 +19,6 @@ export const Filters = styled.div`
 `;
 
 export const Content = styled.div`
-  border-top: 1px solid whitesmoke;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
@@ -27,15 +26,25 @@ export const Content = styled.div`
   gap: 0.5rem;
 `;
 
-export const Label = styled.div``;
+export const Label = styled.div`
+  border-top: 1px solid whitesmoke;
+  padding: 1rem 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
 
 export const DateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.25rem 0;
 
   span {
     flex: 1 1 50%;
+  }
+
+  :nth-child(3) {
+    padding-bottom: 1rem;
   }
 `;
 
@@ -61,7 +70,8 @@ export const Sort = styled.div`
 export const FilterSection = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  padding: 0.5rem 0 1rem 0;
 `;
 
 export const Movies = styled.div`

@@ -109,7 +109,6 @@ const Discover = () => {
             />
           </Content>
         </Accordion>
-        <Accordion title="Providers"></Accordion>
       </Filters>
       <Movies>
         {discover.length > 0 ? (
