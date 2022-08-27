@@ -9,7 +9,6 @@ const fetchGenres = async () => {
 };
 
 const fetchDiscover = async (params) => {
-  console.log(params);
   const { data } = await axios.post("/api/get-discover", { params });
   return data;
 };

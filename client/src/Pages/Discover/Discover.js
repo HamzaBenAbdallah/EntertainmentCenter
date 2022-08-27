@@ -41,8 +41,8 @@ const Discover = () => {
               <select onChange={handleChangeSort}>
                 <option value="popularity.desc">Popularity Descending</option>
                 <option value="popularity.asc">Popularity Ascending</option>
-                <option value="vote_average.desc">Rating Descending</option>
-                <option value="vote_average.asc">Rating Ascending</option>
+                <option value="vote_count.desc">Rating Descending</option>
+                <option value="vote_count.asc">Rating Ascending</option>
                 <option value="release_date.desc">
                   Release Date Descending
                 </option>

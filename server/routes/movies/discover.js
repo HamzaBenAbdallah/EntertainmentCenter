@@ -6,10 +6,17 @@ const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getDiscover = async (req, res) => {
   const { params } = req.body;
-  const { with_genres } = params;
-  const url = `${MOVIE_BASE_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&with_genres=${with_genres}`;
+  const { with_genres, sort_by } = params;
   try {
-    const { data } = await axios(url);
+    const url = `${MOVIE_BASE_URL}discover/movie`;
+
+    const { data } = await axios(url, {
+      params: {
+        api_key: API_KEY,
+        with_genres,
+        sort_by,
+      },
+    });
     res.status(200).json(data.results);
   } catch (err) {
     res.status(500).json({
