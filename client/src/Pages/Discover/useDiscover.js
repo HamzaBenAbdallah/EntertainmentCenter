@@ -20,6 +20,8 @@ const fetchDiscover = async (params) => {
 
 export const useDiscover = () => {
   const [sortFilter, setSortFilter] = useState("popularity.desc");
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(new Date());
   const [genreFilter, setGenreFilter] = useState([]);
   const [certificationFilter, setCertificationFilter] = useState([]);
 
@@ -29,6 +31,14 @@ export const useDiscover = () => {
     });
 
     refetchDiscover();
+  };
+
+  const handleSelectFromDate = (date) => {
+    setFromDate(date);
+  };
+
+  const handleSelectToDate = (date) => {
+    setToDate(date);
   };
 
   const handleClickGenre = (genre) => {
@@ -44,7 +54,6 @@ export const useDiscover = () => {
   };
 
   const handleClickCertification = (certification) => {
-    console.log("clicked certification", certification);
     flushSync(() => {
       if (certificationFilter.includes(certification)) {
         setCertificationFilter(
@@ -63,6 +72,8 @@ export const useDiscover = () => {
     sort_by: sortFilter,
     certification_country: "US",
     certification: certificationFilter.join(","),
+    primary_release_date_gte: fromDate,
+    primary_release_date_lte: toDate,
   };
 
   const {
@@ -88,6 +99,8 @@ export const useDiscover = () => {
     discover,
     isLoadingDiscover,
     isErrorDiscover,
+    fromDate,
+    toDate,
     genres,
     isLoadingGenres,
     isErrorGenres,
@@ -95,6 +108,8 @@ export const useDiscover = () => {
     isLoadingCertification,
     isErrorCertification,
     handleChangeSort,
+    handleSelectFromDate,
+    handleSelectToDate,
     handleClickGenre,
     handleClickCertification,
   };

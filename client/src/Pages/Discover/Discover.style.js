@@ -29,6 +29,16 @@ export const Content = styled.div`
 
 export const Label = styled.div``;
 
+export const DateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    flex: 1 1 50%;
+  }
+`;
+
 export const Sort = styled.div`
   display: flex;
   flex-direction: column;

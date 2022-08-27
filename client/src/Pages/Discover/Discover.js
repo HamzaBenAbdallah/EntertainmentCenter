@@ -1,12 +1,14 @@
 import { useDiscover } from "./useDiscover";
 import Accordion from "Components/Accordion";
 import FilterButton from "Components/FilterButton";
+import DatePicker from "Components/DatePicker";
 import MovieCard from "Components/MovieCard";
 import {
   DiscoverContainer,
   Filters,
   Content,
   Label,
+  DateContainer,
   Sort,
   FilterSection,
   Movies,
@@ -17,9 +19,13 @@ const Discover = () => {
     discover,
     isLoadingDiscover,
     isErrorDiscover,
+    fromDate,
+    toDate,
     genres,
     certification,
     handleChangeSort,
+    handleSelectFromDate,
+    handleSelectToDate,
     handleClickGenre,
     handleClickCertification,
   } = useDiscover();
@@ -53,6 +59,25 @@ const Discover = () => {
         </Accordion>
         <Accordion title="Filters">
           <Content>
+            <Label>Release Dates: </Label>
+            <DateContainer>
+              <span>From</span>
+              <DatePicker
+                fromDate={fromDate}
+                toDate={toDate}
+                handleSelectFromDate={handleSelectFromDate}
+                isFrom
+              />
+            </DateContainer>
+            <DateContainer>
+              <span>To</span>
+              <DatePicker
+                fromDate={fromDate}
+                toDate={toDate}
+                handleSelectToDate={handleSelectToDate}
+                isTo
+              />
+            </DateContainer>
             <Label>Genre: </Label>
             <FilterSection>
               {genres?.map((genre) => (
