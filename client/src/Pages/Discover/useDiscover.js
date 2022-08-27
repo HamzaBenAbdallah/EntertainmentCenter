@@ -24,6 +24,8 @@ export const useDiscover = () => {
   const [toDate, setToDate] = useState(new Date());
   const [genreFilter, setGenreFilter] = useState([]);
   const [certificationFilter, setCertificationFilter] = useState([]);
+  const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(10);
 
   const handleChangeSort = (e) => {
     flushSync(() => {
@@ -74,13 +76,24 @@ export const useDiscover = () => {
     refetchDiscover();
   };
 
+  const handleSliderChange = (min, max) => {
+    setMinRating(min);
+    setMaxRating(max);
+  };
+
+  const handleSliderStop = () => {
+    refetchDiscover();
+  };
+
   let params = {
     with_genres: genreFilter.join(","),
     sort_by: sortFilter,
     certification_country: "US",
     certification: certificationFilter.join(","),
-    primary_release_date_gte: fromDate,
-    primary_release_date_lte: toDate,
+    fromDate,
+    toDate,
+    minRating,
+    maxRating,
   };
 
   const {
@@ -119,5 +132,7 @@ export const useDiscover = () => {
     handleSelectToDate,
     handleClickGenre,
     handleClickCertification,
+    handleSliderChange,
+    handleSliderStop,
   };
 };

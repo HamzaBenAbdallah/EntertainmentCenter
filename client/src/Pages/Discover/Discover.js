@@ -13,6 +13,7 @@ import {
   FilterSection,
   Movies,
 } from "./Discover.style";
+import MultiRangeSlider from "Components/MultiRangeSlider";
 
 const Discover = () => {
   const {
@@ -28,6 +29,8 @@ const Discover = () => {
     handleSelectToDate,
     handleClickGenre,
     handleClickCertification,
+    handleSliderChange,
+    handleSliderStop,
   } = useDiscover();
 
   if (isLoadingDiscover) {
@@ -97,6 +100,13 @@ const Discover = () => {
                 </div>
               ))}
             </FilterSection>
+            <Label>User Rating: </Label>
+            <MultiRangeSlider
+              min={0}
+              max={10}
+              onChange={({ min, max }) => handleSliderChange(min, max)}
+              onAfterChange={handleSliderStop}
+            />
           </Content>
         </Accordion>
         <Accordion title="Providers"></Accordion>

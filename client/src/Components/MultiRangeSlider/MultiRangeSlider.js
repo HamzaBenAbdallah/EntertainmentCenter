@@ -9,7 +9,7 @@ import {
   RightValue,
 } from "./MultiRangeSlider.style";
 
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider = ({ min, max, onChange, onAfterChange }) => {
   const { minVal, maxVal, range, handleOnChangeMin, handleOnChangeMax } =
     useMultiRangeSlider(min, max, onChange);
 
@@ -21,6 +21,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         max={max}
         value={minVal}
         onChange={handleOnChangeMin}
+        onMouseUp={onAfterChange}
         className="thumb thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
@@ -30,6 +31,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         max={max}
         value={maxVal}
         onChange={handleOnChangeMax}
+        onMouseUp={onAfterChange}
         className="thumb thumb--right"
       />
 
@@ -47,6 +49,7 @@ MultiRangeSlider.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+  onAfterChange: PropTypes.func.isRequired,
 };
 
 export default MultiRangeSlider;
