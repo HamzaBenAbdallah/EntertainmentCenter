@@ -44,6 +44,7 @@ export const useDiscover = () => {
   };
 
   const handleClickCertification = (certification) => {
+    console.log("clicked certification", certification);
     flushSync(() => {
       if (certificationFilter.includes(certification)) {
         setCertificationFilter(
@@ -53,11 +54,14 @@ export const useDiscover = () => {
         setCertificationFilter([...certificationFilter, certification]);
       }
     });
+
+    refetchDiscover();
   };
 
   let params = {
     with_genres: genreFilter.join(","),
     sort_by: sortFilter,
+    certification_country: "US",
     certification: certificationFilter.join(","),
   };
 

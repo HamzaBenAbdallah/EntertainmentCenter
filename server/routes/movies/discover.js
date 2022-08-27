@@ -6,7 +6,7 @@ const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const getDiscover = async (req, res) => {
   const { params } = req.body;
-  const { with_genres, sort_by } = params;
+  const { with_genres, sort_by, certification_country, certification } = params;
   try {
     const url = `${MOVIE_BASE_URL}discover/movie`;
 
@@ -15,6 +15,8 @@ export const getDiscover = async (req, res) => {
         api_key: API_KEY,
         with_genres,
         sort_by,
+        certification_country,
+        certification,
       },
     });
     res.status(200).json(data.results);

@@ -66,7 +66,7 @@ const Discover = () => {
               {certification?.map((cert) => (
                 <div
                   key={cert.order}
-                  onClick={() => handleClickCertification(cert.id)}
+                  onClick={() => handleClickCertification(cert.certification)}
                 >
                   <FilterButton>{cert.certification}</FilterButton>
                 </div>
