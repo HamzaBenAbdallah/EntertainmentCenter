@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Input = styled.input`
   all: unset;
-  width: 25rem;
+  width: 20rem;
   font-size: 1.25rem;
   &:focus {
     outline: none;
