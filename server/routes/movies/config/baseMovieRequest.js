@@ -5,7 +5,7 @@ dotenv.config();
 const { API_KEY, MOVIE_BASE_URL } = process.env;
 
 export const baseGetMovie = async (req, res, urlParam) => {
-  const url = `${MOVIE_BASE_URL}${urlParam}?api_key=${API_KEY}`;
+  const url = `${MOVIE_BASE_URL}${urlParam}?api_key=${API_KEY}&region=US`;
 
   try {
     const { data } = await axios(url);

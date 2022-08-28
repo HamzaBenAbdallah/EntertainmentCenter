@@ -1,17 +1,63 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+const fetchCurrentlyPlayingMovies = async () => {
+  const { data } = await axios.get(`/api/currently-playing-movies`);
+  return data;
+};
+
+const fetchUpcomingMovies = async () => {
+  const { data } = await axios.get(`/api/upcoming-movies`);
+  return data;
+};
+
 const fetchTrendingMovies = async () => {
-  const response = await axios.get(`/api/trending-movies`);
-  return response.data;
+  const { data } = await axios.get(`/api/trending-movies`);
+  return data;
+};
+
+const fetchTopRatedMovies = async () => {
+  const { data } = await axios.get(`/api/top-rated-movies`);
+  return data;
 };
 
 export const useMain = () => {
   const {
-    data: moviesList,
-    isLoading: isLoadingMovies,
-    isError: isErrorMovies,
+    data: currentlyPlayingMovies,
+    isLoading: isLoadingCurrentlyPlayingMovies,
+    isError: isErrorCurrentlyPlayingMovies,
+  } = useQuery(["currently-playing-movies"], fetchCurrentlyPlayingMovies);
+
+  const {
+    data: upcomingMovies,
+    isLoading: isLoadingUpcomingMovies,
+    isError: isErrorUpcomingMovies,
+  } = useQuery(["upcoming-movies"], fetchUpcomingMovies);
+
+  const {
+    data: trendingMovies,
+    isLoading: isLoadingTrendingMovies,
+    isError: isErrorTrendingMovies,
   } = useQuery(["trending-movies"], fetchTrendingMovies);
 
-  return { moviesList, isLoadingMovies, isErrorMovies };
+  const {
+    data: topRatedMovies,
+    isLoading: isLoadingTopRatedMovies,
+    isError: isErrorTopRatedMovies,
+  } = useQuery(["top-rated-movies"], fetchTopRatedMovies);
+
+  return {
+    currentlyPlayingMovies,
+    isLoadingCurrentlyPlayingMovies,
+    isErrorCurrentlyPlayingMovies,
+    upcomingMovies,
+    isLoadingUpcomingMovies,
+    isErrorUpcomingMovies,
+    trendingMovies,
+    isLoadingTrendingMovies,
+    isErrorTrendingMovies,
+    topRatedMovies,
+    isLoadingTopRatedMovies,
+    isErrorTopRatedMovies,
+  };
 };

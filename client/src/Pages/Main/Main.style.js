@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-export const MainWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  padding: 2rem 0;
+  color: white;
+`;
 
-  > div {
-    width: 80%;
-  }
+export const Section = styled.div`
+  width: 80%;
 `;

@@ -26,13 +26,18 @@ movieRouter.get("/currently-playing-movies", (req, res) => {
   baseGetMovie(req, res, urlParam);
 });
 
-movieRouter.get("/top-rated-movies", (req, res) => {
-  const urlParam = `movie/top_rated`;
+movieRouter.get("/upcoming-movies", (req, res) => {
+  const urlParam = `movie/upcoming`;
   baseGetMovie(req, res, urlParam);
 });
 
 movieRouter.get("/trending-movies", (req, res) => {
   const urlParam = `trending/movie/week`;
+  baseGetMovie(req, res, urlParam);
+});
+
+movieRouter.get("/top-rated-movies", (req, res) => {
+  const urlParam = `movie/top_rated`;
   baseGetMovie(req, res, urlParam);
 });
 

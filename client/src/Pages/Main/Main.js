@@ -1,29 +1,71 @@
 import { useMain } from "./useMain";
 import MovieCard from "Components/MovieCard";
 import ListContainer from "Components/SideScroller";
-import { MainWrapper } from "./Main.style";
+import { Wrapper, Section } from "./Main.style";
 
 const Main = () => {
-  const { moviesList, isLoadingMovies, isErrorMovies } = useMain();
+  const {
+    currentlyPlayingMovies,
+    isLoadingCurrentlyPlayingMovies,
+    isErrorCurrentlyPlayingMovies,
+    popularMovies,
+    isLoadingPopularMovies,
+    isErrorPopularMovies,
+    upcomingMovies,
+    isLoadingUpcomingMovies,
+    isErrorUpcomingMovies,
+    trendingMovies,
+    isLoadingTrendingMovies,
+    isErrorTrendingMovies,
+    topRatedMovies,
+    isLoadingTopRatedMovies,
+    isErrorTopRatedMovies,
+  } = useMain();
 
-  if (isLoadingMovies) {
+  if (isLoadingTrendingMovies) {
     return <div>Loading...</div>;
   }
 
-  if (isErrorMovies) {
+  if (isErrorTrendingMovies) {
     return <div>Error...</div>;
   }
 
   return (
-    <MainWrapper>
-      <div>
+    <Wrapper>
+      <Section>
+        <p>Currently Playing</p>
         <ListContainer>
-          {moviesList?.map((movie, index) => {
+          {currentlyPlayingMovies?.map((movie, index) => {
             return <MovieCard key={index} movie={movie} />;
           })}
         </ListContainer>
-      </div>
-    </MainWrapper>
+      </Section>
+
+      <Section>
+        <p>Trending</p>
+        <ListContainer>
+          {trendingMovies?.map((movie, index) => {
+            return <MovieCard key={index} movie={movie} />;
+          })}
+        </ListContainer>
+      </Section>
+      <Section>
+        <p>Upcoming</p>
+        <ListContainer>
+          {upcomingMovies?.map((movie, index) => {
+            return <MovieCard key={index} movie={movie} />;
+          })}
+        </ListContainer>
+      </Section>
+      <Section>
+        <p>Top Rated</p>
+        <ListContainer>
+          {topRatedMovies?.map((movie, index) => {
+            return <MovieCard key={index} movie={movie} />;
+          })}
+        </ListContainer>
+      </Section>
+    </Wrapper>
   );
 };
 
