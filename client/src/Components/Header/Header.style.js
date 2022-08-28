@@ -24,7 +24,6 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-left: 4rem;
   font-size: 2.5em;
 `;
 
