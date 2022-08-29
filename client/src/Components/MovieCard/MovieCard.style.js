@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: max-content;
 
   &:hover {
-    transform: scale(1.075);
+    transform: ${({ noHover }) => (noHover ? "none" : "scale(1.075)")};
   }
 `;
 
