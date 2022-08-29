@@ -1,26 +1,20 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const useSideScroller = (listRef) => {
-  let slider = null;
-
-  useEffect(() => {
-    slider = listRef.current;
-  }, [slider]);
-
   const btnPrev = () => {
-    if (slider) {
-      slider.scrollBy({
+    if (listRef.current) {
+      listRef.current.scrollBy({
         top: 0,
-        left: -slider.offsetWidth,
+        left: -listRef.current.offsetWidth,
         behavior: "smooth",
       });
     }
   };
   const btnNext = () => {
-    if (slider) {
-      slider.scrollBy({
+    if (listRef.current) {
+      listRef.current.scrollBy({
         top: 0,
-        left: slider.offsetWidth,
+        left: listRef.current.offsetWidth,
         behavior: "smooth",
       });
     }
