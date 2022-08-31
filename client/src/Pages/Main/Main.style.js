@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   color: white;
 `;
 
-export const Carousel = styled.div`
+export const CarouselContainer = styled.div`
   width: 80%;
   padding: 3rem;
 `;
