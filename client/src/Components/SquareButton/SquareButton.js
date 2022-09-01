@@ -1,8 +1,6 @@
-import {
-  IoAddCircleOutline,
-  IoStarOutline,
-  IoRemoveCircleOutline,
-} from "react-icons/io5";
+import { IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5";
+import { FaRegStar } from "react-icons/fa";
+
 import { Container } from "./SquareButton.style";
 
 const SquareButton = ({ children, disabled, click, type }) => {
@@ -10,7 +8,7 @@ const SquareButton = ({ children, disabled, click, type }) => {
     <Container disabled={disabled} onClick={click}>
       {type === "rating" ? (
         <>
-          <IoStarOutline size="1.75rem" />
+          <FaRegStar size="1.75rem" />
           <span>Your rating</span>
         </>
       ) : type === "watched" ? (
