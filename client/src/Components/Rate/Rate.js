@@ -2,16 +2,20 @@ import { useRate } from "./useRate";
 import { FaStar } from "react-icons/fa";
 import { Container, Star } from "./Rate.style";
 
-const Rate = () => {
+const Rate = ({ isOpen, close }) => {
   const { rating, hover, handleClick, handleMouseEnter, handleMouseLeave } =
     useRate();
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <Container>
+    <Container onClick={close}>
       {[...Array(10)].map((star, index) => {
         const ratingValue = index + 1;
         return (
-          <label>
+          <label key={index}>
             <input
               type="radio"
               name="rating"

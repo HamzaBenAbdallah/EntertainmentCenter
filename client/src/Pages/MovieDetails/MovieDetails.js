@@ -10,6 +10,7 @@ import MovieCard from "Components/MovieCard";
 import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
 import RoundButton from "Components/RoundButton";
+import Rate from "Components/Rate";
 import NotFound from "Pictures/Image-not-found.jpg";
 import { FaBookmark, FaCheck, FaStar } from "react-icons/fa";
 import {
@@ -36,8 +37,14 @@ import {
 const CardDetails = () => {
   const { id } = useParams();
   const { user } = getCurrentUser();
-  const { movieDetails, isLoadingMovieDetails, isErrorMovieDetails } =
-    useMovieDetails(id);
+  const {
+    movieDetails,
+    isLoadingMovieDetails,
+    isErrorMovieDetails,
+    isRateOpen,
+    handleRate,
+    handleClose,
+  } = useMovieDetails(id);
   const { watchlistList } = useFetchWatchlist();
   const { watchedList } = useFetchWatched();
   const { mutateAddToWatchlist } = useAddToWatchlist(movieDetails);
@@ -66,6 +73,7 @@ const CardDetails = () => {
         <Spinner />
       ) : (
         <>
+          <Rate isOpen={isRateOpen} close={handleClose} />
           <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
           <DetailsContainer>
             <Info>
@@ -107,7 +115,7 @@ const CardDetails = () => {
                       >
                         <FaCheck size="1.25rem" color="#032541" />
                       </RoundButton>
-                      <RoundButton text="Rate">
+                      <RoundButton click={handleRate} text="Rate">
                         <FaStar size="1.25rem" color="#032541" />
                       </RoundButton>
                     </>
