@@ -1,5 +1,6 @@
 import { useWatchlist } from "./useWatchlist";
 import { useFetchWatched } from "Hooks/useFetchWatched";
+import Spinner from "Components/Spinner";
 import ListCard from "Components/ListCard";
 import { MovieGrid } from "./WatchList.style";
 
@@ -7,22 +8,26 @@ const Watchlist = () => {
   const { watchlist, isLoadingWatchlist, isErrorWatchlist } = useWatchlist();
   const { watchedList } = useFetchWatched();
 
-  if (isLoadingWatchlist) {
-    return <div>Loading...</div>;
-  }
-
-  if (isErrorWatchlist) {
-    return <div>Error...</div>;
-  }
-
   return (
     <MovieGrid>
-      {watchlist.map((movie) =>
-        watchedList?.includes(movie.id) ? (
-          <ListCard key={movie.id} movie={movie} watchlist remove isInWatched />
-        ) : (
-          <ListCard key={movie.id} movie={movie} watchlist remove />
-        )
+      {isLoadingWatchlist || isErrorWatchlist ? (
+        <Spinner />
+      ) : (
+        <>
+          {watchlist.map((movie) =>
+            watchedList?.includes(movie.id) ? (
+              <ListCard
+                key={movie.id}
+                movie={movie}
+                watchlist
+                remove
+                isInWatched
+              />
+            ) : (
+              <ListCard key={movie.id} movie={movie} watchlist remove />
+            )
+          )}
+        </>
       )}
     </MovieGrid>
   );

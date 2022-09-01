@@ -1,5 +1,6 @@
 import { SwiperSlide } from "swiper/react";
 import { useMain } from "./useMain";
+import Spinner from "Components/Spinner";
 import Carousel from "Components/Carousel";
 import CarouselCard from "Components/CarouselCard";
 import ListContainer from "Components/SideScroller";
@@ -11,65 +12,70 @@ const Main = () => {
     currentlyPlayingMovies,
     isLoadingCurrentlyPlayingMovies,
     isErrorCurrentlyPlayingMovies,
-    popularMovies,
-    isLoadingPopularMovies,
-    isErrorPopularMovies,
-    upcomingMovies,
-    isLoadingUpcomingMovies,
-    isErrorUpcomingMovies,
     trendingMovies,
     isLoadingTrendingMovies,
     isErrorTrendingMovies,
     topRatedMovies,
     isLoadingTopRatedMovies,
     isErrorTopRatedMovies,
+    upcomingMovies,
+    isLoadingUpcomingMovies,
+    isErrorUpcomingMovies,
   } = useMain();
-
-  if (isLoadingTrendingMovies) {
-    return <div>Loading...</div>;
-  }
-
-  if (isErrorTrendingMovies) {
-    return <div>Error...</div>;
-  }
 
   return (
     <Wrapper>
       <CarouselContainer>
-        <Carousel>
-          {currentlyPlayingMovies.map((movie) => (
-            <SwiperSlide key={movie.id}>
-              <CarouselCard movie={movie} />
-            </SwiperSlide>
-          ))}
-        </Carousel>
+        {isLoadingCurrentlyPlayingMovies || isErrorCurrentlyPlayingMovies ? (
+          <Spinner />
+        ) : (
+          <Carousel>
+            {currentlyPlayingMovies.map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <CarouselCard movie={movie} />
+              </SwiperSlide>
+            ))}
+          </Carousel>
+        )}
       </CarouselContainer>
 
       <Section>
         <p>Trending</p>
-        <ListContainer>
-          {trendingMovies?.map((movie, index) => {
-            return <MovieCard key={index} movie={movie} />;
-          })}
-        </ListContainer>
+        {isLoadingTrendingMovies || isErrorTrendingMovies ? (
+          <Spinner />
+        ) : (
+          <ListContainer>
+            {trendingMovies?.map((movie, index) => {
+              return <MovieCard key={index} movie={movie} />;
+            })}
+          </ListContainer>
+        )}
       </Section>
 
       <Section>
         <p>Top Rated</p>
-        <ListContainer>
-          {topRatedMovies?.map((movie, index) => {
-            return <MovieCard key={index} movie={movie} />;
-          })}
-        </ListContainer>
+        {isLoadingTopRatedMovies || isErrorTopRatedMovies ? (
+          <Spinner />
+        ) : (
+          <ListContainer>
+            {topRatedMovies?.map((movie, index) => {
+              return <MovieCard key={index} movie={movie} />;
+            })}
+          </ListContainer>
+        )}
       </Section>
 
       <Section>
         <p>Upcoming</p>
-        <ListContainer>
-          {upcomingMovies?.map((movie, index) => {
-            return <MovieCard key={index} movie={movie} />;
-          })}
-        </ListContainer>
+        {isLoadingUpcomingMovies || isErrorUpcomingMovies ? (
+          <Spinner />
+        ) : (
+          <ListContainer>
+            {upcomingMovies?.map((movie, index) => {
+              return <MovieCard key={index} movie={movie} />;
+            })}
+          </ListContainer>
+        )}
       </Section>
     </Wrapper>
   );

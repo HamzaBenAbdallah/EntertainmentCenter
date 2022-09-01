@@ -5,6 +5,7 @@ import { useFetchWatchlist } from "Hooks/useFetchWatchlist";
 import { useFetchWatched } from "Hooks/useFetchWatched";
 import { useAddToWatchlist } from "Hooks/useAddToWatchlist";
 import { useAddToWatched } from "Hooks/useAddToWatched";
+import Spinner from "Components/Spinner";
 import MovieCard from "Components/MovieCard";
 import Actor from "Components/ActorCard";
 import CircularProgress from "Components/CircularProgress";
@@ -59,97 +60,96 @@ const CardDetails = () => {
     mutateAddToWatched(movieDetails);
   };
 
-  if (isLoadingMovieDetails) {
-    return <div>Loading...</div>;
-  }
-
-  if (isErrorMovieDetails) {
-    return <div>Error</div>;
-  }
-
   return (
     <Container>
-      <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
-      <DetailsContainer>
-        <Info>
-          <Poster src={image} alt={movieDetails.title} />
-          <Overview>
-            <Title>{movieDetails.title}</Title>
-            <Details>
-              <span>{movieDetails.release_date} </span>
-              <span>-</span>
-              <span>
-                {movieDetails.genres?.map((genre, index) => {
-                  return (
-                    genre.name +
-                    (index !== movieDetails.genres.length - 1 ? ", " : "")
-                  );
-                })}
-              </span>
-              <span>-</span>
+      {isLoadingMovieDetails || isErrorMovieDetails ? (
+        <Spinner />
+      ) : (
+        <>
+          <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
+          <DetailsContainer>
+            <Info>
+              <Poster src={image} alt={movieDetails.title} />
+              <Overview>
+                <Title>{movieDetails.title}</Title>
+                <Details>
+                  <span>{movieDetails.release_date} </span>
+                  <span>-</span>
+                  <span>
+                    {movieDetails.genres?.map((genre, index) => {
+                      return (
+                        genre.name +
+                        (index !== movieDetails.genres.length - 1 ? ", " : "")
+                      );
+                    })}
+                  </span>
+                  <span>-</span>
 
-              <span>{movieDetails.runtime} mn</span>
-            </Details>
-            <User>
-              <CircularProgress
-                value={Math.round(movieDetails.vote_average * 10)}
-              />
-              {user && (
-                <>
-                  <RoundButton
-                    click={handleAddMovieToWatchlist}
-                    disabled={isWatchlist}
-                    text="Add to watchlist"
-                  >
-                    <FaBookmark size="1.25rem" color="#032541" />
-                  </RoundButton>
-                  <RoundButton
-                    click={handleAddMovieToWatched}
-                    disabled={isWatched}
-                    text="Add to watched"
-                  >
-                    <FaCheck size="1.25rem" color="#032541" />
-                  </RoundButton>
-                  <RoundButton text="Rate">
-                    <FaStar size="1.25rem" color="#032541" />
-                  </RoundButton>
-                </>
-              )}
-            </User>
-            <Tagline>{movieDetails.tagline}</Tagline>
-            <SecondaryTitle>Overview</SecondaryTitle>
-            <p>{movieDetails.overview}</p>
-            <Crew>
-              <div>
-                <Name>{movieDetails.director}</Name>
-                <Job>Director</Job>
-              </div>
-              {movieDetails.crew.map((crew, index) => {
-                return (
-                  <div key={index}>
-                    <Name> {crew.name}</Name>
-                    <Job>{crew.job}</Job>
+                  <span>{movieDetails.runtime} mn</span>
+                </Details>
+                <User>
+                  <CircularProgress
+                    value={Math.round(movieDetails.vote_average * 10)}
+                  />
+                  {user && (
+                    <>
+                      <RoundButton
+                        click={handleAddMovieToWatchlist}
+                        disabled={isWatchlist}
+                        text="Add to watchlist"
+                      >
+                        <FaBookmark size="1.25rem" color="#032541" />
+                      </RoundButton>
+                      <RoundButton
+                        click={handleAddMovieToWatched}
+                        disabled={isWatched}
+                        text="Add to watched"
+                      >
+                        <FaCheck size="1.25rem" color="#032541" />
+                      </RoundButton>
+                      <RoundButton text="Rate">
+                        <FaStar size="1.25rem" color="#032541" />
+                      </RoundButton>
+                    </>
+                  )}
+                </User>
+                <Tagline>{movieDetails.tagline}</Tagline>
+                <SecondaryTitle>Overview</SecondaryTitle>
+                <p>{movieDetails.overview}</p>
+                <Crew>
+                  <div>
+                    <Name>{movieDetails.director}</Name>
+                    <Job>Director</Job>
                   </div>
-                );
+                  {movieDetails.crew.map((crew, index) => {
+                    return (
+                      <div key={index}>
+                        <Name> {crew.name}</Name>
+                        <Job>{crew.job}</Job>
+                      </div>
+                    );
+                  })}
+                </Crew>
+              </Overview>
+            </Info>
+            <Cast>Top Cast</Cast>
+            <ActorGrid>
+              {movieDetails.cast?.map((actor) => {
+                return <Actor key={actor.id} actor={actor} />;
               })}
-            </Crew>
-          </Overview>
-        </Info>
-        <Cast>Top Cast</Cast>
-        <ActorGrid>
-          {movieDetails.cast?.map((actor) => {
-            return <Actor key={actor.id} actor={actor} />;
-          })}
-        </ActorGrid>
-        <Similar>
-          <span>Similar</span>
-          <MovieGrid>
-            {movieDetails.related.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </MovieGrid>
-        </Similar>
-      </DetailsContainer>
+            </ActorGrid>
+            <Similar>
+              <span>Similar</span>
+              <MovieGrid>
+                {movieDetails.related.map((movie) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
+              </MovieGrid>
+            </Similar>
+          </DetailsContainer>
+        </>
+      )}
+      ;
     </Container>
   );
 };

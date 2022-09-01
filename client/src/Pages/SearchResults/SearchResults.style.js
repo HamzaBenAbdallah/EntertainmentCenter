@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   padding-top: 2rem;
   gap: 2rem;
+  min-height: 80vh;
 `;
 
 export const Title = styled.h1`

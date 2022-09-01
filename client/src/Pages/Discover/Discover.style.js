@@ -9,6 +9,13 @@ export const DiscoverContainer = styled.div`
   padding: 3rem 0;
 `;
 
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+`;
+
 export const Filters = styled.div`
   width: 30%;
   display: flex;

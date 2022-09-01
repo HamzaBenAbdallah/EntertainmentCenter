@@ -7,4 +7,5 @@ export const MovieGrid = styled.div`
   align-items: center;
   gap: 2rem;
   margin-top: 2rem;
+  min-height: 80vh;
 `;

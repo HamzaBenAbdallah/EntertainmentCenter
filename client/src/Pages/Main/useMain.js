@@ -29,12 +29,6 @@ export const useMain = () => {
   } = useQuery(["currently-playing-movies"], fetchCurrentlyPlayingMovies);
 
   const {
-    data: upcomingMovies,
-    isLoading: isLoadingUpcomingMovies,
-    isError: isErrorUpcomingMovies,
-  } = useQuery(["upcoming-movies"], fetchUpcomingMovies);
-
-  const {
     data: trendingMovies,
     isLoading: isLoadingTrendingMovies,
     isError: isErrorTrendingMovies,
@@ -46,18 +40,24 @@ export const useMain = () => {
     isError: isErrorTopRatedMovies,
   } = useQuery(["top-rated-movies"], fetchTopRatedMovies);
 
+  const {
+    data: upcomingMovies,
+    isLoading: isLoadingUpcomingMovies,
+    isError: isErrorUpcomingMovies,
+  } = useQuery(["upcoming-movies"], fetchUpcomingMovies);
+
   return {
     currentlyPlayingMovies,
     isLoadingCurrentlyPlayingMovies,
     isErrorCurrentlyPlayingMovies,
-    upcomingMovies,
-    isLoadingUpcomingMovies,
-    isErrorUpcomingMovies,
     trendingMovies,
     isLoadingTrendingMovies,
     isErrorTrendingMovies,
     topRatedMovies,
     isLoadingTopRatedMovies,
     isErrorTopRatedMovies,
+    upcomingMovies,
+    isLoadingUpcomingMovies,
+    isErrorUpcomingMovies,
   };
 };
