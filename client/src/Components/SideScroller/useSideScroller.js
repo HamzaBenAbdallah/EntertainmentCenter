@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 export const useSideScroller = (listRef) => {
   const btnPrev = () => {
     if (listRef.current) {

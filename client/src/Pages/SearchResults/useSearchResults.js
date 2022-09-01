@@ -13,17 +13,17 @@ export const useSearchResults = () => {
   const [isLoadingSearchResults, setIsLoadingSearchResults] = useState(true);
   const [isErrorSearchResults, setIsErrorSearchResults] = useState(false);
 
-  const fetchData = async () => {
-    try {
-      const data = await fetchSearchResults(searchTerm);
-      setSearchResults(data);
-      setIsLoadingSearchResults(false);
-    } catch (error) {
-      setIsErrorSearchResults(true);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchSearchResults(searchTerm);
+        setSearchResults(data);
+        setIsLoadingSearchResults(false);
+      } catch (error) {
+        setIsErrorSearchResults(true);
+      }
+    };
+
     fetchData();
   }, [searchTerm]);
 

@@ -9,7 +9,7 @@ const SearchResults = () => {
   const { searchResults, isLoadingSearchResults, isErrorSearchResults } =
     useSearchResults();
 
-  if (searchResults.length === 0) {
+  if (searchResults?.length === 0) {
     return (
       <Wrapper>
         <Title>No results found for "{searchTerm}"</Title>
