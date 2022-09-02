@@ -18,6 +18,7 @@ import {
   addMovieToWatched,
   deleteMovieFromWatched,
 } from "./watched.js";
+import { getRating, addRating } from "./rating.js";
 
 const movieRouter = express.Router();
 
@@ -68,5 +69,9 @@ movieRouter.patch(
   authenticateToken,
   deleteMovieFromWatched
 );
+
+/** Ratings */
+movieRouter.get("/get-rating", getRating);
+movieRouter.post("/add-rating", authenticateToken, addRating);
 
 export default movieRouter;
