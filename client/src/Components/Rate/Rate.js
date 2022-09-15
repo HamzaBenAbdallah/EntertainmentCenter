@@ -1,8 +1,8 @@
 import { useRate } from "./useRate";
 import { FaStar } from "react-icons/fa";
-import { Container, Star } from "./Rate.style";
+import { Container, Rating, Star } from "./Rate.style";
 
-const Rate = ({ isOpen, close }) => {
+const Rate = ({ isOpen, close, movieId }) => {
   const { rating, hover, handleClick, handleMouseEnter, handleMouseLeave } =
     useRate();
 
@@ -12,27 +12,35 @@ const Rate = ({ isOpen, close }) => {
 
   return (
     <Container onClick={close}>
-      {[...Array(10)].map((star, index) => {
-        const ratingValue = index + 1;
-        return (
-          <label key={index}>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => handleClick(ratingValue)}
-            />
-            <Star>
-              <FaStar
-                size={100}
-                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                onMouseEnter={() => handleMouseEnter(ratingValue)}
-                onMouseLeave={handleMouseLeave}
+      <Rating
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {[...Array(10)].map((star, index) => {
+          const ratingValue = index + 1;
+          return (
+            <label key={index}>
+              <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                onClick={() => handleClick(ratingValue, movieId, close)}
               />
-            </Star>
-          </label>
-        );
-      })}
+              <Star>
+                <FaStar
+                  size={100}
+                  color={
+                    ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                  }
+                  onMouseEnter={() => handleMouseEnter(ratingValue)}
+                  onMouseLeave={handleMouseLeave}
+                />
+              </Star>
+            </label>
+          );
+        })}
+      </Rating>
     </Container>
   );
 };

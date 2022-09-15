@@ -73,7 +73,7 @@ const CardDetails = () => {
         <Spinner />
       ) : (
         <>
-          <Rate isOpen={isRateOpen} close={handleClose} />
+          <Rate isOpen={isRateOpen} close={handleClose} movieId={id} />
           <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
           <DetailsContainer>
             <Info>

@@ -16,6 +16,10 @@ export const Container = styled.div`
   }
 `;
 
+export const Rating = styled.div`
+  display: flex;
+`;
+
 export const Star = styled.div`
   cursor: pointer;
   transition: color 200ms;

@@ -37,7 +37,7 @@ export const getRating = async (req, res) => {
 };
 
 export const addRating = async (req, res) => {
-  const { user, rating, movieId } = req.body;
+  const { user, ratingValue, movieId } = req.body;
   try {
     // Connect to the database
     await client.connect();
@@ -55,14 +55,14 @@ export const addRating = async (req, res) => {
       // update the rating of the existing movie
       await users.updateOne(
         { _id: user },
-        { $set: { "rating.$[movie].rating": rating } },
+        { $set: { "rating.$[movie].rating": ratingValue } },
         { arrayFilters: [{ "movie.movieId": movieId }] }
       );
     } else {
       // add the rating of the movie
       await users.updateOne(
         { _id: user },
-        { $push: { rating: { movieId: movieId, rating } } }
+        { $push: { rating: { movieId: movieId, rating: ratingValue } } }
       );
     }
     return res.status(200).json({ status: 200, message: "Rating added" });
