@@ -23,8 +23,10 @@ export const Container = styled.div`
   gap: 1rem;
 `;
 
-export const Title = styled.div`
-  font-size: 2.5em;
+export const Logo = styled.div`
+  img {
+    width: 8rem;
+  }
 `;
 
 export const Page = styled.div`

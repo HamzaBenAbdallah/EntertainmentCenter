@@ -2,11 +2,12 @@ import { useLogout } from "./useLogout";
 import { getCurrentUser } from "Services/getCurrentUser";
 import SearchBar from "Components/SearchBar";
 import { Icon } from "@iconify/react";
+import CE from "Pictures/CE.png";
 import {
   Head,
   Wrapper,
   Container,
-  Title,
+  Logo,
   Button,
   Page,
   Link,
@@ -20,7 +21,9 @@ const Header = () => {
       <Wrapper>
         <Container>
           <Link to="">
-            <Title>Movies</Title>
+            <Logo>
+              <img src={CE} />
+            </Logo>
           </Link>
           <Link to="Discover">
             <Page>Discover</Page>
