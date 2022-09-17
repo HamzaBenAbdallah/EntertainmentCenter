@@ -71,7 +71,7 @@ movieRouter.patch(
 );
 
 /** Ratings */
-movieRouter.get("/get-rating", getRating);
+movieRouter.post("/get-rating", authenticateToken, getRating);
 movieRouter.post("/add-rating", authenticateToken, addRating);
 
 export default movieRouter;

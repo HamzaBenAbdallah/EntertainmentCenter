@@ -2,13 +2,16 @@ import { useRate } from "./useRate";
 import { FaStar } from "react-icons/fa";
 import { Container, Rating, Star } from "./Rate.style";
 
-const Rate = ({ isOpen, close, movieId }) => {
+const Rate = ({ isOpen, close, movieId, initialRating }) => {
   const { rating, hover, handleClick, handleMouseEnter, handleMouseLeave } =
     useRate();
 
   if (!isOpen) {
     return null;
   }
+
+  console.log("initial: ", initialRating);
+  console.log("rating: ", rating);
 
   return (
     <Container onClick={close}>
@@ -31,7 +34,9 @@ const Rate = ({ isOpen, close, movieId }) => {
                 <FaStar
                   size={100}
                   color={
-                    ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                    ratingValue <= (hover || rating || initialRating)
+                      ? "#ffc107"
+                      : "#e4e5e9"
                   }
                   onMouseEnter={() => handleMouseEnter(ratingValue)}
                   onMouseLeave={handleMouseLeave}

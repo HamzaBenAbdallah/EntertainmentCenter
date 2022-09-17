@@ -42,6 +42,9 @@ const CardDetails = () => {
     isLoadingMovieDetails,
     isErrorMovieDetails,
     isRateOpen,
+    rating,
+    isLoadingRating,
+    isErrorRating,
     handleRate,
     handleClose,
   } = useMovieDetails(id);
@@ -73,7 +76,16 @@ const CardDetails = () => {
         <Spinner />
       ) : (
         <>
-          <Rate isOpen={isRateOpen} close={handleClose} movieId={id} />
+          {isLoadingRating || isErrorRating ? (
+            <Rate isOpen={isRateOpen} close={handleClose} movieId={id} />
+          ) : (
+            <Rate
+              isOpen={isRateOpen}
+              close={handleClose}
+              movieId={id}
+              initialRating={rating}
+            />
+          )}
           <Backdrop background={BASE_IMAGE_URL + movieDetails.backdrop_path} />
           <DetailsContainer>
             <Info>
