@@ -48,7 +48,7 @@ const App = () => {
               <Route path="watchlist" element={<Watchlist />} />
               <Route path="watched" element={<Watched />} />
             </Route>
-            <Route path="Discover" element={<Discover />} />
+            <Route path="discover" element={<Discover />} />
             <Route path="search/:searchTerm" element={<SearchResults />} />
             <Route path="movies/:id" element={<CardDetails />} />
             <Route path="*" element={<Error />} />
