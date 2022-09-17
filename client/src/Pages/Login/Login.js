@@ -9,6 +9,7 @@ import {
   Form,
   Input,
   Error,
+  ButtonContainer,
 } from "./Login.style";
 
 const Login = () => {
@@ -16,15 +17,16 @@ const Login = () => {
     loginData,
     loginError,
     handleLoginChange,
-    handleLoginSubmit,
+    handleLogin,
     handleLoginUnmount,
+    handleGuestLogin,
   } = useLogin();
 
   return (
     <Container>
       <FormContainer>
         <Left>
-          <Form onSubmit={handleLoginSubmit}>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <h1>Login to your account</h1>
             <Input
               type="email"
@@ -43,7 +45,12 @@ const Login = () => {
               required
             />
             {loginError && <Error>{loginError}</Error>}
-            <Button type="submit">Sign In</Button>
+            <ButtonContainer>
+              <Button type="submit" onClick={handleLogin}>
+                Sign In
+              </Button>
+              <Button onClick={handleGuestLogin}>Sign In as a guest</Button>
+            </ButtonContainer>
           </Form>
         </Left>
         <Right>

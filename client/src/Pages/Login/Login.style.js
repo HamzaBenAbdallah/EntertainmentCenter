@@ -95,3 +95,5 @@ export const Error = styled.div`
   border-radius: 5px;
   text-align: center;
 `;
+
+export const ButtonContainer = styled.div``;

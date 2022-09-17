@@ -14,10 +14,32 @@ export const useLogin = () => {
     setLoginData({ ...loginData, [input.name]: input.value });
   };
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (e) => {
     try {
       const response = await axios.post(`/api/login`, loginData);
+      localStorage.setItem("token", response.headers["auth-token"]);
+      localStorage.setItem("user", response.data.user);
+      window.location = "/";
+      setLoginData(initialState);
+      setLoginError("");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
+        setLoginError(error.response.data.message);
+      }
+    }
+  };
+
+  const handleGuestLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`/api/login`, {
+        email: "John.Doe@gmail.com",
+        password: "P@sswrod1",
+      });
       localStorage.setItem("token", response.headers["auth-token"]);
       localStorage.setItem("user", response.data.user);
       window.location = "/";
@@ -43,7 +65,8 @@ export const useLogin = () => {
     loginData,
     loginError,
     handleLoginChange,
-    handleLoginSubmit,
+    handleLogin,
     handleLoginUnmount,
+    handleGuestLogin,
   };
 };
