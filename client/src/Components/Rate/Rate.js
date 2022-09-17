@@ -10,9 +10,6 @@ const Rate = ({ isOpen, close, movieId, initialRating }) => {
     return null;
   }
 
-  console.log("initial: ", initialRating);
-  console.log("rating: ", rating);
-
   return (
     <Container onClick={close}>
       <Rating
