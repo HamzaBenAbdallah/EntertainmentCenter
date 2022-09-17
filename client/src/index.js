@@ -1,9 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { MovieProvider } from "Services/MovieContext";
 import axios from "axios";
 import { getCurrentUser } from "Services/getCurrentUser";
 
@@ -18,9 +16,7 @@ const queryClient = new QueryClient();
 root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      <MovieProvider>
-        <App />
-      </MovieProvider>
+      <App />
     </QueryClientProvider>
   </BrowserRouter>
 );
