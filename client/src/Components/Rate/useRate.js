@@ -5,30 +5,30 @@ import { getCurrentUser } from "Services/getCurrentUser";
 const { user } = getCurrentUser();
 
 const addRating = async (ratingValue, movieId) => {
-  return await axios.post("/api/add-rating", {
-    user,
-    ratingValue,
-    movieId,
-  });
+    return await axios.post(`${process.env.REACT_APP_SERVER_URL}/add-rating`, {
+        user,
+        ratingValue,
+        movieId,
+    });
 };
 
 export const useRate = () => {
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
+    const [rating, setRating] = useState(null);
+    const [hover, setHover] = useState(null);
 
-  const handleClick = (ratingValue, movieId, close) => {
-    setRating(ratingValue);
-    addRating(ratingValue, movieId);
-    close();
-  };
+    const handleClick = (ratingValue, movieId, close) => {
+        setRating(ratingValue);
+        addRating(ratingValue, movieId);
+        close();
+    };
 
-  const handleMouseEnter = (ratingValue) => {
-    setHover(ratingValue);
-  };
+    const handleMouseEnter = (ratingValue) => {
+        setHover(ratingValue);
+    };
 
-  const handleMouseLeave = () => {
-    setHover(null);
-  };
+    const handleMouseLeave = () => {
+        setHover(null);
+    };
 
-  return { rating, hover, handleClick, handleMouseEnter, handleMouseLeave };
+    return { rating, hover, handleClick, handleMouseEnter, handleMouseLeave };
 };
