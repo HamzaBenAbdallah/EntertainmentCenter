@@ -15,6 +15,12 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health Check
+app.get("/api", (req, res) =>
+    res.status(200).json("Welcome to Entertainment Center's API!")
+);
+app.get("/bacon", (req, res) => res.status(200).json("🥓"));
+
 // Routes Middleware
 app.use("/api", movieRouter);
 app.use("/api", authRouter);
@@ -25,12 +31,5 @@ app.get("*", (req, res) => {
         message: "Page not found",
     });
 });
-
-// Health Check
-app.get("/api", (req, res) =>
-    res.status(200).json("Welcome to Entertainment Center's API!")
-);
-
-app.get("/bacon", (req, res) => res.status(200).json("🥓"));
 
 app.listen(PORT);
