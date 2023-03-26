@@ -27,7 +27,7 @@ app.get("*", (req, res) => {
 });
 
 // Health Check
-app.get("/", (req, res) =>
+app.get("/api", (req, res) =>
     res.status(200).json("Welcome to Entertainment Center's API!")
 );
 
