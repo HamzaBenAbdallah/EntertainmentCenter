@@ -20,10 +20,13 @@ app.use("/api", movieRouter);
 app.use("/api", authRouter);
 
 app.get("*", (req, res) => {
-  res.status(404).json({
-    status: 404,
-    message: "Page not found",
-  });
+    res.status(404).json({
+        status: 404,
+        message: "Page not found",
+    });
 });
+
+// Health Check
+app.get("/bacon", (req, res) => res.status(200).json("🥓"));
 
 app.listen(PORT);
