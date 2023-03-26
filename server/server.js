@@ -15,7 +15,12 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+//cors
+const corsOptions = {
+    exposedHeaders: ["auth-token"],
+};
+app.use(cors(corsOptions));
 
 // Health Check
 app.get("/api", (req, res) =>
