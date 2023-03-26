@@ -47,7 +47,7 @@ export const Login = async (req, res) => {
             const token = createToken(user._id);
             res.header("auth-token", token).status(200).json({
                 status: 200,
-                message: "Logged in successfully",
+                message: `Logged in successfully`,
                 user: user._id,
             });
         } catch (err) {
