@@ -1,41 +1,36 @@
 import { useWatchlist } from "./useWatchlist";
-import { useFetchWatched } from "../../Hooks/useFetchWatched";
-import Spinner from "../../Components/Spinner";
-import ListCard from "../../Components/ListCard";
+import { useFetchWatched } from "Hooks/useFetchWatched";
+import Spinner from "Components/Spinner";
+import ListCard from "Components/ListCard";
 import { MovieGrid } from "./WatchList.style";
 
 const Watchlist = () => {
-    const { watchlist, isLoadingWatchlist, isErrorWatchlist } = useWatchlist();
-    const { watchedList } = useFetchWatched();
+  const { watchlist, isLoadingWatchlist, isErrorWatchlist } = useWatchlist();
+  const { watchedList } = useFetchWatched();
 
-    return (
-        <MovieGrid>
-            {isLoadingWatchlist || isErrorWatchlist ? (
-                <Spinner />
+  return (
+    <MovieGrid>
+      {isLoadingWatchlist || isErrorWatchlist ? (
+        <Spinner />
+      ) : (
+        <>
+          {watchlist.map((movie) =>
+            watchedList?.includes(movie.id) ? (
+              <ListCard
+                key={movie.id}
+                movie={movie}
+                watchlist
+                remove
+                isInWatched
+              />
             ) : (
-                <>
-                    {watchlist.map((movie) =>
-                        watchedList?.includes(movie.id) ? (
-                            <ListCard
-                                key={movie.id}
-                                movie={movie}
-                                watchlist
-                                remove
-                                isInWatched
-                            />
-                        ) : (
-                            <ListCard
-                                key={movie.id}
-                                movie={movie}
-                                watchlist
-                                remove
-                            />
-                        )
-                    )}
-                </>
-            )}
-        </MovieGrid>
-    );
+              <ListCard key={movie.id} movie={movie} watchlist remove />
+            )
+          )}
+        </>
+      )}
+    </MovieGrid>
+  );
 };
 
 export default Watchlist;
