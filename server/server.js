@@ -27,6 +27,9 @@ app.get("*", (req, res) => {
 });
 
 // Health Check
+app.get("/", (req, res) =>
+    res.status(200).json("Welcome to Entertainment Center's API!")
+);
 app.get("/bacon", (req, res) => res.status(200).json("🥓"));
 
 app.listen(PORT);
