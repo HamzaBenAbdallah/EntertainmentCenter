@@ -1,8 +1,8 @@
 export const useLogout = () => {
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location = "/";
+    };
 
-  return { handleLogout };
+    return { handleLogout };
 };
