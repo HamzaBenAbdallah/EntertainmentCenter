@@ -4,7 +4,7 @@
 
 ## Main information
 
-Fullstack MERN (MongoDB for database, Express and Node for backend, and React for frontend) Movie database application which allows users performing CRUD operations :
+Fullstack MERN (MongoDB for database, Express and Node for backend, and React for frontend) Movie database application which allows users performing CRUD operations: [visit here](https://entertainmentcenter.netlify.app/)
 
 -   Create an account
 -   Search for movies
